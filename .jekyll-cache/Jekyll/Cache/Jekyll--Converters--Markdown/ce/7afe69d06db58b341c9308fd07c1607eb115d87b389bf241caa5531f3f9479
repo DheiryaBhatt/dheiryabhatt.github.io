@@ -1,0 +1,113 @@
+I":<h1 id="-ls--la-_posts">$ ls -la _posts/</h1>
+
+<p>Welcome to my digital notebook where I share thoughts, tutorials, and discoveries from my journey in technology and design.</p>
+
+<h2 id="recent-posts">Recent Posts</h2>
+
+<div class="post-list">
+    
+      <article class="post-preview">
+        <h3><a href="/2025/11/24/essential-dev-tools.html">Essential Dev Tools That Changed My Workflow</a></h3>
+        <div class="post-meta">
+          <time>November 24, 2025</time>
+          
+          
+            <span> • 
+              
+                <span class="tag">#development</span>
+              
+                <span class="tag">#tools</span>
+              
+                <span class="tag">#productivity</span>
+              
+                <span class="tag">#vscode</span>
+              
+            </span>
+          
+        </div>
+        
+          <p class="post-excerpt">$ which tools | grep “essential”
+</p>
+        
+        <a href="/2025/11/24/essential-dev-tools.html" class="read-more">Read more →</a>
+      </article>
+    
+      <article class="post-preview">
+        <h3><a href="/2025/02/10/student-life-germany.html">Student Life in Germany: What I&#39;ve Learned So Far</a></h3>
+        <div class="post-meta">
+          <time>February 10, 2025</time>
+          
+          
+            <span> • 
+              
+                <span class="tag">#germany</span>
+              
+                <span class="tag">#student-life</span>
+              
+                <span class="tag">#university</span>
+              
+                <span class="tag">#tips</span>
+              
+            </span>
+          
+        </div>
+        
+          <p class="post-excerpt">$ grep -r “student_experience” life_in_germany.log
+</p>
+        
+        <a href="/2025/02/10/student-life-germany.html" class="read-more">Read more →</a>
+      </article>
+    
+      <article class="post-preview">
+        <h3><a href="/2025/01/15/hello-world.html">Hello World: My Journey Begins</a></h3>
+        <div class="post-meta">
+          <time>January 15, 2025</time>
+          
+          
+            <span> • 
+              
+                <span class="tag">#introduction</span>
+              
+                <span class="tag">#personal</span>
+              
+                <span class="tag">#journey</span>
+              
+            </span>
+          
+        </div>
+        
+          <p class="post-excerpt">$ echo “Hello, World!” &gt; first_post.md
+</p>
+        
+        <a href="/2025/01/15/hello-world.html" class="read-more">Read more →</a>
+      </article>
+    
+  </div>
+
+<h2 id="topics-i-write-about">Topics I Write About</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">grep</span> <span class="nt">-r</span> <span class="s2">"topics"</span> blog_content.txt
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Web Development</strong>: Frontend and backend technologies, best practices</li>
+  <li><strong>Student Life</strong>: Experiences studying in Germany, university insights</li>
+  <li><strong>Career</strong>: Working at dSPACE, internships, job search tips</li>
+  <li><strong>Tools &amp; Workflow</strong>: Developer productivity, cool tools I discover</li>
+  <li><strong>Learning</strong>: Tutorials, guides, and resources I find helpful</li>
+  <li><strong>Technology</strong>: Latest trends, framework comparisons, industry insights</li>
+</ul>
+
+<h2 id="-echo-stay-connected">$ echo “Stay Connected”</h2>
+
+<p>Want to stay updated with my latest posts?</p>
+<ul>
+  <li><a href="/feed.xml">RSS Feed</a></li>
+  <li><a href="https://github.com/DheiryaBhatt">GitHub</a></li>
+  <li><a href="/contact/">Follow on social media</a></li>
+</ul>
+
+<hr />
+
+<p><em>Have a topic suggestion or want to collaborate on content? <a href="/contact/">Let me know</a>!</em></p>
+:ET

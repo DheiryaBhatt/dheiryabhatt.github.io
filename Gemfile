@@ -5,6 +5,12 @@ gemspec
 
 
 gem 'webrick'
+gem 'csv'
+gem 'logger'
+gem 'base64'
+gem 'bigdecimal'
+gem 'jekyll-feed'
+gem 'jekyll-sitemap'
 
 # Use libsass via jekyll-sass-converter 2.x to avoid Dart Sass
 # deprecation warnings for @import during local development.

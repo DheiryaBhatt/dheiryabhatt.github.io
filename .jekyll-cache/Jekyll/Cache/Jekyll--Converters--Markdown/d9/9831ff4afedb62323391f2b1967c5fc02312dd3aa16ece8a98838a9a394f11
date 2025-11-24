@@ -1,0 +1,175 @@
+I"�)<h1 id="-which-tools--grep-essential">$ which tools | grep “essential”</h1>
+
+<p>As a developer working at dSPACE and studying computer science, I’ve experimented with countless tools to optimize my workflow. Here are the ones that have truly made a difference.</p>
+
+<h2 id="code-editor-vs-code">Code Editor: VS Code</h2>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"editor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visual Studio Code"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"why"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Perfect balance of features and performance"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"favorite_extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"GitLens"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Prettier"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"Live Server"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Thunder Client"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"German Language Pack"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>VS Code has become my daily driver. The extension ecosystem is incredible, and it handles everything from web development to documentation.</p>
+
+<h2 id="terminal-windows-terminal--powershell">Terminal: Windows Terminal + PowerShell</h2>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># My current setup</span><span class="w">
+</span><span class="nv">$terminal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@{</span><span class="w">
+    </span><span class="nx">Shell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"PowerShell 7"</span><span class="w">
+    </span><span class="nx">Terminal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Windows Terminal"</span><span class="w">  
+    </span><span class="nx">Theme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Dark+"</span><span class="w">
+    </span><span class="nx">Productivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Oh My Posh + Starship"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The new Windows Terminal with PowerShell 7 has transformed my command-line experience. Adding Oh My Posh makes it both beautiful and functional.</p>
+
+<h2 id="version-control-workflow">Version Control Workflow</h2>
+
+<h3 id="git--github">Git + GitHub</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># My typical workflow</span>
+git checkout <span class="nt">-b</span> feature/awesome-feature
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"feat: add awesome feature"</span>
+git push origin feature/awesome-feature
+<span class="c"># Create PR via GitHub CLI or web interface</span>
+</code></pre></div></div>
+
+<h3 id="gitkraken-gui">GitKraken (GUI)</h3>
+<p>For complex merge conflicts and repository visualization, GitKraken has saved me countless hours.</p>
+
+<h2 id="design-and-planning">Design and Planning</h2>
+
+<h3 id="figma">Figma</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">use_cases</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">UI/UX mockups for personal projects</span>
+  <span class="pi">-</span> <span class="s">Collaborative design with team members</span>  
+  <span class="pi">-</span> <span class="s">Creating diagrams and flowcharts</span>
+  <span class="pi">-</span> <span class="s">Prototyping web interfaces</span>
+</code></pre></div></div>
+
+<h3 id="notion">Notion</h3>
+<p>My second brain for:</p>
+<ul>
+  <li>Project planning and documentation</li>
+  <li>Study notes and research</li>
+  <li>Personal knowledge management</li>
+  <li>Meeting notes from dSPACE</li>
+</ul>
+
+<h2 id="development-environment">Development Environment</h2>
+
+<h3 id="docker">Docker</h3>
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Consistent development environments</span>
+<span class="k">FROM</span><span class="s"> node:18-alpine</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> package*.json ./</span>
+<span class="k">RUN </span>npm <span class="nb">install</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">CMD</span><span class="s"> ["npm", "start"]</span>
+</code></pre></div></div>
+
+<p>Docker has eliminated “it works on my machine” issues completely.</p>
+
+<h3 id="postmanthunder-client">Postman/Thunder Client</h3>
+<p>API testing and documentation made simple. Thunder Client (VS Code extension) is perfect for quick tests.</p>
+
+<h2 id="learning-and-documentation">Learning and Documentation</h2>
+
+<h3 id="obsidian">Obsidian</h3>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># My Knowledge Graph</span>
+<span class="p">-</span> Course notes from Universität Paderborn
+<span class="p">-</span> Work learnings from dSPACE  
+<span class="p">-</span> Tech documentation and tutorials
+<span class="p">-</span> Project ideas and implementations
+</code></pre></div></div>
+
+<p>Obsidian’s linking system helps me connect concepts across different domains.</p>
+
+<h3 id="anki-spaced-repetition">Anki (Spaced Repetition)</h3>
+<p>For memorizing:</p>
+<ul>
+  <li>Programming concepts and syntax</li>
+  <li>German vocabulary (essential for work!)</li>
+  <li>Computer science fundamentals</li>
+  <li>System design patterns</li>
+</ul>
+
+<h2 id="productivity-tools">Productivity Tools</h2>
+
+<h3 id="todoist">Todoist</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>todoist list
+Today:
+- Review PR <span class="k">for </span>project X
+- Finish CS assignment on algorithms  
+- dSPACE team meeting at 2 PM
+- Work on personal website blog post
+</code></pre></div></div>
+
+<h3 id="rescuetime">RescueTime</h3>
+<p>Tracking where my time goes helps optimize my study/work balance.</p>
+
+<h2 id="communication">Communication</h2>
+
+<h3 id="slack-dspace">Slack (dSPACE)</h3>
+<h3 id="discord-developer-communities">Discord (Developer Communities)</h3>
+<h3 id="whatsapp-university-groups">WhatsApp (University Groups)</h3>
+
+<h2 id="browser-extensions">Browser Extensions</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">essentialExtensions</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="dl">'</span><span class="s1">uBlock Origin</span><span class="dl">'</span><span class="p">,</span>      <span class="c1">// Ad blocking</span>
+  <span class="dl">'</span><span class="s1">Bitwarden</span><span class="dl">'</span><span class="p">,</span>          <span class="c1">// Password management  </span>
+  <span class="dl">'</span><span class="s1">React Developer Tools</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// Frontend debugging</span>
+  <span class="dl">'</span><span class="s1">JSON Viewer</span><span class="dl">'</span><span class="p">,</span>        <span class="c1">// Pretty JSON formatting</span>
+  <span class="dl">'</span><span class="s1">Grammarly</span><span class="dl">'</span><span class="p">,</span>         <span class="c1">// Writing assistance (especially in German!)</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<h2 id="-eval-my_workflow_philosophy">$ eval “my_workflow_philosophy”</h2>
+
+<p>The best tools are the ones you actually use consistently. I prefer:</p>
+
+<ol>
+  <li><strong>Simple over complex</strong> - Tools that don’t get in the way</li>
+  <li><strong>Cross-platform</strong> - Works on Windows (work) and other systems</li>
+  <li><strong>Good documentation</strong> - Essential when learning</li>
+  <li><strong>Active community</strong> - Help and resources when stuck</li>
+</ol>
+
+<h2 id="tools-im-currently-exploring">Tools I’m Currently Exploring</h2>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">investigating</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">Neovim</span><span class="pi">:</span> <span class="s">Considering the switch from VS Code</span>
+  <span class="pi">-</span> <span class="na">Rust</span><span class="pi">:</span> <span class="s">Learning systems programming</span>
+  <span class="pi">-</span> <span class="na">Kubernetes</span><span class="pi">:</span> <span class="s">For container orchestration</span>
+  <span class="pi">-</span> <span class="na">Zsh</span><span class="pi">:</span> <span class="s">Might switch from PowerShell on Linux</span>
+</code></pre></div></div>
+
+<h2 id="university-specific-tools">University-Specific Tools</h2>
+
+<h3 id="paul-university-portal">PAUL (University Portal)</h3>
+<h3 id="panda-learning-management-system">PANDA (Learning Management System)</h3>
+<h3 id="hbz-library-system">HBZ Library System</h3>
+<h3 id="student-email-outlook">Student Email (Outlook)</h3>
+
+<p>Working in Germany while studying has taught me the importance of having robust, reliable tools that work across different environments and languages.</p>
+
+<h2 id="-echo-what-tools-do-you-swear-by">$ echo “What tools do you swear by?”</h2>
+
+<p>I’m always looking to improve my setup. What tools have transformed your workflow? Any suggestions for a student developer working in Germany?</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tools <span class="nt">--feedback</span> | send_to contact@dheirya.dev
+</code></pre></div></div>
+
+<p><em>Got recommendations or want to discuss developer tools? <a href="/contact/">Let’s chat</a>!</em></p>
+:ET

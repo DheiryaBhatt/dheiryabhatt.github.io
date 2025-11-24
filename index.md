@@ -1,9 +1,9 @@
 ---
-title: /
+title: Home
 layout: home
 permalink: /
 ---
 
-# Lorem ipsum
+Hi, I'm **Dheirya Bhatt** - a 23-year-old developer and designer from India, currently studying at [**Universität Paderborn**](https://www.uni-paderborn.de/) and working as a student assistant at [**dSPACE GmbH**](https://www.dspace.com/).
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+I share the most interesting personal blog's which share my experience and learnings. Stay Tuned!

@@ -1,20 +1,48 @@
-# Example Site settings
+# Site settings
+title: Dheirya Bhatt
+description: Developer & Designer - Building beautiful digital experiences
+baseurl: ""
+url: "https://dheiryabhatt.github.io"
 
-#header_pages:
-#  - index.md
-#  - about.md
+# Author information
+author:
+  name: Dheirya Bhatt
+  email: bhattdheirya@gmail.com
+  github: DheiryaBhatt
+  twitter: your-twitter
+  linkedin: your-linkedin
 
-#footer: 'follow us on <a href="https://twitter.com/">twitter</a>'
+# Navigation
+header_pages:
+  - index.md
+  - blog.md
 
+# Footer
+footer: 'Built with ❤️ by <a href="https://github.com/DheiryaBhatt">Dheirya Bhatt</a> | <a href="/feed.xml">RSS</a>'
+
+# Plugins
 plugins:
   - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
 
 # Theme options
-# style: dark # dark (default) or light or hacker
-# listen_for_clients_preferred_style: true # true or false (default)
+style: dark (default) or light or hacker
+listen_for_clients_preferred_style: true or false (default)
 
 # Fonts
-# disable_google_fonts: false # set true to prevent loading fonts.googleapis.com
+disable_google_fonts: false # set true to prevent loading fonts.googleapis.com
+
+# Blog settings
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+# Social links
+social:
+  github: DheiryaBhatt
+  twitter: your-twitter
+  linkedin: your-linkedin
+  email: your-email@domain.com
 
 # Tracking (generic, optional; loads only in production)
 # tracking:
