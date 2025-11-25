@@ -7,12 +7,38 @@ class FlipDotAnimation {
     this.autoStart = options.autoStart !== false;
     this.loop = options.loop || false;
     this.loopDelay = options.loopDelay || 3000;
-    this.dotSize = options.dotSize || 2;
+    this.dotSize = this.getResponsiveDotSize();
     this.rows = 7; // Standard flipdot display height
     this.cols = this.text.length * 6; // 5 chars + 1 space per character
     
     this.dotMatrix = this.createDotMatrix();
+    this.setupResponsiveListener();
     this.init();
+  }
+  
+  getResponsiveDotSize() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 360) return 1;
+    if (screenWidth <= 480) return 1.5;
+    if (screenWidth <= 768) return 1.8;
+    return 2;
+  }
+  
+  setupResponsiveListener() {
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const newDotSize = this.getResponsiveDotSize();
+        if (newDotSize !== this.dotSize) {
+          this.dotSize = newDotSize;
+          this.createDotDisplay();
+          if (this.container.querySelector('.flipdot-dot.flipped')) {
+            this.start();
+          }
+        }
+      }, 250);
+    });
   }
   
   // 5x7 dot matrix patterns for each character
