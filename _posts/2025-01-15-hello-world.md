@@ -21,11 +21,4 @@ Don't worry, there is no emotional context behind this. Just simple one friend t
 **What you can expect from this?** 
 Simple Truthful stories. That's my promise.
 
----
-
-<small>
-**Bis später, Leute.**  
-Dheirya R. Bhatt  
-Lortzingweg 23a  
-Paderborn, 33102  
-</small> 
+{% include signature.html %} 
