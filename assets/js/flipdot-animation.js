@@ -9,18 +9,28 @@ class FlipDotAnimation {
     this.loopDelay = options.loopDelay || 3000;
     this.dotSize = this.getResponsiveDotSize();
     this.rows = 7; // Standard flipdot display height
-    this.cols = this.text.length * 6; // 5 chars + 1 space per character
+    this.cols = this.calculateRequiredColumns(); // Calculate based on actual characters
     
     this.dotMatrix = this.createDotMatrix();
     this.setupResponsiveListener();
     this.init();
   }
   
+  calculateRequiredColumns() {
+    // Calculate exact columns needed for the text
+    let totalCols = 0;
+    for (let i = 0; i < this.text.length; i++) {
+      totalCols += 5; // Each character is 5 columns wide
+      if (i < this.text.length - 1) totalCols += 1; // Add space between characters (except last)
+    }
+    return totalCols;
+  }
+
   getResponsiveDotSize() {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 360) return 1;
-    if (screenWidth <= 480) return 1.5;
-    if (screenWidth <= 768) return 1.8;
+    if (screenWidth <= 480) return 1.2;
+    if (screenWidth <= 768) return 1.5;
     return 2;
   }
   
@@ -32,6 +42,7 @@ class FlipDotAnimation {
         const newDotSize = this.getResponsiveDotSize();
         if (newDotSize !== this.dotSize) {
           this.dotSize = newDotSize;
+          this.cols = this.calculateRequiredColumns();
           this.createDotDisplay();
           if (this.container.querySelector('.flipdot-dot.flipped')) {
             this.start();
@@ -155,7 +166,7 @@ class FlipDotAnimation {
       '\'': [
         [0,0,1,0,0],
         [0,0,1,0,0],
-        [0,0,0,0,0],
+        [0,1,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
@@ -262,7 +273,12 @@ class FlipDotAnimation {
           }
         }
       }
-      currentCol += 6; // 5 character width + 1 space
+      
+      // Move to next character position
+      currentCol += 5; // Character width
+      if (i < this.text.length - 1) {
+        currentCol += 1; // Add space between characters (except after last character)
+      }
     }
     
     return pattern;
