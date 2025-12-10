@@ -18,7 +18,7 @@ header_pages:
   - blog.md
 
 # Footer
-footer: 'Built with ❤️ by <a href="https://github.com/DheiryaBhatt">Dheirya Bhatt</a> | <a href="/feed.xml">RSS</a>'
+footer: 'Built with ❤️ by <span class="footer-brand">Dheirya Bhatt</span>'
 
 # Plugins
 plugins:
