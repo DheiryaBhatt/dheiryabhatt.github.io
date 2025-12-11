@@ -1,9 +1,10 @@
 /* Signature Container Styles */
 .signature-container {
-  margin: 40px 0 20px 0;
-  padding: 20px 0;
-  border-top: 1px solid var(--base-color, #ccc);
-  font-family: 'Courier New', monospace;
+  margin: 32px auto 18px auto;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-color, #ccc);
+  font-family: inherit;
+  max-width: var(--content-max-width);
 }
 
 .signature-content {
@@ -17,9 +18,10 @@
   flex: 1;
 }
 
+
 .signature-text small {
-  font-size: 0.8em;
-  line-height: 1.4;
+  font-size: 0.95em;
+  line-height: 1.55;
   color: var(--text-color, #333);
 }
 
@@ -37,7 +39,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 2px solid var(--base-color, #ccc);
+  border: 2px solid var(--border-color-strong, #ccc);
   background-color: #f8f8f8;
   transition: transform 0.2s ease;
 }

@@ -4,35 +4,19 @@ layout: page
 permalink: /blog/
 ---
 
-# $ ls -la _posts/
-
-Welcome to my digital notebook where I share thoughts, tutorials, and discoveries from my journey in technology and design.
+<div class="blog-hero">
+  <span class="blog-hero__divider" aria-hidden="true"></span>
+  <h1 class="blog-hero__title">DEEBOT’S BLOG!</h1>
+  <span class="blog-hero__divider" aria-hidden="true"></span>
+  <p class="blog-hero__intro">Welcome to my digital notebook where I share thoughts, tutorials, and discoveries from my journey in technology and design.</p>
+</div>
 
 ## Recent Posts
 
 {% if site.posts.size > 0 %}
-  <div class="post-list">
+  <div class="post-list post-list--with-excerpts">
     {% for post in site.posts %}
-      <article class="post-preview">
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-        <div class="post-meta">
-          <time>{{ post.date | date: "%B %-d, %Y" }}</time>
-          {% if post.readingtime %}
-            <span> • {{ post.readingtime }}</span>
-          {% endif %}
-          {% if post.tags.size > 0 %}
-            <span> • 
-              {% for tag in post.tags %}
-                <span class="tag">#{{ tag }}</span>{% unless forloop.last %} {% endunless %}
-              {% endfor %}
-            </span>
-          {% endif %}
-        </div>
-        {% if post.excerpt %}
-          <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-        {% endif %}
-        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
-      </article>
+      {% include post-card.html post=post show_excerpt=true %}
     {% endfor %}
   </div>
 {% else %}

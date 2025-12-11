@@ -1,0 +1,23 @@
+<article class="post-card">
+  <div class="post-card__meta">
+    <span class="post-card__date">{{ include.post.date | date: "%b %d, %Y" }}</span>
+    {%- if include.post.tags and include.post.tags.size > 0 -%}
+      <span class="post-card__tags" aria-label="Post tags">
+        {%- for tag in include.post.tags -%}
+          <span class="post-card__tag">{{ tag }}</span>
+        {%- endfor -%}
+      </span>
+    {%- endif -%}
+  </div>
+  <h2 class="post-card__title">
+    <a href="{{ include.post.url | relative_url }}">{{ include.post.title | escape }}</a>
+  </h2>
+  {%- if include.show_excerpt and include.post.excerpt -%}
+    <p class="post-card__excerpt">{{ include.post.excerpt | strip_html | truncate: 200 }}</p>
+  {%- endif -%}
+  {%- if include.post.readingtime -%}
+    <div class="post-card__meta post-card__meta--footer">
+      <span class="post-card__reading">{{ include.post.readingtime }}</span>
+    </div>
+  {%- endif -%}
+</article>
