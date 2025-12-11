@@ -16,9 +16,10 @@ author:
 header_pages:
   - index.md
   - blog.md
+  - about.md
 
 # Footer
-footer: 'Built with ❤️ by <span class="footer-brand">Dheirya Bhatt</span>'
+footer: 'Built with ❤️ by <a href="/about/"><span class="footer-brand">Dheirya Bhatt</span></a>'
 
 # Plugins
 plugins:

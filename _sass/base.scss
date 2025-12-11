@@ -6,6 +6,8 @@
 $base-font-family:     'Source Code Pro', monospace !default;
 $base-font-size:       12.5px !default;
 $mobile-font-size:     12px !default;
+$tablet-font-size:     15.625px !default;
+$desktop-font-size:    18.75px !default;
 $base-line-height:     1.5 !default;
 $container-width:      90% !default;
 $container-max-width:  600px !default;
@@ -19,6 +21,8 @@ p, ul, ol { margin: 0px;  color: var(--text-color); }
 a { text-decoration: underline;  color: var(--link-color); }
 a:hover { color: var(--background-color); background-color: var(--base-color); }
 @media only screen and (max-device-width: 500px) { * { font-size: $mobile-font-size !important; } }
+@media only screen and (min-device-width: 501px) and (max-device-width: 1024px) { * { font-size: $tablet-font-size !important; } }
+@media only screen and (min-device-width: 1025px) { * { font-size: $desktop-font-size !important; } }
 
 /**
  * Layout
@@ -50,11 +54,6 @@ footer { margin-bottom: 20px; }
 .post-card__title { margin: 0;  font-size: 1.05em; }
 .post-card__title a { text-decoration: none;  color: var(--text-color);  transition: color 0.15s ease, background-color 0.15s ease; }
 .post-card__title a:hover { text-decoration: none;  color: var(--background-color);  background-color: var(--base-color); }
-
-/**
- * Animation placeholder
- */
-#animation-container { width: 100vw;  margin-left: calc(-50vw + 50%);  min-height: 260px;  background: #0a0a0a;  border-top: var(--border);  margin-top: 40px;  position: relative;  z-index: 1; }
 
 /**
  * Highlight/Markup
