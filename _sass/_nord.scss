@@ -5,7 +5,12 @@
 @mixin theme() {
   :root {
     --base-color: #D8DEE9;
-    --border: dashed 1px #3B4252;
+    --border-color: rgba(59, 66, 82, 0.35);
+    --border-color-strong: rgba(59, 66, 82, 0.55);
+    --border: 1px solid var(--border-color);
+    --surface-color: rgba(216, 222, 233, 0.03);
+    --surface-color-strong: rgba(216, 222, 233, 0.06);
+    --muted-text: rgba(216, 222, 233, 0.75);
     --selection-background: #E5E9F0;
     --selection-text: #434C5E;
     --background-color: #2E3440;
