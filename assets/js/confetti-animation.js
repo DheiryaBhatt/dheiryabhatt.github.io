@@ -47,7 +47,7 @@
             vy: Math.sin(angleRad) * velocity,
             color: colors[Math.floor(Math.random() * colors.length)],
             shape: shapes[Math.floor(Math.random() * shapes.length)],
-            size: Math.random() * 2,
+            size: Math.random() * 2.5, // Increased from 2 to 2.5 (25% bigger)
             sizeGrowing: true,
             rotation: Math.random() * 360,
             rotationSpeed: (Math.random() - 0.5) * tilt.speed,
@@ -74,9 +74,9 @@
           particle.currentTick++;
           
           // Size animation - grow from 0 to max
-          if (particle.sizeGrowing && particle.size < 2) {
-            particle.size += 0.16;
-            if (particle.size >= 2) {
+          if (particle.sizeGrowing && particle.size < 2.5) { // Increased from 2 to 2.5
+            particle.size += 0.2; // Increased from 0.16 to 0.2
+            if (particle.size >= 2.5) { // Increased from 2 to 2.5
               particle.sizeGrowing = false;
             }
           }
@@ -194,7 +194,7 @@
   function triggerFireworks(myConfetti, canvas) {
     var duration = 3000; // 3 seconds
     var end = Date.now() + duration;
-    var colors = ["#ffffff", "#FF0000"];
+    var colors = ["#FFD700", "#FF1493"]; // Gold and Deep Pink - visible on both light and dark backgrounds
     
     var interval = setInterval(function() {
       if (Date.now() > end) {
@@ -244,8 +244,18 @@
   
   // Auto-start when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initConfetti);
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if confetti has been shown before
+      if (!sessionStorage.getItem('confettiShown')) {
+        sessionStorage.setItem('confettiShown', 'true');
+        initConfetti();
+      }
+    });
   } else {
-    initConfetti();
+    // Check if confetti has been shown before
+    if (!sessionStorage.getItem('confettiShown')) {
+      sessionStorage.setItem('confettiShown', 'true');
+      initConfetti();
+    }
   }
 })();

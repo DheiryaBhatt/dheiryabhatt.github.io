@@ -1,0 +1,92 @@
+# GitHub Actions Workflow for Syncing Notion to Jekyll Blog
+# This file tells GitHub to run your sync script automatically in the cloud
+
+name: Sync Notion to Blog
+
+# WHEN should this workflow run?
+on:
+  # Option 1: Run on a schedule (like a cron job)
+  schedule:
+    # Cron syntax: minute hour day month dayofweek
+    # '0 */6 * * *' means: "at minute 0, every 6 hours"
+    # You can change this - examples:
+    # '0 */2 * * *' = every 2 hours
+    # '0 0 * * *' = once per day at midnight
+    # '*/30 * * * *' = every 30 minutes
+    - cron: '0 */6 * * *'
+  
+  # Option 2: Manual trigger (you can click a button in GitHub)
+  workflow_dispatch:
+  
+  # Option 3: Run when you push to main/master (optional)
+  # push:
+  #   branches: [ master ]
+
+# WHAT should happen when this workflow runs?
+jobs:
+  sync-notion:
+    # This runs on GitHub's virtual machine (Ubuntu Linux)
+    runs-on: ubuntu-latest
+    
+    # These are the steps to execute in order
+    steps:
+      # Step 1: Download your repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # This allows the workflow to push changes back
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Step 2: Install Node.js (needed to run your sync script)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # or '18' or '22'
+      
+      # Step 3: Install npm packages (like @notionhq/client)
+      - name: Install dependencies
+        run: |
+          cd mcp-notion-publisher
+          npm install
+      
+      # Step 4: Run the sync script
+      - name: Sync posts from Notion
+        env:
+          # These secrets are stored in GitHub (we'll set them up)
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: |
+          cd mcp-notion-publisher
+          npm run sync
+      
+      # Step 5: Check if any files changed
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      
+      # Step 6: Commit and push the new blog posts
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          # Configure git with bot identity
+          git config user.name "Notion Sync Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Add the new/updated markdown files
+          git add _posts/
+          
+          # Commit with a message
+          git commit -m "🔄 Auto-sync blog posts from Notion"
+          
+          # Push to your repository
+          git push
+      
+      # Optional Step 7: Notify if successful (you can add Slack, Discord, etc.)
+      - name: Success message
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: echo "✅ Successfully synced and published new posts!"
