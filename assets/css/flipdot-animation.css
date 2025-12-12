@@ -43,13 +43,14 @@
   justify-content: flex-start;
 }
 
+
 .nav-content ul {
   margin: 0;
   padding-left: 0;
   list-style-type: none;
   text-align: right;
   display: flex;
-  gap: 15px;
+  gap: 8px;
 }
 
 .nav-content ul li {
@@ -59,8 +60,10 @@
 .nav-content ul li a {
   text-decoration: none;
   color: var(--text-color);
-  margin-left: 10px;
+  margin-left: 4px;
   transition: all 0.2s ease;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
 .nav-content ul li a:hover {

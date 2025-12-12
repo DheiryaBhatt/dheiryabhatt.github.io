@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "Hello Diary ~@ 25/11/2025 TT: 14:50 (EST)"
+title: "Hello Diary @ 25/11/2025 TI: 14:50 (EST)."
 date: 2025-01-15
-tags: [introduction, personal, journey]
 ---
 
 # $ echo "Hello, World!" > first_post.md

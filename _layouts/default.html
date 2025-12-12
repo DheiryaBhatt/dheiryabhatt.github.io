@@ -27,6 +27,8 @@ script-src 'self';
   {%- include head.html -%}
 
   <body>
+    <div class="background-panel background-panel--left" aria-hidden="true"></div>
+    <div class="background-panel background-panel--right" aria-hidden="true"></div>
     <div class="container">
 
       {%- include header.html -%}
@@ -38,8 +40,11 @@ script-src 'self';
     {%- include footer.html -%}
 
     </div>
-    
+
     <!-- Flipdot Animation JavaScript -->
     <script src="{{ '/assets/js/flipdot-animation.js' | relative_url }}"></script>
+    
+    <!-- Confetti Fireworks Animation -->
+    <script src="{{ '/assets/js/confetti-animation.js' | relative_url }}"></script>
   </body>
 </html>

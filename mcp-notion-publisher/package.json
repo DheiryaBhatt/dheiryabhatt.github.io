@@ -1,26 +1,21 @@
 {
   "name": "mcp-notion-publisher",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "MCP server to sync Notion database to Jekyll blog posts",
+  "main": "src/index.js",
   "type": "module",
-  "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "test:mcp" : "tsx src/test-mcp.ts"
+    "start": "node src/index.js",
+    "sync": "node src/sync-posts.js",
+    "test": "node src/test-connection.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.23.0",
-    "@notionhq/client": "^2.2.14",
-    "dotenv": "^16.4.5",
-    "notion-to-md": "^3.1.0",
-    "simple-git": "^3.27.0",
-    "zod": "^3.25.8"
+    "@notionhq/client": "^2.2.15",
+    "notion-to-md": "^3.1.1",
+    "dotenv": "^16.3.1",
+    "fs-extra": "^11.2.0"
   },
-  "devDependencies": {
-    "@types/node": "^22.0.0",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.21.0",
-    "typescript": "^5.6.3"
-  }
+  "devDependencies": {},
+  "author": "Dheirya Bhatt",
+  "license": "MIT"
 }
