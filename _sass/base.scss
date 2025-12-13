@@ -6,6 +6,8 @@
 $base-font-family:     'Source Code Pro', monospace !default;
 $base-font-size:       12.5px !default;
 $mobile-font-size:     12px !default;
+$tablet-font-size:     15.625px !default;
+$desktop-font-size:    18.75px !default;
 $base-line-height:     1.5 !default;
 $container-width:      90% !default;
 $container-max-width:  600px !default;
@@ -13,22 +15,45 @@ $container-max-width:  600px !default;
 /**
  * Global
  */
-body { background-color: var(--background-color);  margin: 0 auto;  padding: 0;  font-family: $base-font-family;  font-size: $base-font-size;  color: var(--text-color);  text-align: left;  line-height: $base-line-height !important; }
+body { background-color: var(--background-color);  margin: 0 auto;  padding: 0;  font-family: $base-font-family;  font-size: $base-font-size;  color: var(--text-color);  text-align: left;  line-height: $base-line-height !important;  overflow-x: hidden;  position: relative; }
 h1, h2, h3, h4, h5, h6 { font-size: $base-font-size;  margin: 0px;  margin-top: 22px;  font-weight: bold;  color: var(--text-color); }
 p, ul, ol { margin: 0px;  color: var(--text-color); }
 a { text-decoration: underline;  color: var(--link-color); }
 a:hover { color: var(--background-color); background-color: var(--base-color); }
 @media only screen and (max-device-width: 500px) { * { font-size: $mobile-font-size !important; } }
+@media only screen and (min-device-width: 501px) and (max-device-width: 1024px) { * { font-size: $tablet-font-size !important; } }
+@media only screen and (min-device-width: 1025px) { * { font-size: $desktop-font-size !important; } }
 
 /**
  * Layout
  */
-.container { width: $container-width;  max-width: $container-max-width;  margin-right: auto;  margin-left: auto; }
+.container { width: $container-width;  max-width: $container-max-width;  margin-right: auto;  margin-left: auto;  position: relative;  z-index: 1; }
 p { word-wrap: break-word;  word-break: break-word;  white-space: pre-wrap; margin-bottom: 15px; }
 footer { color: var(--text-color);  border-top: var(--border);  margin: 20px auto 15px;  padding-top: 10px;  text-align: right; }
 header { margin-top: 25px;  margin-bottom: 10px; }
 header p { text-align: left;  margin: 0; }
 footer { margin-bottom: 20px; }
+
+/**
+ * Background decoration panels
+ */
+.background-panel { position: fixed;  top: -80px;  bottom: -80px;  width: 22vw;  max-width: 260px;  background: repeating-linear-gradient(135deg, rgba(219, 219, 219, 0.08) 0, rgba(219, 219, 219, 0.08) 14px, transparent 14px, transparent 28px);  opacity: 0.6;  pointer-events: none;  z-index: 0;  filter: blur(0.1px); }
+.background-panel--left { left: -10vw;  transform: skew(-8deg); }
+.background-panel--right { right: -10vw;  transform: skew(8deg); }
+
+/**
+ * Blog listing
+ */
+.post-list { display: grid;  gap: 12px;  margin-top: 10px; }
+.post-card { border: var(--border);  border-radius: 6px;  padding: 14px 16px;  background: rgba(255, 255, 255, 0.02);  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; }
+.post-card:hover { transform: translateY(-3px);  border-color: rgba(219, 219, 219, 0.7);  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); }
+.post-card__meta { display: flex;  align-items: center;  gap: 10px;  flex-wrap: wrap;  margin-bottom: 6px;  color: rgba(219, 219, 219, 0.78);  letter-spacing: 0.04em; }
+.post-card__date { font-size: 0.95em;  padding: 2px 6px;  border: 1px dashed rgba(219, 219, 219, 0.45);  border-radius: 4px;  background-color: rgba(255, 255, 255, 0.03); }
+.post-card__tags { display: flex;  flex-wrap: wrap;  gap: 6px; }
+.post-card__tag { font-size: 0.9em;  padding: 3px 8px;  border-radius: 999px;  border: 1px dashed rgba(219, 219, 219, 0.35);  background-color: rgba(219, 219, 219, 0.08);  color: var(--text-color); }
+.post-card__title { margin: 0;  font-size: 1.05em; }
+.post-card__title a { text-decoration: none;  color: var(--text-color);  transition: color 0.15s ease, background-color 0.15s ease; }
+.post-card__title a:hover { text-decoration: none;  color: var(--background-color);  background-color: var(--base-color); }
 
 /**
  * Highlight/Markup
