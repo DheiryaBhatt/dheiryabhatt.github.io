@@ -1,6 +1,6 @@
 /* Flipdot Animation Styles */
 .flipdot-container {
-  background-color: #000;
+  background-color: var(--background-color);
   padding: 40px 20px;
   text-align: center;
   font-family: 'Courier New', monospace;
@@ -81,8 +81,8 @@
 }
 
 .flipdot-dot.flipped {
-  background-color: #fff;
-  box-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+  background-color: var(--text-color);
+  box-shadow: 0 0 3px var(--text-color);
 }
 
 /* Dot flip animation */
@@ -93,11 +93,12 @@
   }
   50% {
     transform: scale(1.2);
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--text-color);
+    opacity: 0.8;
   }
   100% {
     transform: scale(1);
-    background-color: #fff;
+    background-color: var(--text-color);
   }
 }
 

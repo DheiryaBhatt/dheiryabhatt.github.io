@@ -1,5 +1,11 @@
 {%- assign default_paths = site.html_pages | map: 'path' -%}
 {%- assign page_paths = site.header_pages | default: default_paths -%}
+
+<!-- Theme Toggle Button -->
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+  <img src="/assets/images/moon-icon.svg" alt="Toggle theme" class="theme-icon">
+</button>
+
 <header>
   <div class="menu">
     <div class="nav-content">

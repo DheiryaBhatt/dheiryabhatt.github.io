@@ -6,7 +6,7 @@
   <title>{{ page.title }}</title>
   {%- seo title=false -%}
   
-  <link rel="icon" type="image/svg+xml" href="{{ "/assets/images/favicon.svg" | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ "/assets/images/Group_18.svg" | relative_url }}">
   <link rel="alternate icon" href="{{ "/favicon.ico" | relative_url }}">
 
   {% if page.robots %}
@@ -42,4 +42,10 @@
   
   <!-- Signature Component CSS -->
   <link rel="stylesheet" type="text/css" href="{{ "/assets/css/signature.css" | relative_url }}">
+  
+  <!-- Theme Toggle CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ "/assets/css/theme-toggle.css" | relative_url }}">
+  
+  <!-- Theme Toggle Script (load early to prevent flash) -->
+  <script src="{{ "/assets/js/theme-toggle.js" | relative_url }}"></script>
 </head>
