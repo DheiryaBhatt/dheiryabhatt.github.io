@@ -38,13 +38,14 @@ jobs:
           echo "Checking for changes in _posts directory..."
           ls -la _posts/ || echo "No _posts directory found"
           git status
-          if git diff --quiet _posts/; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "No changes detected"
-          else
+          # Check for both modified and untracked files in _posts/
+          if [ -n "$(git status --porcelain _posts/)" ]; then
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "Changes detected!"
-            git diff --stat _posts/
+            git status --short _posts/
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
           fi
           
       - name: Commit and push changes
