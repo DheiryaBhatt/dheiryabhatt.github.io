@@ -9,6 +9,8 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to push changes
     
     steps:
       - name: Checkout repository
@@ -33,7 +35,17 @@ jobs:
       - name: Check for changes
         id: verify_diff
         run: |
-          git diff --quiet _posts/ || echo "changed=true" >> $GITHUB_OUTPUT
+          echo "Checking for changes in _posts directory..."
+          ls -la _posts/ || echo "No _posts directory found"
+          git status
+          if git diff --quiet _posts/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected!"
+            git diff --stat _posts/
+          fi
           
       - name: Commit and push changes
         if: steps.verify_diff.outputs.changed == 'true'

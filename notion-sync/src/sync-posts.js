@@ -3,15 +3,27 @@ import { NotionToMarkdown } from 'notion-to-md';
 import fs from 'fs-extra';
 import path from 'path';
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-// Load environment variables
-dotenv.config({ path: '.env.local' });
+// Get current file directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load environment variables (works with both .env.local and GitHub Actions env vars)
+dotenv.config({ path: path.join(__dirname, '..', '.env.local') });
+
+if (!process.env.NOTION_TOKEN || !process.env.NOTION_DATABASE_ID) {
+  console.error('❌ Error: NOTION_TOKEN and NOTION_DATABASE_ID must be set');
+  process.exit(1);
+}
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
-const POSTS_DIR = path.join('..', '_posts');
+// Path to _posts directory - go up to notion-sync folder, then up to repo root, then into _posts
+const POSTS_DIR = path.join(__dirname, '..', '..', '_posts');
 
 // Ensure posts directory exists
 await fs.ensureDir(POSTS_DIR);
