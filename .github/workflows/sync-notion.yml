@@ -20,11 +20,11 @@ jobs:
           node-version: '20'
           
       - name: Install dependencies
-        working-directory: ./mcp-notion-publisher
+        working-directory: ./notion-sync
         run: npm install
-        
+
       - name: Run bidirectional sync
-        working-directory: ./mcp-notion-publisher
+        working-directory: ./notion-sync
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
