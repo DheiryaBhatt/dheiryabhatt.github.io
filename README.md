@@ -1,52 +1,114 @@
-# jekyll-theme-console
+# dheiryabhatt.com
 
-A minimal, console‑inspired Jekyll theme for hackers, developers and other cool kids.
+Personal website and blog built with Jekyll, featuring automated Notion synchronization.
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-console.svg?color=informational)](https://rubygems.org/gems/jekyll-theme-console)
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-brightgreen)](https://dheiryabhatt.com)
+[![Jekyll](https://img.shields.io/badge/Jekyll-4.3+-red.svg)](https://jekyllrb.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
 
-<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenrec-dark.gif" width="550" alt="jekyll-theme-console demo animation">
+## 🚀 About
 
-## Demo
+This is a personal website and technical blog built with Jekyll and the console theme. It features:
 
-- [dark style demo](https://b2a3e8.github.io/jekyll-theme-console-demo-dark/) ([source code / template](https://github.com/b2a3e8/jekyll-theme-console-demo-dark))
+- 📝 Blog posts about development, automation, and student life
+- 🔄 Automated bidirectional sync with Notion
+- 🎨 Multiple theme variants (dark, light, hacker, nord)
+- 🚀 GitHub Pages deployment
+- ✨ Custom animations and styling
 
-  [<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenshot-dark.png" width="350" alt="Dark style screenshot">](https://b2a3e8.github.io/jekyll-theme-console-demo-dark/)
-- [light style demo](https://b2a3e8.github.io/jekyll-theme-console-demo-light/) ([source code / template](https://github.com/b2a3e8/jekyll-theme-console-demo-light))
+## 📋 Quick Start
 
-  [<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenshot-light.png" width="350" alt="Light style screenshot">](https://b2a3e8.github.io/jekyll-theme-console-demo-light/)
-- [hacker style demo](https://b2a3e8.github.io/jekyll-theme-console-demo-hacker/) ([source code / template](https://github.com/b2a3e8/jekyll-theme-console-demo-hacker))
+### Prerequisites
 
-  [<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenshot-hacker.png" width="350" alt="Hacker style screenshot">](https://b2a3e8.github.io/jekyll-theme-console-demo-hacker/)
+- Ruby 2.7+ with Bundler
+- Node.js 16+ (for Notion sync)
+- Git
 
-Note: The theme also includes a Nord variant (`style: nord`).
+### Local Development
 
-## Features
+```bash
+# Install Ruby dependencies
+bundle install
 
-- Four styles: `dark` (default), `light`, `hacker`, `nord`
-- Optional auto light/dark via `prefers-color-scheme`
-- Strict, extendable Content Security Policy
-- Optional Google Fonts (disable for full self‑hosting)
-- Generic analytics/tracker include (Matomo, Plausible, etc.)
-- Simple header navigation via `header_pages`
-- Works as a RubyGem theme or GitHub Pages remote theme
+# Serve locally with live reload
+bundle exec jekyll serve
 
-## Quickstart
-
-If you are new to Jekyll, skim the official docs: https://jekyllrb.com/docs/
-
-### GitHub Pages (remote_theme)
-
-Add to your site's `_config.yml`:
-
-```yaml
-remote_theme: b2a3e8/jekyll-theme-console
-# Optional but recommended
-plugins:
-  - jekyll-seo-tag
+# Visit http://localhost:4000
 ```
 
-Tip: For full local builds with a remote theme, you may need the `jekyll-remote-theme` plugin.
+### Project Structure
+
+For a detailed overview of the project structure, see [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md).
+
+```
+dheiryabhatt.github.io/
+├── _posts/                    # Blog posts
+├── _layouts/                  # Page layouts
+├── _includes/                 # Reusable components
+├── _sass/                     # Theme styles
+├── assets/                    # CSS, JS, images
+├── mcp-notion-publisher/      # Notion sync tool
+└── _config.yml               # Jekyll configuration
+```
+
+## 🔄 Notion Integration
+
+This project includes a custom MCP (Model Context Protocol) tool for bidirectional synchronization with Notion.
+
+### Setup
+
+```bash
+cd mcp-notion-publisher
+npm install
+cp .env.example .env
+# Edit .env with your Notion credentials
+npm run build
+npm run sync
+```
+
+See [mcp-notion-publisher/README.md](mcp-notion-publisher/README.md) for detailed documentation.
+
+## 📝 Writing Posts
+
+Create new posts in `_posts/` following the naming convention:
+
+```
+YYYY-MM-DD-title-with-dashes.md
+```
+
+Example frontmatter:
+
+```yaml
+---
+layout: post
+title: "Your Post Title"
+date: 2025-12-13
+categories: [development, automation]
+---
+```
+
+## 🎨 Theme Customization
+
+The site supports multiple themes. Configure in `_config.yml`:
+
+```yaml
+style: dark  # Options: dark, light, hacker, nord
+```
+
+Custom styles are in:
+- `_sass/` - SCSS partials
+- `assets/` - Compiled CSS and custom styles
+
+## 🚀 Deployment
+
+The site automatically deploys to GitHub Pages when pushing to the `master` branch.
+
+### Manual Build
+
+```bash
+bundle exec jekyll build
+# Output in _site/
+```
 
 ### Gem-based installation
 
