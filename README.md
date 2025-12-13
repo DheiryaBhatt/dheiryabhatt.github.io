@@ -38,35 +38,73 @@ bundle exec jekyll serve
 
 ### Project Structure
 
-For a detailed overview of the project structure, see [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md).
-
 ```
 dheiryabhatt.github.io/
-├── _posts/                    # Blog posts
-├── _layouts/                  # Page layouts
-├── _includes/                 # Reusable components
-├── _sass/                     # Theme styles
-├── assets/                    # CSS, JS, images
-├── mcp-notion-publisher/      # Notion sync tool
-└── _config.yml               # Jekyll configuration
+├── _config.yml                # Jekyll site configuration
+├── index.md                   # Homepage
+├── pages/                     # Site pages (about, blog, 404)
+├── _posts/                    # Blog posts (YYYY-MM-DD-title.md)
+├── _layouts/                  # Page layouts (default, home, post, page)
+├── _includes/                 # Reusable components (head, header, footer)
+├── _sass/                     # Theme styles (_dark, _light, _hacker, _nord)
+├── assets/
+│   ├── css/                   # Custom stylesheets
+│   ├── js/                    # JavaScript (flipdot-animation.js)
+│   ├── images/                # Site images
+│   └── fonts/                 # Custom fonts
+├── notion-sync/               # Notion synchronization tool
+│   ├── src/                   # TypeScript source files
+│   └── package.json           # Node.js dependencies
+├── .github/
+│   └── workflows/             # GitHub Actions (sync-notion.yml)
+├── config/                    # Docker & deployment configs
+└── docs/                      # Documentation & screenshots
 ```
+
+**Key Files:**
+- `index.md` - Homepage
+- `pages/blog.md` - Blog listing page
+- `pages/about.md` - About page
+- `pages/404.md` - Custom error page
+- `CNAME` - Custom domain (dheiryabhatt.com)
+- `Gemfile` - Ruby dependencies
 
 ## 🔄 Notion Integration
 
-This project includes a custom MCP (Model Context Protocol) tool for bidirectional synchronization with Notion.
+This project includes bidirectional synchronization with Notion for automated blog post management.
+
+### Features
+- ✅ Automatic sync of published Notion pages to Jekyll posts
+- 🗑️ Removes unpublished posts from the repository
+- 🔄 GitHub Actions workflow runs every 18 hours
+- 📝 Preserves front matter and Markdown formatting
 
 ### Setup
 
-```bash
-cd mcp-notion-publisher
-npm install
-cp .env.example .env
-# Edit .env with your Notion credentials
-npm run build
-npm run sync
-```
+1. **Create a Notion Integration:**
+   - Visit [Notion Integrations](https://www.notion.so/my-integrations)
+   - Create a new integration and copy the token
+   - Share your database with the integration
 
-See [mcp-notion-publisher/README.md](mcp-notion-publisher/README.md) for detailed documentation.
+2. **Configure GitHub Secrets:**
+   ```
+   NOTION_TOKEN - Your Notion integration token
+   NOTION_DATABASE_ID - Your Notion database ID
+   ```
+
+3. **Local Development:**
+   ```bash
+   cd notion-sync
+   npm install
+   cp .env.example .env
+   # Edit .env with your credentials
+   npm run sync
+   ```
+
+4. **Manual Trigger:**
+   - Go to Actions tab in GitHub
+   - Select "Sync Notion to Jekyll"
+   - Click "Run workflow"
 
 ## 📝 Writing Posts
 
@@ -150,7 +188,7 @@ Example:
 ```yaml
 header_pages:
   - index.md
-  - about.md
+  - pages/about.md
 
 style: dark # dark (default), light, hacker, or nord
 listen_for_clients_preferred_style: true # false (default) or true

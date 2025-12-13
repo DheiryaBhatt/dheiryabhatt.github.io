@@ -15,7 +15,7 @@ author:
 # Navigation
 header_pages:
   - index.md
-  - blog.md
+  - pages/blog.md
 
 # Footer
 footer: 'Built with ❤️ by <a href="/about/"><span class="footer-brand">Dheirya Bhatt</span></a>'
