@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./notion-sync
         run: npm install
-
+        
       - name: Run bidirectional sync
         working-directory: ./notion-sync
         env:
