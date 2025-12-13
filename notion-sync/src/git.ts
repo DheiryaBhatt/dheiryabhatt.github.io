@@ -1,6 +1,6 @@
 import path from "node:path";
 import fs from "node:fs/promises";
-import simpleGit from "simple-git";
+import { simpleGit } from "simple-git";
 
 
 export async function withWebsiteRepo<T>(fn: (repoDir: string) => Promise<T>) {
@@ -18,7 +18,7 @@ export async function withWebsiteRepo<T>(fn: (repoDir: string) => Promise<T>) {
 
 
     // Configure identity (if pushing via HTTPS with token)
-    const git2 = simpleGit({ baseDir: tmp });
+    const git2 = simpleGit(tmp);
     await git2.addConfig("user.name", process.env.GIT_USERNAME || "mcp-bot");
     await git2.addConfig("user.email", process.env.GIT_EMAIL || "bot@example.com");
 
@@ -38,7 +38,7 @@ export async function writePostFile(repoDir: string, relPath: string, content: s
 
 
 export async function commitAndPush(repoDir: string, message: string) {
-    const git = simpleGit({ baseDir: repoDir });
+    const git = simpleGit(repoDir);
     await git.add(".");
     const status = await git.status();
     if (status.staged.length === 0) return { pushed: false, reason: "no changes" };
