@@ -50,4 +50,3 @@ So, I am still enjoying my personal time here in Bhavnagar.
 Best Regards,
 Dheirya Bhatt.
 
-{% include signature.html %}
