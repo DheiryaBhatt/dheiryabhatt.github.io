@@ -23,7 +23,7 @@ I recently saw a graduation ceremony reel where a young man shared something his
 
 “
 Love has four letters, and so does Hate.
-Friends has seven letters, and so does Enemies.
+Friend has six letters, and so does Enemy.
 Lying has five letters, and so does Truth.
 Cry has three letters, and so does Joy.
 Negativity has ten letters, but so does Positivity.
