@@ -79,7 +79,7 @@ Heh, this is the total opposite of the things I have shared, Exactly.
 I’ll explain how, my actions like how I treat people, how other people behave with me, how my work is doing, and how productive my day was… etc.
 
 
-There is a huge communication gap and It affects my mood when I think about it…
+There is a huge communication gap, because they need time? It affects my mood when I think about it…
 
 
 Let me correct it, I overthink about it. Okay, now it’s correct xD.
