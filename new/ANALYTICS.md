@@ -2,6 +2,20 @@
 
 ## Google Analytics Configuration
 
+### Configure GitHub Variables and Secrets
+
+In GitHub repo settings, configure:
+
+1. `Settings -> Secrets and variables -> Actions -> Variables`
+2. Add:
+  - `GA_MEASUREMENT_ID` = `G-3LBSW1PYPS`
+  - `COHORT_SPLIT_PERCENT` = `10`
+
+For Notion sync workflow, keep these Action Secrets configured:
+
+- `NOTION_TOKEN`
+- `NOTION_DATABASE_ID`
+
 To enable analytics for the new design at `/new/`, follow these steps:
 
 ### 1. Get Your Measurement ID

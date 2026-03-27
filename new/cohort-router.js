@@ -5,7 +5,7 @@ class CohortRouter {
   constructor(options = {}) {
     this.cohortKey = options.cohortKey || 'user_cohort';
     this.splitPercent = options.splitPercent || 10; // 10% to new design by default
-    this.analyticsId = options.analyticsId || 'G-3LBSW1PYPS';
+    this.analyticsId = options.analyticsId || (typeof GA_MEASUREMENT_ID !== 'undefined' ? GA_MEASUREMENT_ID : 'G-3LBSW1PYPS');
     this.newUrl = options.newUrl || '/new/';
     this.oldUrl = options.oldUrl || '/';
   }

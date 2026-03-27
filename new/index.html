@@ -1,3 +1,7 @@
+---
+layout: null
+permalink: /new/
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +12,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Liberation+Mono&display=swap" rel="stylesheet" />
   
-  <!-- Analytics: Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3LBSW1PYPS"></script>
+  <!-- Analytics: Google Analytics (injected from GitHub Actions vars) -->
+  {% assign ga_id = site.ga_measurement_id | default: 'G-3LBSW1PYPS' %}
+  {% assign cohort_split = site.cohort_split_percent | default: 10 %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_id }}"></script>
   <script>
+    const GA_MEASUREMENT_ID = "{{ ga_id }}";
+    const COHORT_SPLIT = Number("{{ cohort_split }}") / 100;
+
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-3LBSW1PYPS', {
+    gtag('config', GA_MEASUREMENT_ID, {
       'page_path': '/new/',
       'user_cohort': getCohort()
     });
@@ -22,7 +31,7 @@
     function getCohort() {
       const stored = localStorage.getItem('user_cohort');
       if (stored) return stored;
-      const cohort = Math.random() < 0.1 ? 'new' : 'old'; // 10% to new by default
+      const cohort = Math.random() < COHORT_SPLIT ? 'new' : 'old';
       localStorage.setItem('user_cohort', cohort);
       return cohort;
     }
