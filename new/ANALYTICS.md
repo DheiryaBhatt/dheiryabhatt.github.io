@@ -2,17 +2,24 @@
 
 ## Google Analytics Configuration
 
-### Configure GitHub Variables and Secrets
+### Configure GitHub Repository Secrets ⚠️
 
-In GitHub repo settings, configure:
+**IMPORTANT: Use Repository Secrets (encrypted), NOT Variables (public)**
 
-1. `Settings -> Secrets and variables -> Actions -> Variables`
-2. Add:
-  - `GA_MEASUREMENT_ID` = `G-3LBSW1PYPS`
-  - `COHORT_SPLIT_PERCENT` = `10`
+In GitHub repo settings → **Secrets and variables → Actions → Secrets**:
 
-For Notion sync workflow, keep these Action Secrets configured:
+1. Click "New repository secret"
+2. Add these secrets (exactly like your NOTION_TOKEN and NOTION_DATABASE_ID):
+   - Name: `GA_MEASUREMENT_ID`
+     Value: `G-3LBSW1PYPS`
+   - Name: `COHORT_SPLIT_PERCENT`
+     Value: `10`
 
+**Why Secrets, not Variables?**
+- ✅ Secrets = encrypted, masked in logs, never exposed in repo
+- ❌ Variables = public, visible in source code to anyone
+
+Your existing Notion sync secrets (keep configured):
 - `NOTION_TOKEN`
 - `NOTION_DATABASE_ID`
 

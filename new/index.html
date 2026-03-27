@@ -12,13 +12,11 @@ permalink: /new/
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Liberation+Mono&display=swap" rel="stylesheet" />
   
-  <!-- Analytics: Google Analytics (injected from GitHub Actions vars) -->
-  {% assign ga_id = site.ga_measurement_id | default: 'G-3LBSW1PYPS' %}
-  {% assign cohort_split = site.cohort_split_percent | default: 10 %}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_id }}"></script>
+  <!-- Analytics: Google Analytics (injected from Repository Secrets at build time) -->
+  {% if site.ga_measurement_id %}<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_measurement_id }}"></script>{% endif %}
   <script>
-    const GA_MEASUREMENT_ID = "{{ ga_id }}";
-    const COHORT_SPLIT = Number("{{ cohort_split }}") / 100;
+    const GA_MEASUREMENT_ID = "{{ site.ga_measurement_id }}";
+    const COHORT_SPLIT = Number("{{ site.cohort_split_percent }}") / 100;
 
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}

@@ -20,8 +20,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
-      COHORT_SPLIT_PERCENT: ${{ vars.COHORT_SPLIT_PERCENT }}
+      GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+      COHORT_SPLIT_PERCENT: ${{ secrets.COHORT_SPLIT_PERCENT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,11 +36,11 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
-      - name: Create CI config overrides from repository Variables
+      - name: Create CI config overrides from Repository Secrets
         run: |
           cat > _config.ci.yml <<EOF
-          ga_measurement_id: "${GA_MEASUREMENT_ID:-G-3LBSW1PYPS}"
-          cohort_split_percent: ${COHORT_SPLIT_PERCENT:-10}
+          ga_measurement_id: "${GA_MEASUREMENT_ID}"
+          cohort_split_percent: ${COHORT_SPLIT_PERCENT}
           EOF
 
       - name: Build with Jekyll
