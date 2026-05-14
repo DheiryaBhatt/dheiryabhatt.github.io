@@ -2,7 +2,7 @@
 title: Dheirya Bhatt
 description: Developer & Designer - Building beautiful digital experiences
 baseurl: ""
-url: "https://dheiryabhatt.github.io"
+url: "https://dheiryabhatt.com"
 
 # Author information
 author:
@@ -32,6 +32,15 @@ listen_for_clients_preferred_style: true or false (default)
 
 # Fonts
 disable_google_fonts: false # set true to prevent loading fonts.googleapis.com
+
+# Exclude non-site directories from Jekyll build
+exclude:
+  - dheiryabhatt.github.io/
+  - notion-sync/
+  - config/
+  - docs/
+  - DEPLOYMENT_STRATEGY.md
+  - README.md
 
 # Blog settings
 paginate: 5
