@@ -174,13 +174,13 @@ permalink: /new/blogs/
     }
     .status-dot {
       width: 8px; height: 8px;
-      background: var(--white);
+      background: #22c55e;
       border-radius: 50%;
-      animation: pulse-white 2s ease-in-out infinite;
+      animation: pulse-green 2s ease-in-out infinite;
     }
-    @keyframes pulse-white {
-      0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
-      50%      { box-shadow: 0 0 0 4px rgba(255,255,255,0); }
+    @keyframes pulse-green {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+      50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
     }
     .status-label {
       font-size: 9px;
@@ -195,18 +195,18 @@ permalink: /new/blogs/
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 24px;
-      align-items: start;
+      align-items: stretch;
     }
     .col-featured { grid-column: 1 / span 7; }
     .col-recent   { grid-column: 8 / span 5; }
 
     /* ── FEATURED CARD ── */
     .featured-card {
-      background: var(--overlay-faint);
-      border: 1px solid var(--border-light);
+      background: rgba(53, 53, 52, 0.4);
+      border: 1px solid rgba(71, 71, 71, 0.15);
       border-radius: var(--radius-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       padding: 56px 40px;
       min-height: 520px;
       display: flex;
@@ -217,7 +217,7 @@ permalink: /new/blogs/
       text-decoration: none;
       transition: border-color 0.3s;
     }
-    .featured-card:hover { border-color: rgba(255,255,255,0.15); }
+    .featured-card:hover { border-color: rgba(255,255,255,0.25); }
     .featured-tags {
       display: flex;
       gap: 10px;
@@ -286,6 +286,7 @@ permalink: /new/blogs/
       display: flex;
       flex-direction: column;
       gap: 14px;
+      height: 100%;
     }
     .recent-heading {
       padding: 0 8px;
@@ -350,6 +351,7 @@ permalink: /new/blogs/
       display: flex;
       justify-content: flex-end;
       padding-top: 6px;
+      margin-top: auto;
     }
     .view-archive-link {
       display: flex;
