@@ -37,10 +37,10 @@ disable_google_fonts: false # set true to prevent loading fonts.googleapis.com
 exclude:
   - dheiryabhatt.github.io/
   - notion-sync/
-  - config/
-  - docs/
   - DEPLOYMENT_STRATEGY.md
   - README.md
+  - new/README.md
+  - new/ANALYTICS.md
 
 # Blog settings
 paginate: 5
