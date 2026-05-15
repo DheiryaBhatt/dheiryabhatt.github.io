@@ -353,13 +353,13 @@ permalink: /new/
       position: absolute;
       top: 0; bottom: 0;
       width: 51%;
-      background: rgba(10,10,10,0.98);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
       transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1);
     }
-    .gate-left  { left: 0;  border-right: 1px solid rgba(255,255,255,0.05); }
-    .gate-right { right: 0; border-left: 1px solid rgba(255,255,255,0.05); }
+    .gate-left  { left: 0;  border-right: 1px solid rgba(255,255,255,0.06); }
+    .gate-right { right: 0; border-left: 1px solid rgba(255,255,255,0.06); }
 
     .ama-lock.unlocking .gate-left  { transform: translateX(-100%); }
     .ama-lock.unlocking .gate-right { transform: translateX(100%); }
@@ -433,13 +433,44 @@ permalink: /new/
     }
     .ama-key-submit:hover { color: rgba(255,255,255,0.75); }
 
-    .lock-error {
-      display: none;
-      font-size: 0.5rem;
-      letter-spacing: 0.22em;
+    /* ── DANGER FLASH ── */
+    .lock-danger {
+      position: absolute;
+      inset: 0;
+      z-index: 8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: rgba(239,68,68,0.12);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s;
+    }
+    .lock-danger.visible { opacity: 1; pointer-events: auto; }
+
+    .danger-icon {
+      color: #ef4444;
+      filter: drop-shadow(0 0 18px rgba(239,68,68,0.7));
+    }
+
+    .danger-text {
+      font-size: 0.625rem;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: #ef4444;
-      font-weight: 700;
+      font-weight: 800;
+    }
+
+    @keyframes dangerPulse {
+      0%,100% { filter: drop-shadow(0 0 18px rgba(239,68,68,0.7)); }
+      50%      { filter: drop-shadow(0 0 38px rgba(239,68,68,1)); }
+    }
+    .lock-danger.visible .danger-icon {
+      animation: dangerPulse 0.45s ease-in-out 3;
     }
 
     @keyframes lockShake {
@@ -692,6 +723,17 @@ permalink: /new/
         <div class="ama-lock" id="amaLock">
           <div class="gate-left"></div>
           <div class="gate-right"></div>
+
+          <!-- Danger flash (wrong key) -->
+          <div class="lock-danger" id="lockDanger">
+            <svg class="danger-icon" width="72" height="66" viewBox="0 0 72 66" fill="none">
+              <path d="M30.804 5.5c2.31-4 8.082-4 10.392 0l28.8 49.875C72.306 59.375 69.42 64 65.8 64H6.2c-3.62 0-6.506-4.625-4.196-8.625L30.804 5.5z" stroke="#ef4444" stroke-width="2.5"/>
+              <path d="M36 25v16" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="36" cy="49" r="2.5" fill="#ef4444"/>
+            </svg>
+            <p class="danger-text">Access Denied</p>
+          </div>
+
           <div class="lock-center">
             <div class="lock-icon-wrap" id="lockIconWrap">
               <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
@@ -708,7 +750,6 @@ permalink: /new/
                 </svg>
               </button>
             </div>
-            <p class="lock-error" id="lockError">INVALID KEY</p>
           </div>
         </div>
 
@@ -887,7 +928,7 @@ permalink: /new/
     const amaKeyInput  = document.getElementById('amaKeyInput');
     const amaKeySubmit = document.getElementById('amaKeySubmit');
     const lockIconWrap = document.getElementById('lockIconWrap');
-    const lockError    = document.getElementById('lockError');
+    const lockDanger   = document.getElementById('lockDanger');
     const amaKeyWrap   = document.getElementById('amaKeyWrap');
 
     if (sessionStorage.getItem('ama_unlocked') === 'true') {
@@ -895,10 +936,7 @@ permalink: /new/
     } else {
       amaKeyInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
       amaKeySubmit.addEventListener('click', tryUnlock);
-      amaKeyInput.addEventListener('input', () => {
-        amaKeyInput.classList.remove('error');
-        lockError.style.display = 'none';
-      });
+      amaKeyInput.addEventListener('input', () => amaKeyInput.classList.remove('error'));
     }
 
     async function tryUnlock() {
@@ -914,11 +952,15 @@ permalink: /new/
           setTimeout(() => amaLock.remove(), 600);
         }, 380);
       } else {
-        amaKeyInput.classList.add('error');
-        lockError.style.display = 'block';
         amaKeyInput.value = '';
+        amaKeyInput.classList.add('error');
+        lockDanger.classList.add('visible');
         amaKeyWrap.classList.add('lock-shake');
-        setTimeout(() => amaKeyWrap.classList.remove('lock-shake'), 450);
+        setTimeout(() => {
+          lockDanger.classList.remove('visible');
+          amaKeyWrap.classList.remove('lock-shake');
+          amaKeyInput.classList.remove('error');
+        }, 1600);
       }
     }
 
