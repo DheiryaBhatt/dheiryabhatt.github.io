@@ -45,7 +45,7 @@ jobs:
           EOF
 
       - name: Build with Jekyll
-        run: bundle exec jekyll build --config _config.yml,_config.ci.yml --source . --destination ./_site
+        run: bundle exec jekyll build --config site/_config.yml,_config.ci.yml --source ./site --destination ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
