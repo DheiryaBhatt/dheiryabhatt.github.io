@@ -247,6 +247,8 @@ permalink: /new/
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
+      overflow: hidden;
     }
 
     .ama-header {
@@ -337,6 +339,115 @@ permalink: /new/
       transition: color 0.2s;
     }
     .ama-send:hover { color: var(--text); }
+
+    /* ── AMA LOCK OVERLAY ── */
+    .ama-lock {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    .gate-left, .gate-right {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 51%;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+    .gate-left  { left: 0;  border-right: 1px solid rgba(255,255,255,0.05); }
+    .gate-right { right: 0; border-left: 1px solid rgba(255,255,255,0.05); }
+
+    .ama-lock.unlocking .gate-left  { transform: translateX(-100%); }
+    .ama-lock.unlocking .gate-right { transform: translateX(100%); }
+
+    .lock-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 6;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .ama-lock.unlocking .lock-center {
+      opacity: 0;
+      transform: scale(0.88);
+    }
+
+    .lock-icon-wrap {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.45);
+      transition: border-color 0.35s, color 0.35s, box-shadow 0.35s;
+    }
+    .lock-icon-wrap.granted {
+      border-color: rgba(34,197,94,0.7);
+      color: #22c55e;
+      box-shadow: 0 0 22px rgba(34,197,94,0.35);
+    }
+
+    .lock-hint {
+      font-size: 0.5625rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      font-weight: 600;
+    }
+
+    .ama-key-wrap { position: relative; width: 192px; }
+
+    .ama-key-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 8px;
+      padding: 11px 40px 11px 14px;
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      letter-spacing: 0.12em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .ama-key-input::placeholder { color: rgba(255,255,255,0.15); letter-spacing: 0.22em; }
+    .ama-key-input:focus { border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.07); }
+    .ama-key-input.error { border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.04); }
+
+    .ama-key-submit {
+      position: absolute;
+      right: 10px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,0.25);
+      display: flex; align-items: center;
+      transition: color 0.2s; padding: 0;
+    }
+    .ama-key-submit:hover { color: rgba(255,255,255,0.75); }
+
+    .lock-error {
+      display: none;
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #ef4444;
+      font-weight: 700;
+    }
+
+    @keyframes lockShake {
+      0%,100% { transform: translateX(0); }
+      15%,45%,75% { transform: translateX(-5px); }
+      30%,60%,90% { transform: translateX( 5px); }
+    }
+    .lock-shake { animation: lockShake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
 
     /* ── AMA typing indicator ── */
     .typing { display: none; align-items: center; gap: 4px; padding: 10px 14px; }
@@ -576,6 +687,31 @@ permalink: /new/
 
       <!-- AMA Widget -->
       <div class="card ama-card">
+
+        <!-- Lock Overlay -->
+        <div class="ama-lock" id="amaLock">
+          <div class="gate-left"></div>
+          <div class="gate-right"></div>
+          <div class="lock-center">
+            <div class="lock-icon-wrap" id="lockIconWrap">
+              <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                <rect x="3" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path id="lockShackle" d="M7 10V7a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="lock-hint">Enter Key to Access</p>
+            <div class="ama-key-wrap" id="amaKeyWrap">
+              <input class="ama-key-input" id="amaKeyInput" type="password" placeholder="••••••••" autocomplete="off" />
+              <button class="ama-key-submit" id="amaKeySubmit" aria-label="Submit key">
+                <svg width="13" height="13" viewBox="0 0 15 15" fill="none">
+                  <path d="M13.5 7.5L1.5 1.5l3 6-3 6 12-6z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
+            <p class="lock-error" id="lockError">INVALID KEY</p>
+          </div>
+        </div>
+
         <div class="ama-header">
           <div class="ama-status">
             <div class="ama-dot"></div>
@@ -738,6 +874,53 @@ permalink: /new/
 
     amaSend.addEventListener('click', sendMessage);
     amaInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+
+    // ── AMA Lock ──
+    const AMA_KEY_HASH = '49ad804c3853453980f4ec9dcf69f3dfb3e0db29d1fc5a627c862e1041a23180';
+
+    async function sha256ama(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    const amaLock      = document.getElementById('amaLock');
+    const amaKeyInput  = document.getElementById('amaKeyInput');
+    const amaKeySubmit = document.getElementById('amaKeySubmit');
+    const lockIconWrap = document.getElementById('lockIconWrap');
+    const lockError    = document.getElementById('lockError');
+    const amaKeyWrap   = document.getElementById('amaKeyWrap');
+
+    if (sessionStorage.getItem('ama_unlocked') === 'true') {
+      amaLock.remove();
+    } else {
+      amaKeyInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+      amaKeySubmit.addEventListener('click', tryUnlock);
+      amaKeyInput.addEventListener('input', () => {
+        amaKeyInput.classList.remove('error');
+        lockError.style.display = 'none';
+      });
+    }
+
+    async function tryUnlock() {
+      const val = amaKeyInput.value;
+      if (!val) return;
+      const hash = await sha256ama(val);
+      if (hash === AMA_KEY_HASH) {
+        sessionStorage.setItem('ama_unlocked', 'true');
+        lockIconWrap.classList.add('granted');
+        document.getElementById('lockShackle').setAttribute('d', 'M7 10V5a3 3 0 016 0');
+        setTimeout(() => {
+          amaLock.classList.add('unlocking');
+          setTimeout(() => amaLock.remove(), 600);
+        }, 380);
+      } else {
+        amaKeyInput.classList.add('error');
+        lockError.style.display = 'block';
+        amaKeyInput.value = '';
+        amaKeyWrap.classList.add('lock-shake');
+        setTimeout(() => amaKeyWrap.classList.remove('lock-shake'), 450);
+      }
+    }
 
     // ── Track custom event for new site view ──
     if (typeof gtag !== 'undefined') {
