@@ -1,7 +1,11 @@
 ---
-layout: post
+layout: new_post
 title: "Burn the Bridges Down."
 date: 2026-05-14
+permalink: /new/blogs/burn-the-bridges-down/
+category: "Personal Essay"
+tags: ["Philosophy", "Personal", "Growth"]
+description: "Худую траву с поля вон / Bad weed out of the field / કુસંગત છોડવી."
 ---
 
 

@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: new_post
 title: "Golden Brown, Marburg!"
 date: 2026-03-30
+permalink: /new/blogs/golden-brown-marburg/
+category: "Travel"
 ---
 
 

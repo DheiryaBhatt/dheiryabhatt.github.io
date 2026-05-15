@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: new_post
 title: "Mood follows Actions. What follows Overthinking?"
 date: 2026-03-22
+permalink: /new/blogs/mood-follows-actions-what-follows-overthinking/
+category: "Personal Essay"
 ---
 
 

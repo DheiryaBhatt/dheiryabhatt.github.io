@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: new_post
 title: "Learnings from Amsterdam!"
 date: 2026-04-06
+permalink: /new/blogs/learnings-from-amsterdam/
+category: "Travel"
 ---
 
 

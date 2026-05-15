@@ -1,7 +1,9 @@
 ---
-layout: post
-title: "નમસ્તે from India! 13/12/2025 @4:15PM  IST"
+layout: new_post
+title: "નમસ્તે from India! 13/12/2025 @4:15PM IST"
 date: 2025-12-12
+permalink: /new/blogs/lovely-letter-to-india/
+category: "Travel"
 ---
 
 

@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: new_post
 title: "Exciting Ending? Not always."
 date: 2026-03-13
+permalink: /new/blogs/exciting-ending-not-always/
+category: "Personal Essay"
 ---
 
 

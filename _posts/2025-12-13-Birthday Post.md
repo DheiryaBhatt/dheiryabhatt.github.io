@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: new_post
 title: "Birthday Blog - 16/12/2025 @1:30AM"
 date: 2025-12-13
+permalink: /new/blogs/birthday-post/
+category: "Personal Essay"
 ---
 
 

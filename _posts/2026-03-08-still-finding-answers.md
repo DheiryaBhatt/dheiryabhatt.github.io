@@ -1,7 +1,9 @@
 ---
-layout: post
-title: " Still finding answers."
+layout: new_post
+title: "Still Finding Answers."
 date: 2026-03-08
+permalink: /new/blogs/still-finding-answers/
+category: "Personal Essay"
 ---
 
 

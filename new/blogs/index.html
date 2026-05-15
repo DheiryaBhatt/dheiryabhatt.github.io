@@ -522,14 +522,19 @@ permalink: /new/blogs/
     <!-- CONTENT GRID -->
     <div class="content-grid">
 
-      <!-- FEATURED POST -->
-      <a href="/new/blogs/burn_down_bridges/" class="featured-card col-featured">
+      <!-- FEATURED POST (latest) -->
+      {% assign featured = site.posts.first %}
+      {% assign feat_words = featured.content | number_of_words %}
+      {% assign feat_mins  = feat_words | divided_by: 200 | plus: 1 %}
+      {% assign feat_cat   = featured.category | default: "Personal Essay" %}
+
+      <a href="{{ featured.url }}" class="featured-card col-featured">
         <div class="featured-tags">
-          <span class="tag-pill">Personal Essay</span>
-          <span class="tag-read-time">5 min read</span>
+          <span class="tag-pill">{{ feat_cat }}</span>
+          <span class="tag-read-time">{{ feat_mins }} min read</span>
         </div>
-        <h2 class="featured-h2">Burn the Bridges Down</h2>
-        <p class="featured-excerpt">Худую траву с поля вон — Bad weed out of the field. Making peace with bad experiences, understanding who really matters, and why burning bridges is sometimes the most courageous thing you can do.</p>
+        <h2 class="featured-h2">{{ featured.title }}</h2>
+        <p class="featured-excerpt">{{ featured.excerpt | strip_html | truncatewords: 45 }}</p>
         <span class="btn-primary">Read Post</span>
       </a>
 
@@ -537,7 +542,7 @@ permalink: /new/blogs/
       <div class="col-recent recent-section">
         <p class="recent-heading">Recent Posts</p>
 
-        {% for post in site.posts limit:3 offset:0 %}
+        {% for post in site.posts limit:3 offset:1 %}
         {% assign post_cat = post.category | default: post.categories.first | default: "Personal Essay" %}
         <a href="{{ post.url }}" class="article-card">
           <div class="article-meta">
@@ -563,18 +568,10 @@ permalink: /new/blogs/
 
     <!-- ALL POSTS ARCHIVE -->
     <section class="archive-section" id="all-posts">
-      <p class="archive-heading">All Writings — {{ site.posts | size | plus: 1 }} Posts</p>
+      <p class="archive-heading">All Writings — {{ site.posts | size }} Posts</p>
       <div class="archive-list">
-        <!-- Burn the Bridges Down (standalone page) -->
-        <a href="/new/blogs/burn_down_bridges/" class="archive-item">
-          <div class="archive-item-left">
-            <span class="archive-item-num">01</span>
-            <span class="archive-item-title">Burn the Bridges Down</span>
-          </div>
-          <span class="archive-item-date">May 14, 2026</span>
-        </a>
         {% for post in site.posts %}
-        {% assign n = forloop.index | plus: 1 %}
+        {% assign n = forloop.index %}
         <a href="{{ post.url }}" class="archive-item">
           <div class="archive-item-left">
             <span class="archive-item-num">{{ n | prepend: '00' | slice: -2, 2 }}</span>

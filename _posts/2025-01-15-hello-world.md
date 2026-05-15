@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: new_post
 title: "Hello Diary @ 25/11/2025 TI: 14:50 (EST)."
 date: 2025-01-15
+permalink: /new/blogs/hello-world/
+category: "Personal Essay"
 ---
 
 # $ echo "Hello, World!" > first_post.md

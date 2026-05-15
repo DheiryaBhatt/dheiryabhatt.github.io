@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: new_post
 title: "When One Opinion Becomes Your Identity."
 date: 2026-03-06
+permalink: /new/blogs/when-one-opinion-becomes-your-identity/
+category: "Personal Essay"
 ---
 
 

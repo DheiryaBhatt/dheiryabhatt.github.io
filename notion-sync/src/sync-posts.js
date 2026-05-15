@@ -106,15 +106,23 @@ async function syncPosts() {
       const date = page.created_time.split('T')[0];
 
       // Create Jekyll front matter
-      const frontMatter = [
+      const category = tags[0] || 'Personal Essay';
+      const tagsList = tags.length
+        ? `tags: [${tags.map(t => `"${t}"`).join(', ')}]`
+        : '';
+
+      const frontMatterLines = [
         '---',
-        'layout: post',
+        'layout: new_post',
         `title: "${title.replace(/"/g, '\\"')}"`,
         `date: ${date}`,
-        '---',
-        '',
-        mdString.parent
-      ].join('\n');
+        `permalink: /new/blogs/${fileSlug}/`,
+        `category: "${category}"`,
+      ];
+      if (tagsList) frontMatterLines.push(tagsList);
+      frontMatterLines.push('---', '', mdString.parent);
+
+      const frontMatter = frontMatterLines.join('\n');
 
       // Create filename using slug or title
       const fileSlug = slug || slugify(title);
