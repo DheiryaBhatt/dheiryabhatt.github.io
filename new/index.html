@@ -12,7 +12,8 @@ permalink: /new/
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Liberation+Mono&display=swap" rel="stylesheet" />
-  
+  <link rel="stylesheet" href="/new/assets/css/shared.css" />
+
   <!-- Analytics: Google Analytics (injected from Repository Secrets at build time) -->
   {% if site.ga_measurement_id %}<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_measurement_id }}"></script>{% endif %}
   <script>
@@ -37,101 +38,6 @@ permalink: /new/
   </script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0e0e0e;
-      --surface: rgba(255,255,255,0.03);
-      --border: rgba(255,255,255,0.1);
-      --text: #ffffff;
-      --muted: #c6c6c6;
-      --dim: #a3a3a3;
-      --footer-link: #737373;
-      --accent-green: #22c55e;
-      --font: 'Plus Jakarta Sans', sans-serif;
-      --mono: 'Liberation Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font);
-      background-color: var(--bg);
-      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
-      background-size: 24px 24px;
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      background: rgba(0,0,0,0.3);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-    }
-
-    .nav-logo {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: -0.35px;
-      color: var(--dim);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a.active {
-      color: var(--text);
-      border-bottom: 1px solid var(--text);
-      padding-bottom: 5px;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    .nav-mail {
-      width: 35px;
-      height: 31px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-    }
-    .nav-mail:hover { opacity: 1; }
-    .nav-mail svg { width: 22px; height: 18px; }
-
     /* ── MAIN ── */
     main {
       position: relative;
@@ -592,53 +498,7 @@ permalink: /new/
       color: var(--text);
     }
 
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      background: rgba(0,0,0,0.5);
-      border-top: 1px solid var(--border);
-      padding: 49px 0 48px;
-    }
-
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-links { display: flex; gap: 32px; }
-
-    .footer-links a {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--footer-link);
-      text-decoration: none;
-      transition: color 0.2s;
-      opacity: 0.8;
-    }
-    .footer-links a:hover { color: var(--text); opacity: 1; }
-
-    .footer-copy {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
     /* ── Entrance Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    nav     { animation: fadeUp 0.5s ease both; }
     .hero   { animation: fadeUp 0.6s 0.1s ease both; }
     .intro-card { animation: fadeUp 0.6s 0.2s ease both; }
     .ama-card   { animation: fadeUp 0.6s 0.3s ease both; }
@@ -861,115 +721,11 @@ permalink: /new/
   </footer>
 
   <script>
-    // ── AMA Chat Widget ──
-    const amaInput = document.getElementById('amaInput');
-    const amaSend  = document.getElementById('amaSend');
-    const amaChat  = document.getElementById('amaChat');
-
-    const responses = [
-      "That's a great question. In my experience, the answer often emerges from iterating on the problem rather than solving it head-on.",
-      "I think about this a lot. The key insight is that complexity hides in the interfaces between systems, not inside them.",
-      "Honestly? Start with the simplest thing that could possibly work, then let reality tell you where the edges are.",
-      "The best mental model I've found: treat every assumption as a hypothesis to be falsified, not a fact to be built upon.",
-      "Short answer: it depends. Long answer: it depends on constraints you haven't fully enumerated yet.",
-      "This is where most engineers go wrong — they optimize before they understand. Understand first. Always.",
-    ];
-
-    function addMessage(text, isUser) {
-      const wrap = document.createElement('div');
-      if (isUser) {
-        wrap.className = 'chat-q';
-        wrap.textContent = `"${text}"`;
-      } else {
-        wrap.className = 'chat-a-wrap';
-        const inner = document.createElement('div');
-        inner.className = 'chat-a';
-        inner.textContent = text;
-        wrap.appendChild(inner);
-      }
-      amaChat.appendChild(wrap);
-      amaChat.scrollTop = amaChat.scrollHeight;
-    }
-
-    function sendMessage() {
-      const val = amaInput.value.trim();
-      if (!val) return;
-      addMessage(val, true);
-      amaInput.value = '';
-
-      // Typing indicator
-      const typing = document.createElement('div');
-      typing.className = 'typing visible';
-      typing.innerHTML = '<span></span><span></span><span></span>';
-      amaChat.appendChild(typing);
-      amaChat.scrollTop = amaChat.scrollHeight;
-
-      setTimeout(() => {
-        typing.remove();
-        const reply = responses[Math.floor(Math.random() * responses.length)];
-        addMessage(reply, false);
-      }, 1200 + Math.random() * 600);
-    }
-
-    amaSend.addEventListener('click', sendMessage);
-    amaInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
-
-    // ── AMA Lock ──
-    const AMA_KEY_HASH = '49ad804c3853453980f4ec9dcf69f3dfb3e0db29d1fc5a627c862e1041a23180';
-
-    async function sha256ama(str) {
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-    }
-
-    const amaLock      = document.getElementById('amaLock');
-    const amaKeyInput  = document.getElementById('amaKeyInput');
-    const amaKeySubmit = document.getElementById('amaKeySubmit');
-    const lockIconWrap = document.getElementById('lockIconWrap');
-    const lockDanger   = document.getElementById('lockDanger');
-    const amaKeyWrap   = document.getElementById('amaKeyWrap');
-
-    if (sessionStorage.getItem('ama_unlocked') === 'true') {
-      amaLock.remove();
-    } else {
-      amaKeyInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
-      amaKeySubmit.addEventListener('click', tryUnlock);
-      amaKeyInput.addEventListener('input', () => amaKeyInput.classList.remove('error'));
-    }
-
-    async function tryUnlock() {
-      const val = amaKeyInput.value;
-      if (!val) return;
-      const hash = await sha256ama(val);
-      if (hash === AMA_KEY_HASH) {
-        sessionStorage.setItem('ama_unlocked', 'true');
-        lockIconWrap.classList.add('granted');
-        document.getElementById('lockShackle').setAttribute('d', 'M7 10V5a3 3 0 016 0');
-        setTimeout(() => {
-          amaLock.classList.add('unlocking');
-          setTimeout(() => amaLock.remove(), 600);
-        }, 380);
-      } else {
-        amaKeyInput.value = '';
-        amaKeyInput.classList.add('error');
-        lockDanger.classList.add('visible');
-        amaKeyWrap.classList.add('lock-shake');
-        setTimeout(() => {
-          lockDanger.classList.remove('visible');
-          amaKeyWrap.classList.remove('lock-shake');
-          amaKeyInput.classList.remove('error');
-        }, 1600);
-      }
-    }
-
-    // ── Track custom event for new site view ──
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'page_view_new_design', {
-        'page_path': '/new/',
-        'timestamp': new Date().toISOString()
-      });
+      gtag('event', 'page_view_new_design', { 'page_path': '/new/', 'timestamp': new Date().toISOString() });
     }
   </script>
+  <script src="/new/assets/js/ama.js" defer></script>
 
 </body>
 </html>

@@ -13,6 +13,7 @@ permalink: /new/blogs/
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/new/assets/css/shared.css" />
 
   {% if site.ga_measurement_id %}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_measurement_id }}"></script>
@@ -26,98 +27,6 @@ permalink: /new/blogs/
   </script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0a0a0a;
-      --white: #ffffff;
-      --muted: #919191;
-      --text-secondary: #c6c6c6;
-      --text-dim: #525252;
-      --text-light: #a3a3a3;
-      --border-subtle:  rgba(255,255,255,0.05);
-      --border-light:   rgba(255,255,255,0.08);
-      --border-medium:  rgba(255,255,255,0.10);
-      --overlay-faint:  rgba(255,255,255,0.03);
-      --overlay-light:  rgba(255,255,255,0.05);
-      --overlay-medium: rgba(255,255,255,0.10);
-      --radius-card: 12px;
-      --radius-pill: 9999px;
-      --radius-btn:  8px;
-      --font: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font);
-      background-color: var(--bg);
-      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
-      background-size: 24px 24px;
-      color: var(--white);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      height: 64px;
-      background: rgba(10,10,10,0.5);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .nav-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      height: 100%;
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      color: var(--white);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: -0.35px;
-      color: var(--text-light);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links a.active {
-      color: var(--white);
-      border-bottom: 1px solid var(--white);
-      padding-bottom: 4px;
-    }
-    .nav-mail {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-    .nav-mail:hover { opacity: 1; }
 
     /* ── MAIN ── */
     main {
@@ -420,47 +329,7 @@ permalink: /new/blogs/
       text-transform: uppercase;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      background: rgba(10,10,10,0.4);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-top: 1px solid var(--border-subtle);
-      padding: 32px 0;
-    }
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .footer-links { display: flex; gap: 32px; list-style: none; }
-    .footer-links a {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-
     /* ── ENTRANCE ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    nav              { animation: fadeUp 0.5s ease both; }
     .hero-eyebrow    { animation: fadeUp 0.5s 0.05s ease both; }
     .hero-h1         { animation: fadeUp 0.5s 0.10s ease both; }
     .hero-card       { animation: fadeUp 0.5s 0.15s ease both; }
@@ -481,7 +350,6 @@ permalink: /new/blogs/
     @media (max-width: 640px) {
       main { padding: 80px 20px 48px; }
       .hero-h1 { font-size: 38px; letter-spacing: -2px; }
-      .nav-links { display: none; }
     }
   </style>
 </head>
