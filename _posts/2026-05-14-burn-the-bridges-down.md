@@ -46,34 +46,28 @@ There is no update at all for you to know. After my trip to Amsterdam, I am so f
 What I did that I feel so happy and relaxed, I will explain this in Learning from Russian Statement.
 
 
-```plain text
+
 Худую траву с поля вон
-```
+
 
 
 That translates to in English and Also my Mother Language, Gujarati
 
 
-```plain text
+
 Bad weed out of the field. [English]
 &
 કુસંગત છોડવી. [Gujarati]
-```
 
 
 I have learnt this from somewhere, and if I clarify this in a beautiful manner it is like,
 
-
-```plain text
 If you are so sure, why don't you burn the bridges down?
-```
-
 
 So eventually, I made my peace with my bad experiences. It was a very exhausting time for me, where during the last 6-7 months, I was living in the perspective or I can say I was living in such a manner that was not meant for me.
 
 
 So from one to many people, A lot of people, there are different opinion about me. But at the end Who am I to convince all of those people?
-
 
 I turned my life around because I thought other people who don’t even know me so well… or I can say the people who don’t know how to pronounce my name told me that what you are doing wrong and what’s wrong with me.
 
