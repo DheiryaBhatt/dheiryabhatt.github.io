@@ -353,13 +353,13 @@ permalink: /new/
       position: absolute;
       top: 0; bottom: 0;
       width: 51%;
-      background: rgba(255,255,255,0.04);
+      background: rgba(0,0,0,0.82);
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
       transition: transform 0.55s cubic-bezier(0.77, 0, 0.18, 1);
     }
-    .gate-left  { left: 0;  border-right: 1px solid rgba(255,255,255,0.06); }
-    .gate-right { right: 0; border-left: 1px solid rgba(255,255,255,0.06); }
+    .gate-left  { left: 0;  border-right: 1px solid rgba(255,255,255,0.04); }
+    .gate-right { right: 0; border-left: 1px solid rgba(255,255,255,0.04); }
 
     .ama-lock.unlocking .gate-left  { transform: translateX(-100%); }
     .ama-lock.unlocking .gate-right { transform: translateX(100%); }
@@ -383,9 +383,9 @@ permalink: /new/
     .lock-icon-wrap {
       width: 48px; height: 48px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.08);
       display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.25);
       transition: border-color 0.35s, color 0.35s, box-shadow 0.35s;
     }
     .lock-icon-wrap.granted {
@@ -398,7 +398,7 @@ permalink: /new/
       font-size: 0.5625rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.1);
       font-weight: 600;
     }
 
@@ -406,20 +406,20 @@ permalink: /new/
 
     .ama-key-input {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: 8px;
       padding: 11px 40px 11px 14px;
       font-family: var(--font);
       font-size: 13px;
-      color: var(--text);
+      color: rgba(255,255,255,0.4);
       outline: none;
       letter-spacing: 0.12em;
       transition: border-color 0.2s, background 0.2s;
     }
-    .ama-key-input::placeholder { color: rgba(255,255,255,0.15); letter-spacing: 0.22em; }
-    .ama-key-input:focus { border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.07); }
-    .ama-key-input.error { border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.04); }
+    .ama-key-input::placeholder { color: rgba(255,255,255,0.08); letter-spacing: 0.22em; }
+    .ama-key-input:focus { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.7); }
+    .ama-key-input.error { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.03); }
 
     .ama-key-submit {
       position: absolute;
@@ -427,11 +427,11 @@ permalink: /new/
       transform: translateY(-50%);
       background: none; border: none;
       cursor: pointer;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.12);
       display: flex; align-items: center;
       transition: color 0.2s; padding: 0;
     }
-    .ama-key-submit:hover { color: rgba(255,255,255,0.75); }
+    .ama-key-submit:hover { color: rgba(255,255,255,0.5); }
 
     /* ── DANGER FLASH ── */
     .lock-danger {
