@@ -196,17 +196,18 @@ permalink: /new/blogs/
       grid-template-columns: repeat(12, 1fr);
       gap: 24px;
       align-items: stretch;
+      margin-top: 40px;
     }
     .col-featured { grid-column: 1 / span 7; }
     .col-recent   { grid-column: 8 / span 5; }
 
     /* ── FEATURED CARD ── */
     .featured-card {
-      background: rgba(53, 53, 52, 0.4);
-      border: 1px solid rgba(71, 71, 71, 0.15);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-card);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       padding: 56px 40px;
       min-height: 520px;
       display: flex;
@@ -215,9 +216,12 @@ permalink: /new/blogs/
       position: relative;
       overflow: hidden;
       text-decoration: none;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, background 0.3s;
     }
-    .featured-card:hover { border-color: rgba(255,255,255,0.25); }
+    .featured-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.05);
+    }
     .featured-tags {
       display: flex;
       gap: 10px;
@@ -297,11 +301,11 @@ permalink: /new/blogs/
       color: var(--muted);
     }
     .article-card {
-      background: var(--overlay-faint);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-card);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -310,7 +314,7 @@ permalink: /new/blogs/
       transition: border-color 0.25s, background 0.25s;
     }
     .article-card:hover {
-      border-color: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.15);
       background: rgba(255,255,255,0.05);
     }
     .article-meta {
