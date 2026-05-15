@@ -1,0 +1,332 @@
+---
+layout: null
+permalink: /new/login/
+---
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Void — Dheirya Bhatt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #000000;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+      background-size: 24px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #e5e2e1;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass-card {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    /* ── GLASS INPUTS ── */
+    .input-wrap {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .input-wrap:focus-within {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .input-wrap.error {
+      border-color: rgba(239, 68, 68, 0.6);
+      background: rgba(239, 68, 68, 0.04);
+    }
+    .input-wrap input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 16px 48px 16px 16px;
+      font-size: 14px;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .input-wrap input::placeholder { color: rgba(255,255,255,0.2); }
+    .input-icon {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.2);
+      font-size: 20px;
+      transition: color 0.2s;
+      pointer-events: none;
+    }
+    .input-wrap:focus-within .input-icon { color: rgba(255,255,255,0.6); }
+
+    /* ── LABELS ── */
+    .field-label {
+      display: block;
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c6c6c6;
+      font-weight: 700;
+      margin-bottom: 8px;
+      margin-left: 2px;
+    }
+
+    /* ── BUTTON ── */
+    .btn-continue {
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #1a1c1c;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-continue:hover:not(:disabled) { background: #d4d4d4; }
+    .btn-continue:active:not(:disabled) { transform: scale(0.98); }
+    .btn-continue:disabled { opacity: 0.7; cursor: not-allowed; }
+    .btn-continue.success {
+      background: #22c55e;
+      color: #fff;
+    }
+    .btn-continue.denied {
+      background: rgba(239,68,68,0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239,68,68,0.3);
+    }
+
+    /* ── ERROR MESSAGE ── */
+    .error-msg {
+      display: none;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ef4444;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px 0 0;
+    }
+
+    /* ── SHAKE ANIMATION ── */
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      10%,30%,50%,70%,90% { transform: translateX(-6px); }
+      20%,40%,60%,80%     { transform: translateX( 6px); }
+    }
+    .shake { animation: shake 0.45s cubic-bezier(.36,.07,.19,.97) both; }
+
+    /* ── MATERIAL ICONS ── */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* ── SECURITY BADGE ── */
+    .badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 28px;
+      opacity: 0.35;
+    }
+    .badge-line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(to right, transparent, #919191);
+    }
+    .badge-line.right {
+      background: linear-gradient(to left, transparent, #919191);
+    }
+    .badge-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── LOGIN CARD ── -->
+  <main id="card" class="glass-card">
+
+    <!-- Branding -->
+    <div style="text-align:center; margin-bottom: 40px;">
+      <div style="display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:50%; background:#ffffff; margin-bottom:20px;">
+        <span class="material-symbols-outlined" style="color:#1a1c1c; font-size:24px;">shield_lock</span>
+      </div>
+      <h1 style="font-size:1.75rem; font-weight:800; letter-spacing:-0.05em; text-transform:uppercase; color:#ffffff; margin-bottom:6px;">
+        Access Void
+      </h1>
+      <p style="font-size:0.6875rem; letter-spacing:0.2em; text-transform:uppercase; color:#c6c6c6; font-weight:500;">
+        Secured System Terminal
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form id="login-form" style="display:flex; flex-direction:column; gap:24px;" novalidate>
+
+      <!-- Identity -->
+      <div>
+        <label class="field-label" for="identity">Identity</label>
+        <div class="input-wrap" id="wrap-id">
+          <input id="identity" type="email" placeholder="user@monolithic.void" autocomplete="username" spellcheck="false">
+          <span class="material-symbols-outlined input-icon">alternate_email</span>
+        </div>
+      </div>
+
+      <!-- Credential -->
+      <div>
+        <label class="field-label" for="credential">Credential</label>
+        <div class="input-wrap" id="wrap-pw">
+          <input id="credential" type="password" placeholder="••••••••" autocomplete="current-password">
+          <span class="material-symbols-outlined input-icon">key</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div style="padding-top:8px; display:flex; flex-direction:column; gap:20px;">
+        <button type="submit" class="btn-continue" id="btn">CONTINUE</button>
+        <p class="error-msg" id="error-msg">IDENTITY MISMATCH — ACCESS DENIED</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <a href="mailto:bhattdheirya@gmail.com" style="font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:#919191; text-decoration:none; font-weight:700; transition:color 0.2s;"
+             onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#919191'">
+            Lost Credential?
+          </a>
+          <div style="height:1px; width:32px; background:rgba(71,71,71,0.5);"></div>
+          <a href="mailto:bhattdheirya@gmail.com" style="font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:#919191; text-decoration:none; font-weight:700; transition:color 0.2s;"
+             onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#919191'">
+            Request Access
+          </a>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Decorative metadata -->
+    <div style="margin-top:40px; display:flex; justify-content:space-between; opacity:0.18; font-size:10px; font-family:monospace; line-height:1.6;">
+      <div>PROTO: VOID_0.1<br>ENC: AES-256-GCM</div>
+      <div style="text-align:right;">STX_READY<br>ACK_RECEIVED</div>
+    </div>
+
+  </main>
+
+  <!-- Security badge -->
+  <div class="badge">
+    <div class="badge-line"></div>
+    <span class="badge-text">Encrypted Node</span>
+    <div class="badge-line right"></div>
+  </div>
+
+  <script>
+    // ── CREDENTIAL DATABASE ─────────────────────────────────────────────────
+    // SHA-256 hashes — to update, open DevTools console on this page and run:
+    //   sha256('your_new_value').then(h => console.log(h))
+    // then paste the result below.
+    const AUTH_DB = [
+      {
+        id: "d60c556510111b28555b1f464df2df97dd265d2fc89b99e1e794f969173aeadc",  // bhattdheirya@gmail.com
+        pw: "475a051da693b119ab27ee600ee22991a66e77ab5e3b9ba8404f8db05a25b9ba",  // void2026
+        redirect: "/new/"
+      }
+    ];
+    // ────────────────────────────────────────────────────────────────────────
+
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    const form    = document.getElementById('login-form');
+    const btn     = document.getElementById('btn');
+    const card    = document.getElementById('card');
+    const errorEl = document.getElementById('error-msg');
+    const wrapId  = document.getElementById('wrap-id');
+    const wrapPw  = document.getElementById('wrap-pw');
+
+    // Clear error state on any input
+    document.getElementById('identity').addEventListener('input', clearError);
+    document.getElementById('credential').addEventListener('input', clearError);
+
+    function clearError() {
+      errorEl.style.display = 'none';
+      wrapId.classList.remove('error');
+      wrapPw.classList.remove('error');
+      btn.classList.remove('denied');
+      btn.textContent = 'CONTINUE';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const identity   = document.getElementById('identity').value.trim();
+      const credential = document.getElementById('credential').value;
+
+      if (!identity || !credential) return;
+
+      // Loading state
+      btn.disabled    = true;
+      btn.textContent = 'VERIFYING...';
+      errorEl.style.display = 'none';
+
+      const [idHash, pwHash] = await Promise.all([sha256(identity), sha256(credential)]);
+      const match = AUTH_DB.find(u => u.id === idHash && u.pw === pwHash);
+
+      if (match) {
+        // ── SUCCESS ──
+        sessionStorage.setItem('void_auth', 'true');
+        btn.classList.add('success');
+        btn.textContent = 'ACCESS GRANTED';
+        card.style.borderColor = 'rgba(34,197,94,0.4)';
+        setTimeout(() => { window.location.href = match.redirect; }, 900);
+      } else {
+        // ── DENIED ──
+        btn.disabled = false;
+        btn.classList.add('denied');
+        btn.textContent = 'ACCESS DENIED';
+        wrapId.classList.add('error');
+        wrapPw.classList.add('error');
+        errorEl.style.display = 'block';
+        card.classList.add('shake');
+        document.getElementById('credential').value = '';
+        setTimeout(() => card.classList.remove('shake'), 500);
+      }
+    });
+  </script>
+
+</body>
+</html>
