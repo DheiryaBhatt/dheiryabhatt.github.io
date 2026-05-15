@@ -6,6 +6,7 @@ permalink: /new/login/
 <html class="dark" lang="en">
 <head>
   <meta charset="utf-8">
+  <script>if(sessionStorage.getItem('void_auth')==='true'){var _f=new URLSearchParams(window.location.search).get('from');window.location.replace(_f&&_f.startsWith('/new')?_f:'/new/');}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Access Void — Dheirya Bhatt</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,7 +313,9 @@ permalink: /new/login/
         btn.classList.add('success');
         btn.textContent = 'ACCESS GRANTED';
         card.style.borderColor = 'rgba(34,197,94,0.4)';
-        setTimeout(() => { window.location.href = match.redirect; }, 900);
+        const from = new URLSearchParams(window.location.search).get('from');
+        const dest = (from && from.startsWith('/new')) ? from : match.redirect;
+        setTimeout(() => { window.location.replace(dest); }, 900);
       } else {
         // ── DENIED ──
         btn.disabled = false;

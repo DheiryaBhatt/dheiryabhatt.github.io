@@ -2,6 +2,7 @@
 <html class="dark" lang="en">
 <head>
   <meta charset="utf-8">
+  <script>if(sessionStorage.getItem('void_auth')!=='true'){window.location.replace('/new/login/?from='+encodeURIComponent(window.location.pathname));}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} — Dheirya Bhatt</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.excerpt | strip_html | truncatewords: 30 }}{% endif %}">
