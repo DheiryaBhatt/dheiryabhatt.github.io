@@ -1,5 +1,5 @@
 # dheiryabhatt.com
-# dheiryabhatt.com/new (For New Amazing Web-UI Changes)
+
 
 Personal website and blog built with Jekyll, featuring automated Notion synchronization.
 
@@ -305,3 +305,7 @@ When the theme is released, only files in `_layouts`, `_includes`, `_sass`, and 
 ## License
 
 Open source under the [MIT License](https://opensource.org/licenses/MIT).
+
+
+# dheiryabhatt.com/new (For New Amazing Web-UI Changes)
+#### Our New Website is going to launch, but if you want to see the website pre-version realease, you need to contact "bhattdheirya@gmail.com"
