@@ -1,0 +1,478 @@
+---
+layout: null
+permalink: /new/blogs/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>if(sessionStorage.getItem('void_auth')!=='true'){window.location.replace('/new/login/?from='+encodeURIComponent(window.location.pathname));}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blogs — Dheirya Bhatt</title>
+  <meta name="description" content="Personal essays, letters, and reflections by Dheirya Bhatt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/new/assets/css/shared.css" />
+
+  {% if site.ga_measurement_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_measurement_id }}"></script>
+  {% endif %}
+  <script>
+    const GA_MEASUREMENT_ID = "{{ site.ga_measurement_id }}";
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { page_path: '/new/blogs/' });
+  </script>
+
+  <style>
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 96px 32px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .hero-left { flex: 0 0 calc(58% - 16px); }
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .hero-h1 {
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: -3.6px;
+      line-height: 1;
+      color: var(--white);
+    }
+    .hero-right { flex: 1; margin-top: 4px; }
+    .hero-card {
+      background: var(--overlay-faint);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .hero-card p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .hero-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-green 2s ease-in-out infinite;
+    }
+    @keyframes pulse-green {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+      50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+    .status-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ── CONTENT GRID ── */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 40px;
+    }
+    .col-featured { grid-column: 1 / span 7; }
+    .col-recent   { grid-column: 8 / span 5; }
+
+    /* ── FEATURED CARD ── */
+    .featured-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 56px 40px;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .featured-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .featured-tags {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .tag-pill {
+      background: var(--overlay-medium);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #e5e2e1;
+    }
+    .tag-read-time {
+      background: var(--overlay-light);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .featured-h2 {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -1.2px;
+      line-height: 1.05;
+      color: var(--white);
+      max-width: 520px;
+      margin-bottom: 20px;
+    }
+    .featured-excerpt {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: var(--radius-btn);
+      background: linear-gradient(160deg, #ffffff 0%, #d4d4d4 100%);
+      color: #1a1c1c;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      width: fit-content;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── RECENT POSTS ── */
+    .recent-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+    .recent-heading {
+      padding: 0 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .article-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: none;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .article-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+    }
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .article-category {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .article-date {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .article-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      transition: color 0.2s;
+    }
+    .article-card:hover .article-title { color: rgba(255,255,255,0.75); }
+    .article-snippet {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .view-archive-row {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 6px;
+      margin-top: auto;
+    }
+    .view-archive-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .view-archive-link:hover { color: var(--white); }
+    .view-archive-link svg { transition: transform 0.2s; }
+    .view-archive-link:hover svg { transform: translateX(3px); }
+
+    /* ── ALL POSTS (archive) ── */
+    .archive-section { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .archive-heading {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .archive-list { display: flex; flex-direction: column; gap: 20px; }
+    .archive-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      text-decoration: none;
+      group: true;
+      transition: padding-left 0.2s;
+    }
+    .archive-item:hover { padding-left: 8px; }
+    .archive-item-left { display: flex; align-items: center; gap: 16px; }
+    .archive-item-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+      width: 20px;
+    }
+    .archive-item-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+    .archive-item:hover .archive-item-title { color: var(--white); }
+    .archive-item-date {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── ENTRANCE ANIMATIONS ── */
+    .hero-eyebrow    { animation: fadeUp 0.5s 0.05s ease both; }
+    .hero-h1         { animation: fadeUp 0.5s 0.10s ease both; }
+    .hero-card       { animation: fadeUp 0.5s 0.15s ease both; }
+    .featured-card   { animation: fadeUp 0.6s 0.20s ease both; }
+    .recent-section  { animation: fadeUp 0.6s 0.25s ease both; }
+    .archive-section { animation: fadeUp 0.6s 0.30s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { flex-direction: column; }
+      .hero-left, .hero-right { flex: unset; width: 100%; }
+      .hero-h1 { font-size: 52px; letter-spacing: -2.5px; }
+      .content-grid { grid-template-columns: 1fr; }
+      .col-featured, .col-recent { grid-column: 1 / -1; }
+      .featured-card { padding: 40px 28px; min-height: auto; }
+      .featured-h2 { font-size: 34px; }
+    }
+    @media (max-width: 640px) {
+      main { padding: 80px 20px 48px; }
+      .hero-h1 { font-size: 38px; letter-spacing: -2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/new/" class="nav-logo">
+        <img src="/assets/images/Group_18.svg" alt="DeeBot's logo" class="nav-logo-img">
+        DeeBot's ;)
+      </a>
+      <ul class="nav-links">
+        <li><a href="/new/">Home</a></li>
+        <li><a href="/new/projects/">Projects</a></li>
+        <li><a href="/new/blogs/" class="active">Blogs</a></li>
+        <li><a href="/new/about/">About/CV</a></li>
+      </ul>
+      <a class="nav-mail" href="mailto:bhattdheirya@gmail.com" aria-label="Email">
+        <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+          <rect x="1" y="1" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/>
+          <path d="M1 4l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <p class="hero-eyebrow">Archive 01 — Perspectives</p>
+        <h1 class="hero-h1">Welcome to<br>my thoughts</h1>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <p>From unexpected endings and fear of loss to anxiety, travel, and self-discovery — this is where I document all of it. No filters, just honest experiences.</p>
+          <div class="hero-status">
+            <span class="status-dot"></span>
+            <span class="status-label">Active Exploration</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT GRID -->
+    <div class="content-grid">
+
+      <!-- FEATURED POST (latest) -->
+      {% assign featured = site.posts.first %}
+      {% assign feat_words = featured.content | number_of_words %}
+      {% assign feat_mins  = feat_words | divided_by: 200 | plus: 1 %}
+      {% assign feat_cat   = featured.category | default: "Personal Essay" %}
+
+      <a href="{{ featured.url }}" class="featured-card col-featured">
+        <div class="featured-tags">
+          <span class="tag-pill">{{ feat_cat }}</span>
+          <span class="tag-read-time">{{ feat_mins }} min read</span>
+        </div>
+        <h2 class="featured-h2">{{ featured.title }}</h2>
+        <p class="featured-excerpt">{{ featured.excerpt | strip_html | truncatewords: 45 }}</p>
+        <span class="btn-primary">Read Post</span>
+      </a>
+
+      <!-- RECENT POSTS (next 3) -->
+      <div class="col-recent recent-section">
+        <p class="recent-heading">Recent Posts</p>
+
+        {% for post in site.posts limit:3 offset:1 %}
+        {% assign post_cat = post.category | default: post.categories.first | default: "Personal Essay" %}
+        <a href="{{ post.url }}" class="article-card">
+          <div class="article-meta">
+            <span class="article-category">{{ post_cat }}</span>
+            <span class="article-date">{{ post.date | date: "%b %Y" | upcase }}</span>
+          </div>
+          <h3 class="article-title">{{ post.title }}</h3>
+          <p class="article-snippet">{{ post.excerpt | strip_html | truncatewords: 18 }}</p>
+        </a>
+        {% endfor %}
+
+        <div class="view-archive-row">
+          <a href="#all-posts" class="view-archive-link">
+            View All Posts
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="#a3a3a3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ALL POSTS ARCHIVE -->
+    <section class="archive-section" id="all-posts">
+      <p class="archive-heading">All Writings — {{ site.posts | size }} Posts</p>
+      <div class="archive-list">
+        {% for post in site.posts %}
+        {% assign n = forloop.index %}
+        <a href="{{ post.url }}" class="archive-item">
+          <div class="archive-item-left">
+            <span class="archive-item-num">{{ n | prepend: '00' | slice: -2, 2 }}</span>
+            <span class="archive-item-title">{{ post.title }}</span>
+          </div>
+          <span class="archive-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/dheiryabhatt" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <p class="footer-copy">© 2026-27 Dheirya. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

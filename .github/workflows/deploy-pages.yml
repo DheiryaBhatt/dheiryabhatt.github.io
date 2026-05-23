@@ -23,6 +23,7 @@ jobs:
     env:
       GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
       COHORT_SPLIT_PERCENT: ${{ secrets.COHORT_SPLIT_PERCENT }}
+      CONTACT_FORM_TOKEN: ${{ secrets.CONTACT_FORM_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,10 +43,11 @@ jobs:
           cat > _config.ci.yml <<EOF
           ga_measurement_id: "${GA_MEASUREMENT_ID}"
           cohort_split_percent: ${COHORT_SPLIT_PERCENT}
+          contact_form_token: "${CONTACT_FORM_TOKEN}"
           EOF
 
       - name: Build with Jekyll
-        run: bundle exec jekyll build --config _config.yml,_config.ci.yml --source . --destination ./_site
+        run: bundle exec jekyll build --config site/_config.yml,_config.ci.yml --source ./site --destination ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
