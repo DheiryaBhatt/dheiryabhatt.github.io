@@ -33,14 +33,10 @@ listen_for_clients_preferred_style: true or false (default)
 # Fonts
 disable_google_fonts: false # set true to prevent loading fonts.googleapis.com
 
-# Exclude non-site directories from Jekyll build
+# Exclude lock/meta files from build output
 exclude:
-  - dheiryabhatt.github.io/
-  - notion-sync/
-  - DEPLOYMENT_STRATEGY.md
-  - README.md
-  - new/README.md
-  - new/ANALYTICS.md
+  - Gemfile
+  - Gemfile.lock
 
 # Blog settings
 paginate: 5
