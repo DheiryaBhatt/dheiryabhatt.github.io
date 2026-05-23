@@ -1,0 +1,586 @@
+---
+layout: null
+permalink: /new/about/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>if(sessionStorage.getItem('void_auth')!=='true'){window.location.replace('/new/login/?from='+encodeURIComponent(window.location.pathname));}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About / CV — Dheirya Bhatt</title>
+  <meta name="description" content="Background, education, and experience of Dheirya Bhatt — AI Engineer at Paderborn University." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/new/assets/css/shared.css" />
+
+  {% if site.ga_measurement_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_measurement_id }}"></script>
+  {% endif %}
+  <script>
+    const GA_MEASUREMENT_ID = "{{ site.ga_measurement_id }}";
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { page_path: '/new/about/' });
+  </script>
+
+  <style>
+    /* ── PAGE LAYOUT ── */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 128px 32px 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      position: relative;
+    }
+
+    /* ── AMBIENT GLOW ── */
+    .ambient-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: rgba(255,255,255,0.03);
+      filter: blur(120px);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ── HERO TEXT ── */
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -3px;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .hero-title span { color: #d4d4d4; }
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: #c6c6c6;
+      max-width: 560px;
+      line-height: 1.625;
+    }
+
+    /* ── BENTO GRID ── */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass-card {
+      background: rgba(53, 53, 52, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(71, 71, 71, 0.15);
+      border-radius: 12px;
+      transition: border-color 0.25s;
+    }
+    .glass-card:hover { border-color: rgba(255,255,255,0.15); }
+
+    /* ── STATUS CARD (4 cols) ── */
+    .status-card {
+      grid-column: 1 / span 4;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .status-pulse { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      animation: dot-pulse 2s ease-in-out infinite;
+    }
+    @keyframes dot-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+      50%      { box-shadow: 0 0 0 6px rgba(255,255,255,0); }
+    }
+    .status-eyebrow {
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .status-heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .status-desc { font-size: 13px; color: #c6c6c6; line-height: 1.5; }
+    .progress-bar {
+      margin-top: 32px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #ffffff;
+      border-radius: 9999px;
+    }
+
+    /* ── HERO CARD (8 cols) ── */
+    .hero-card {
+      grid-column: 5 / span 8;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-phase {
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: #ffffff;
+      margin-bottom: 20px;
+      line-height: 1.05;
+    }
+    .card-desc {
+      font-size: 16px;
+      color: #c6c6c6;
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+    .card-tag {
+      background: rgba(42, 42, 42, 0.8);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 9999px;
+      padding: 8px 16px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e2e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-tag svg { width: 13px; height: 13px; opacity: 0.7; flex-shrink: 0; }
+    /* Decorative rings */
+    .ring-1 {
+      position: absolute;
+      right: -80px; bottom: -80px;
+      width: 320px; height: 320px;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.7s ease;
+    }
+    .ring-2 {
+      position: absolute;
+      right: -40px; bottom: -40px;
+      width: 160px; height: 160px;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 1s ease;
+    }
+    .hero-card:hover .ring-1 { transform: scale(1.1); }
+    .hero-card:hover .ring-2 { transform: scale(1.25); }
+
+    /* ── CONTACT FORM (7 cols) ── */
+    .contact-card { grid-column: 1 / span 7; padding: 32px; }
+    .section-heading {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-heading svg { width: 20px; height: 20px; opacity: 0.65; flex-shrink: 0; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .field-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #919191;
+      margin-left: 2px;
+    }
+    .field-input, .field-textarea {
+      background: rgba(28, 27, 27, 0.8);
+      border: none;
+      border-bottom: 1px solid rgba(71, 71, 71, 0.5);
+      border-radius: 0;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .field-input::placeholder,
+    .field-textarea::placeholder { color: rgba(255,255,255,0.18); }
+    .field-input:focus,
+    .field-textarea:focus { border-bottom-color: #ffffff; }
+    .field-textarea { resize: none; }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: #1a1c1c;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.2s, transform 0.15s, color 0.2s, border 0.2s;
+    }
+    .btn-submit:hover:not(:disabled) { background: #d4d4d4; }
+    .btn-submit:active:not(:disabled) { transform: scale(0.98); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-submit.success {
+      background: rgba(34,197,94,0.15);
+      color: #22c55e;
+      border: 1px solid rgba(34,197,94,0.35);
+    }
+    .btn-submit.error-state {
+      background: rgba(239,68,68,0.12);
+      color: #ef4444;
+      border: 1px solid rgba(239,68,68,0.3);
+    }
+
+    /* ── SOCIAL CARD (5 cols) ── */
+    .social-card {
+      grid-column: 8 / span 5;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .social-list { display: flex; flex-direction: column; gap: 4px; }
+    .social-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .social-item:hover { background: rgba(255,255,255,0.05); }
+    .social-item-left { display: flex; align-items: center; gap: 16px; }
+    .social-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(32, 31, 31, 0.8);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .social-icon svg { width: 18px; height: 18px; }
+    .social-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.2s;
+    }
+    .social-item:hover .social-name { color: #ffffff; }
+    .social-arrow {
+      color: rgba(255,255,255,0.18);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .social-item:hover .social-arrow { color: #ffffff; transform: translate(3px, -3px); }
+    .social-meta {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .meta-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #919191;
+    }
+    .meta-value { font-size: 11px; color: rgba(255,255,255,0.38); margin-top: 4px; }
+
+    /* ── ENTRANCE ANIMATIONS ── */
+    .hero-section { animation: fadeUp 0.5s 0.05s ease both; }
+    .status-card  { animation: fadeUp 0.5s 0.15s ease both; }
+    .hero-card    { animation: fadeUp 0.5s 0.20s ease both; }
+    .contact-card { animation: fadeUp 0.5s 0.25s ease both; }
+    .social-card  { animation: fadeUp 0.5s 0.30s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .status-card, .hero-card,
+      .contact-card, .social-card { grid-column: 1 / -1; }
+    }
+    @media (max-width: 640px) {
+      main { padding: 96px 20px 64px; }
+      .hero-title { font-size: 2.25rem; letter-spacing: -1.5px; }
+      .hero-sub { font-size: 16px; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/new/" class="nav-logo">DeeBot's ;)</a>
+    <ul class="nav-links">
+      <li><a href="/new/">Home</a></li>
+      <li><a href="/new/projects/">Projects</a></li>
+      <li><a href="/new/blogs/">Blogs</a></li>
+      <li><a href="/new/about/" class="active">About/CV</a></li>
+    </ul>
+    <a class="nav-mail" href="mailto:bhattdheirya@gmail.com" aria-label="Send email">
+      <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+        <rect x="1" y="1" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/>
+        <path d="M1 4l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Hero Text -->
+  <section class="hero-section">
+    <h1 class="hero-title">ABOUT &amp; <span>CV</span></h1>
+    <p class="hero-sub">AI Engineer, student, and occasional writer. Building things at the intersection of research and the real world.</p>
+  </section>
+
+  <!-- Bento Grid -->
+  <div class="bento">
+
+    <!-- Status Card -->
+    <div class="glass-card status-card">
+      <div>
+        <div class="status-pulse">
+          <div class="pulse-dot"></div>
+          <span class="status-eyebrow">Profile Status</span>
+        </div>
+        <div class="status-heading">ASSEMBLING</div>
+        <p class="status-desc">Full CV, experience timeline, and education details are being compiled into a readable format. Check back soon.</p>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 55%"></div>
+      </div>
+    </div>
+
+    <!-- Hero Under Construction Card -->
+    <div class="glass-card hero-card">
+      <p class="card-phase">Build Phase: Beta</p>
+      <h2 class="card-title">UNDER<br>CONSTRUCTION</h2>
+      <p class="card-desc">A detailed breakdown of my background, research at Paderborn University, internship at dSPACE GmbH, and side projects in AI engineering is coming together.</p>
+      <div class="card-tags">
+        <div class="card-tag">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 10v6M2 10l10-8 10 8-10 8-10-8z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Paderborn Uni
+        </div>
+        <div class="card-tag">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="white" stroke-width="1.5"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          dSPACE GmbH
+        </div>
+        <div class="card-tag">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          AI Engineering
+        </div>
+      </div>
+      <div class="ring-1" aria-hidden="true"></div>
+      <div class="ring-2" aria-hidden="true"></div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="glass-card contact-card">
+      <h3 class="section-heading">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        GET IN TOUCH
+      </h3>
+      <form id="contact-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="field-label" for="field-name">Identity</label>
+            <input class="field-input" id="field-name" type="text" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="field-email">Terminal</label>
+            <input class="field-input" id="field-email" type="email" placeholder="Email Address" required />
+          </div>
+          <div class="form-group full">
+            <label class="field-label" for="field-message">Brief</label>
+            <textarea class="field-textarea" id="field-message" placeholder="Introduce yourself or say hello." rows="4" required></textarea>
+          </div>
+        </div>
+        <button class="btn-submit" type="submit" id="submit-btn">TRANSMIT MESSAGE</button>
+      </form>
+    </div>
+
+    <!-- Social / Network Card -->
+    <div class="glass-card social-card">
+      <div>
+        <h3 class="section-heading">NETWORK NODES</h3>
+        <div class="social-list">
+          <a class="social-item" href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">
+            <div class="social-item-left">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.027 1.591 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.013 2.415-.013 2.744 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              </div>
+              <span class="social-name">GITHUB</span>
+            </div>
+            <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="social-item" href="https://linkedin.com/in/dheiryabhatt" target="_blank" rel="noopener">
+            <div class="social-item-left">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              </div>
+              <span class="social-name">LINKEDIN</span>
+            </div>
+            <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="social-item" href="mailto:bhattdheirya@gmail.com">
+            <div class="social-item-left">
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M2 7l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <span class="social-name">EMAIL</span>
+            </div>
+            <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="social-meta">
+        <p class="meta-label">Location: Paderborn, DE</p>
+        <p class="meta-value">Open for research collaborations &amp; internships</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <ul class="footer-links">
+      <li><a href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/dheiryabhatt" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <p class="footer-copy">© 2026-27 Dheirya. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ── CONTACT FORM → GITHUB ISSUES ─────────────────────────────────────────
+  const GITHUB_TOKEN = "{{ site.contact_form_token }}";
+  const GITHUB_REPO  = "DheiryaBhatt/dheiryabhatt.com";
+  const PAGE_SOURCE  = "About/CV Page";
+
+  const form      = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name    = document.getElementById('field-name').value.trim();
+    const email   = document.getElementById('field-email').value.trim();
+    const message = document.getElementById('field-message').value.trim();
+    if (!name || !email || !message) return;
+
+    submitBtn.disabled    = true;
+    submitBtn.textContent = 'TRANSMITTING...';
+    submitBtn.classList.remove('success', 'error-state');
+
+    const ok = await submitContact(name, email, message);
+
+    if (ok) {
+      submitBtn.textContent = 'TRANSMISSION COMPLETE ✓';
+      submitBtn.classList.add('success');
+      form.reset();
+    } else {
+      submitBtn.textContent = 'TRANSMIT FAILED — RETRY';
+      submitBtn.classList.add('error-state');
+      submitBtn.disabled = false;
+    }
+    setTimeout(() => {
+      submitBtn.textContent = 'TRANSMIT MESSAGE';
+      submitBtn.classList.remove('success', 'error-state');
+      submitBtn.disabled = false;
+    }, 4000);
+  });
+
+  async function submitContact(name, email, message) {
+    if (!GITHUB_TOKEN || GITHUB_TOKEN.startsWith('{{')) {
+      window.location.href =
+        `mailto:bhattdheirya@gmail.com` +
+        `?subject=${encodeURIComponent('[Contact] ' + name)}` +
+        `&body=${encodeURIComponent(message + '\n\nFrom: ' + email)}`;
+      return true;
+    }
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify({
+          title: `[Contact] ${name} — ${email}`,
+          body: [
+            '## New Contact Form Submission',
+            '',
+            `| Field | Value |`,
+            `|-------|-------|`,
+            `| **Source** | ${PAGE_SOURCE} |`,
+            `| **Name** | ${name} |`,
+            `| **Email** | ${email} |`,
+            '',
+            '**Message:**',
+            '',
+            message,
+            '',
+            '---',
+            '*Submitted via [dheiryabhatt.com](https://dheiryabhatt.com)*'
+          ].join('\n'),
+          labels: ['contact-form']
+        })
+      });
+      return res.ok;
+    } catch {
+      return false;
+    }
+  }
+</script>
+
+</body>
+</html>
