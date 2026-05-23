@@ -539,7 +539,7 @@ permalink: /new/about/
   });
 
   async function submitContact(name, email, message) {
-    if (!GITHUB_TOKEN || GITHUB_TOKEN.startsWith('{{')) {
+    if (!GITHUB_TOKEN || GITHUB_TOKEN.startsWith('{' + '{')) {
       window.location.href =
         `mailto:bhattdheirya@gmail.com` +
         `?subject=${encodeURIComponent('[Contact] ' + name)}` +
