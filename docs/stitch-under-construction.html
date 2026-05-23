@@ -1,0 +1,300 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DESIGNER_TECH | UNDER CONSTRUCTION</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#aaaab3",
+                        "primary-container": "#d4d4d4",
+                        "on-surface": "#e5e2e1",
+                        "background": "#131313",
+                        "surface-dim": "#131313",
+                        "on-secondary": "#1a1b22",
+                        "secondary": "#c6c6cf",
+                        "primary-fixed": "#5d5f5f",
+                        "outline-variant": "#474747",
+                        "inverse-primary": "#5d5f5f",
+                        "secondary-fixed": "#c6c6cf",
+                        "on-tertiary-fixed-variant": "#e4e2e1",
+                        "tertiary": "#e4e2e1",
+                        "on-tertiary-fixed": "#ffffff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed-variant": "#e2e2e2",
+                        "tertiary-fixed": "#5f5e5e",
+                        "on-secondary-fixed-variant": "#3a3b42",
+                        "on-secondary-fixed": "#1a1b22",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#45464e",
+                        "surface": "#131313",
+                        "primary-fixed-dim": "#454747",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#313030",
+                        "outline": "#919191",
+                        "tertiary-fixed-dim": "#474746",
+                        "surface-container-low": "#1c1b1b",
+                        "primary": "#ffffff",
+                        "surface-tint": "#c6c6c7",
+                        "surface-container": "#201f1f",
+                        "on-error": "#690005",
+                        "on-tertiary": "#1b1c1c",
+                        "on-surface-variant": "#c6c6c6",
+                        "on-background": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-container": "#000000",
+                        "on-secondary-container": "#e2e1eb",
+                        "surface-variant": "#353534",
+                        "surface-bright": "#3a3939",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#ffffff",
+                        "tertiary-container": "#929090",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#000000",
+                        "on-primary": "#1a1c1c"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0e0e0e;
+        }
+        
+        .dot-grid {
+            background-image: radial-gradient(rgba(71, 71, 71, 0.2) 1px, transparent 1px);
+            background-size: 2rem 2rem;
+        }
+
+        .glass-card {
+            background: rgba(53, 53, 52, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(71, 71, 71, 0.15);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .active-nav { border-bottom: 1px solid #ffffff; padding-bottom: 0.25rem; }
+    </style>
+</head>
+<body class="text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-low/40 backdrop-blur-xl border-b border-white/10">
+<nav class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Designer Profile Avatar" class="w-8 h-8 object-contain brightness-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF7-uZTfuPNwGN-X9YdhGaYXQ1xNqGnotEPUDwlDDjrWoxCdOrz96VC65TXX2kt1oPqN3eIUTt9bf13_YL2fe47MbtfLekgHCi5tXDJffTKd59pnX37WTF1WeHMQpKiOvd30BKzs_B8Vn-jhKC5YeNmleMSwnvgITWc-fJYqFlifeWqP4t1TxPOT4MAX3JzPsT8bEfEFgJDCUKw1RTtLVWH2LzxJpXRCl3vbd0qlPBJWx2YF4cZrRXOmIrmaYpaDN4Y_3uqW6zHdT19Lw">
+<span class="text-lg font-bold tracking-tighter text-white">DESIGNER_TECH</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase font-medium text-white border-b border-white pb-1 transition-all" href="#">WORK</a>
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase font-medium text-[#D4D4D4] hover:text-white transition-colors" href="#">SYSTEMS</a>
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase font-medium text-[#D4D4D4] hover:text-white transition-colors" href="#">LABS</a>
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase font-medium text-[#D4D4D4] hover:text-white transition-colors" href="#">ABOUT</a>
+</div>
+<button class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase font-medium bg-white text-on-primary px-6 py-2.5 rounded-full active:scale-95 transition-transform">
+                CONTACT
+            </button>
+</nav>
+</header>
+<main class="min-h-screen pt-32 pb-24 px-6 md:px-12 dot-grid relative">
+<!-- Background Ambient Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="max-w-7xl mx-auto">
+<!-- Hero Section -->
+<div class="mb-12">
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-white mb-4">
+                    REDEFINING <span class="text-primary-container">SYSTEMS</span>
+</h1>
+<p class="text-on-surface-variant max-w-xl text-lg font-light leading-relaxed">
+                    A technical workspace for architectural UI design and precision motion systems. Currently recalibrating the experience.
+                </p>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Status Card (1/3) -->
+<div class="md:col-span-4 glass-card rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+<span class="text-[0.6875rem] tracking-[0.1em] uppercase font-bold text-white">System Status</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-white mb-2">94% COMPLETE</h2>
+<p class="text-on-surface-variant text-sm">Deployment of Monolithic v2.0 in progress. Finalizing animation curves and spatial logic.</p>
+</div>
+<div class="mt-8 flex gap-4">
+<div class="flex-1 h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-white w-[94%] transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+<!-- Main Under Construction Card (2/3) -->
+<div class="md:col-span-8 glass-card rounded-xl p-10 relative overflow-hidden group">
+<div class="relative z-10 h-full flex flex-col justify-center">
+<span class="text-[0.6875rem] tracking-[0.1em] uppercase font-bold text-white/50 mb-4">Launch Phase: Alpha</span>
+<h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6">
+                            UNDER CONSTRUCTION
+                        </h2>
+<p class="text-lg text-on-surface-variant max-w-md mb-8">
+                            A new digital frontier is being etched into the void. We are currently polishing the interface for a seamless high-fidelity transition.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<div class="bg-surface-container-high px-4 py-2 rounded-full border border-white/5 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+<span class="text-[0.6875rem] font-bold tracking-widest uppercase">Precision Focus</span>
+</div>
+<div class="bg-surface-container-high px-4 py-2 rounded-full border border-white/5 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">architecture</span>
+<span class="text-[0.6875rem] font-bold tracking-widest uppercase">Systemic Design</span>
+</div>
+</div>
+</div>
+<!-- Technical Deco -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 border border-white/5 rounded-full pointer-events-none group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute -right-10 -bottom-10 w-40 h-40 border border-white/10 rounded-full pointer-events-none group-hover:scale-125 transition-transform duration-1000"></div>
+</div>
+<!-- Contact Form Card (7/12) -->
+<div class="md:col-span-7 glass-card rounded-xl p-8">
+<h3 class="text-xl font-bold tracking-tight text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">alternate_email</span>
+                        GET IN TOUCH
+                    </h3>
+<form class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-[0.6rem] uppercase tracking-widest text-on-surface-variant font-bold ml-1">Identity</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant text-sm px-4 py-3 focus:outline-none focus:border-white transition-colors text-white placeholder:text-white/20" placeholder="Your Name" type="text">
+</div>
+<div class="space-y-1">
+<label class="text-[0.6rem] uppercase tracking-widest text-on-surface-variant font-bold ml-1">Terminal</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant text-sm px-4 py-3 focus:outline-none focus:border-white transition-colors text-white placeholder:text-white/20" placeholder="Email Address" type="email">
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-[0.6rem] uppercase tracking-widest text-on-surface-variant font-bold ml-1">Brief</label>
+<textarea class="w-full bg-surface-container-low border-b border-outline-variant text-sm px-4 py-3 focus:outline-none focus:border-white transition-colors text-white placeholder:text-white/20 resize-none" placeholder="How can we collaborate?" rows="3"></textarea>
+</div>
+<button class="w-full bg-white text-on-primary font-bold py-4 rounded-lg tracking-widest text-[0.6875rem] uppercase hover:bg-white/90 active:scale-[0.98] transition-all" type="submit">
+                            TRANSMIT MESSAGE
+                        </button>
+</form>
+</div>
+<!-- Connect/Social Card (5/12) -->
+<div class="md:col-span-5 glass-card rounded-xl p-8 flex flex-col justify-between overflow-hidden">
+<div class="space-y-6">
+<h3 class="text-xl font-bold tracking-tight text-white mb-6">NETWORK NODES</h3>
+<div class="space-y-4">
+<a class="flex items-center justify-between group/link p-3 rounded-lg hover:bg-white/5 transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-white">code</span>
+</div>
+<span class="text-sm font-medium text-white/70 group-hover/link:text-white transition-colors">GITHUB</span>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover/link:text-white transition-all transform group-hover/link:translate-x-1">north_east</span>
+</a>
+<a class="flex items-center justify-between group/link p-3 rounded-lg hover:bg-white/5 transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-white">terminal</span>
+</div>
+<span class="text-sm font-medium text-white/70 group-hover/link:text-white transition-colors">LINKEDIN</span>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover/link:text-white transition-all transform group-hover/link:translate-x-1">north_east</span>
+</a>
+<a class="flex items-center justify-between group/link p-3 rounded-lg hover:bg-white/5 transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-white">history_edu</span>
+</div>
+<span class="text-sm font-medium text-white/70 group-hover/link:text-white transition-colors">READ.CV</span>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover/link:text-white transition-all transform group-hover/link:translate-x-1">north_east</span>
+</a>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/5">
+<p class="text-[0.6rem] uppercase tracking-widest text-on-surface-variant font-bold">Location: Global</p>
+<p class="text-xs text-white/40 mt-1">UTC 00:00 / Syncing Presence</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 border-t border-white/5 bg-[#0E0E0E]">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 w-full">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+<span class="text-[10px] font-bold text-black">MV</span>
+</div>
+<span class="text-sm font-bold text-white tracking-tighter uppercase">MONOLITHIC VOID</span>
+</div>
+<p class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase text-[#D4D4D4] opacity-60">
+                © 2024 MONOLITHIC VOID. ALL RIGHTS RESERVED.
+            </p>
+<div class="flex gap-8">
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase text-[#2A2A2A] hover:text-white transition-colors" href="#">GITHUB</a>
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase text-[#2A2A2A] hover:text-white transition-colors" href="#">LINKEDIN</a>
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase text-[#2A2A2A] hover:text-white transition-colors" href="#">READCV</a>
+<a class="font-plus-jakarta text-[0.6875rem] tracking-[0.05em] uppercase text-[#2A2A2A] hover:text-white transition-colors" href="#">RSS</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for mouse following glow
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('.glow-cursor');
+            if (glow) {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            }
+        });
+
+        // Form submission animation
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'TRANSMITTING...';
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                btn.innerText = 'TRANSMISSION COMPLETE';
+                btn.classList.remove('bg-white', 'text-on-primary');
+                btn.classList.add('bg-green-500/20', 'text-green-400', 'border', 'border-green-500/50');
+                form.reset();
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-green-500/20', 'text-green-400', 'border', 'border-green-500/50');
+                    btn.classList.add('bg-white', 'text-on-primary');
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+
+
+</body></html>
