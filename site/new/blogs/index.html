@@ -12,7 +12,7 @@ permalink: /new/blogs/
   <meta name="description" content="Personal essays, letters, and reflections by Dheirya Bhatt." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Liberation+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/new/assets/css/shared.css" />
 
   {% if site.ga_measurement_id %}
@@ -27,452 +27,443 @@ permalink: /new/blogs/
   </script>
 
   <style>
+    :root {
+      --accent-amber: oklch(0.80 0.10 78);
+      --accent-amber-soft: oklch(0.80 0.10 78 / 0.12);
+    }
 
-    /* ── MAIN ── */
+    /* ── LAYOUT ── */
     main {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 96px 32px 64px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto;
+      padding: 120px 32px 88px;
+      display: flex; flex-direction: column; gap: 56px;
     }
 
     /* ── HERO ── */
-    .hero {
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-    }
-    .hero-left { flex: 0 0 calc(58% - 16px); }
+    .hero { display: flex; flex-direction: column; gap: 22px; }
     .hero-eyebrow {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 11px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--muted);
     }
-    .hero-h1 {
-      font-size: 72px;
-      font-weight: 800;
-      letter-spacing: -3.6px;
-      line-height: 1;
-      color: var(--white);
+    .hero-eyebrow .bar { width: 28px; height: 1px; background: var(--border); }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6.6vw, 4.6rem);
+      font-weight: 800; letter-spacing: -3px; line-height: .98; color: var(--text);
     }
-    .hero-right { flex: 1; margin-top: 4px; }
-    .hero-card {
-      background: var(--overlay-faint);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .hero h1 .dim { color: #5a5a5a; }
+    .hero-sub {
+      max-width: 600px; font-size: 17px; font-weight: 300;
+      color: var(--text-secondary); line-height: 1.62;
     }
-    .hero-card p {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.7;
+    .hero-meta {
+      display: flex; align-items: center; flex-wrap: wrap;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      margin-top: 6px;
     }
+    .meta-cell {
+      display: flex; flex-direction: column; gap: 5px;
+      padding: 18px 28px 18px 0; margin-right: 28px;
+      border-right: 1px solid var(--border-subtle);
+    }
+    .meta-cell:last-of-type { border-right: none; }
+    .meta-k {
+      font-family: var(--mono); font-size: 9.5px;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim);
+    }
+    .meta-v { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; color: var(--text); }
+    .meta-v .unit { color: var(--muted); font-weight: 400; font-size: 12px; margin-left: 4px; }
     .hero-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 10px; margin-left: auto;
+      background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.22);
+      border-radius: var(--radius-pill); padding: 9px 16px;
     }
-    .status-dot {
-      width: 8px; height: 8px;
-      background: #22c55e;
-      border-radius: 50%;
+    .green-dot {
+      width: 7px; height: 7px; background: var(--accent-green);
+      border-radius: 50%; box-shadow: 0 0 8px rgba(34,197,94,0.6);
       animation: pulse-green 2s ease-in-out infinite;
     }
     @keyframes pulse-green {
-      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
-      50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+      0%,100% { box-shadow: 0 0 8px rgba(34,197,94,0.55); }
+      50%      { box-shadow: 0 0 15px rgba(34,197,94,0.9); }
     }
-    .status-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--white);
+    .hero-status span {
+      font-size: 10px; font-weight: 700; letter-spacing: .11em;
+      text-transform: uppercase; color: #cdedd6;
     }
 
-    /* ── CONTENT GRID ── */
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 24px;
-      align-items: stretch;
-      margin-top: 40px;
+    /* ── SECTION HEADERS ── */
+    .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; }
+    .sec-eyebrow {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
     }
-    .col-featured { grid-column: 1 / span 7; }
-    .col-recent   { grid-column: 8 / span 5; }
+    .sec-rule { flex: 1; height: 1px; background: var(--border-subtle); }
+    .sec-count {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+      color: var(--text-dim); white-space: nowrap;
+    }
 
-    /* ── FEATURED CARD ── */
-    .featured-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-card);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      padding: 56px 40px;
-      min-height: 520px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+    /* ── SPOTLIGHT ── */
+    .spotlight {
+      display: grid; grid-template-columns: 1.05fr .95fr;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-card); overflow: hidden;
       text-decoration: none;
-      transition: border-color 0.3s, background 0.3s;
+      transition: border-color .3s, background .3s;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     }
-    .featured-card:hover {
-      border-color: rgba(255,255,255,0.15);
-      background: rgba(255, 255, 255, 0.05);
+    .spotlight:hover { border-color: rgba(255,255,255,0.2); background: var(--surface-hover); }
+    .spot-body { padding: 42px 44px; display: flex; flex-direction: column; gap: 18px; }
+    .spot-tags { display: flex; gap: 10px; align-items: center; }
+    .cat-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
+      text-transform: uppercase; color: #e5e2e1;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); padding: 5px 12px 5px 10px;
     }
-    .featured-tags {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 24px;
+    .cat-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .cat-dot.essay { background: #cfcfcf; }
+    .cat-dot.travel { background: var(--accent-amber); box-shadow: 0 0 7px var(--accent-amber-soft); }
+    .read-time {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted);
     }
-    .tag-pill {
-      background: var(--overlay-medium);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-pill);
-      padding: 4px 12px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: #e5e2e1;
+    .spot-title {
+      font-size: clamp(2rem, 3.2vw, 2.7rem); font-weight: 700;
+      letter-spacing: -1.4px; line-height: 1.04; color: var(--text);
     }
-    .tag-read-time {
-      background: var(--overlay-light);
-      border-radius: var(--radius-pill);
-      padding: 4px 12px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--white);
+    .spot-excerpt {
+      font-size: 15px; font-weight: 300; color: var(--text-secondary);
+      line-height: 1.72; max-width: 480px;
     }
-    .featured-h2 {
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: -1.2px;
-      line-height: 1.05;
-      color: var(--white);
-      max-width: 520px;
-      margin-bottom: 20px;
+    .spot-foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; gap: 18px; }
+    .btn-read {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 12px 24px; border-radius: var(--radius-btn);
+      background: #fff; color: #0a0a0a;
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      transition: background .2s, transform .15s;
     }
-    .featured-excerpt {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      max-width: 480px;
-      margin-bottom: 32px;
+    .btn-read svg { width: 13px; height: 13px; }
+    .spotlight:hover .btn-read { transform: translateY(-1px); }
+    .spot-date { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--muted); }
+    .spot-aside {
+      position: relative; border-left: 1px solid var(--border-subtle);
+      background: radial-gradient(120% 120% at 80% 10%, rgba(255,255,255,0.045), transparent 60%);
+      padding: 42px 40px;
+      display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
     }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 28px;
-      border-radius: var(--radius-btn);
-      background: linear-gradient(160deg, #ffffff 0%, #d4d4d4 100%);
-      color: #1a1c1c;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      width: fit-content;
-      transition: opacity 0.2s, transform 0.15s;
+    .spot-index {
+      font-size: 90px; font-weight: 800; letter-spacing: -5px; line-height: .8;
+      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.16);
     }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .spot-pull { position: relative; z-index: 2; }
+    .spot-pull .pull-label {
+      font-family: var(--mono); font-size: 9.5px; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px;
+    }
+    .spot-pull .pull-quote {
+      font-size: 19px; font-weight: 300; font-style: italic;
+      line-height: 1.4; color: #e5e2e1; max-width: 300px;
+    }
+    .spot-pull .pull-quote .accent { color: var(--accent-amber); font-style: normal; }
+    .spot-ring {
+      position: absolute; right: -90px; top: -90px;
+      width: 260px; height: 260px;
+      border: 1px solid rgba(255,255,255,0.05); border-radius: 50%;
+      pointer-events: none; transition: transform .8s ease;
+    }
+    .spot-ring::after {
+      content: ""; position: absolute; inset: 48px;
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 50%;
+    }
+    .spotlight:hover .spot-ring { transform: scale(1.1) rotate(8deg); }
 
-    /* ── RECENT POSTS ── */
-    .recent-section {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      height: 100%;
+    /* ── ARCHIVE / LEDGER ── */
+    .filter-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+    .chip {
+      font-family: var(--font); font-size: 12px; font-weight: 600; letter-spacing: -0.1px;
+      color: var(--text-light); background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); padding: 8px 16px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: color .2s, border-color .2s, background .2s;
     }
-    .recent-heading {
-      padding: 0 8px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
+    .chip:hover { color: var(--text); border-color: var(--border-mid); }
+    .chip .chip-n { font-family: var(--mono); font-size: 10px; color: var(--text-dim); transition: color .2s; }
+    .chip[aria-pressed="true"] { color: #0a0a0a; background: #fff; border-color: #fff; }
+    .chip[aria-pressed="true"] .chip-n { color: #5a5a5a; }
+    .chip .chip-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .ledger { display: flex; flex-direction: column; }
+    .entry {
+      display: grid; grid-template-columns: 48px 150px 1fr 130px 26px;
+      align-items: center; gap: 24px;
+      padding: 24px 14px 24px 6px;
+      border-top: 1px solid var(--border-subtle);
+      text-decoration: none; position: relative;
+      transition: background .25s, padding-left .25s;
     }
-    .article-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-card);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      text-decoration: none;
-      transition: border-color 0.25s, background 0.25s;
+    .entry:last-child { border-bottom: 1px solid var(--border-subtle); }
+    .entry:hover { background: rgba(255,255,255,0.025); padding-left: 16px; }
+    .entry.hidden { display: none; }
+    .entry-num {
+      font-family: var(--mono); font-size: 12px; font-weight: 400;
+      color: var(--text-dim); font-variant-numeric: tabular-nums;
     }
-    .article-card:hover {
-      border-color: rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.05);
+    .entry:hover .entry-num { color: var(--muted); }
+    .entry-cat { display: flex; align-items: center; gap: 8px; }
+    .entry-cat .cat-dot { width: 6px; height: 6px; }
+    .entry-cat span {
+      font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
     }
-    .article-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .entry-main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .entry-title {
+      font-size: 18px; font-weight: 600; letter-spacing: -0.4px;
+      color: var(--text); line-height: 1.25; transition: color .2s;
     }
-    .article-category {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--muted);
+    .entry-excerpt {
+      font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.5;
+      max-width: 560px;
+      display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .article-date {
-      font-size: 9px;
-      font-weight: 700;
-      color: var(--muted);
+    .entry-meta { display: flex; flex-direction: column; gap: 4px; text-align: right; }
+    .entry-date { font-size: 12px; font-weight: 500; color: var(--text-light); letter-spacing: -0.2px; }
+    .entry-rt {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--text-dim);
     }
-    .article-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.25;
-      transition: color 0.2s;
+    .entry-arrow {
+      color: var(--text-dim); display: flex; justify-content: flex-end;
+      transition: color .2s, transform .2s;
     }
-    .article-card:hover .article-title { color: rgba(255,255,255,0.75); }
-    .article-snippet {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .view-archive-row {
-      display: flex;
-      justify-content: flex-end;
-      padding-top: 6px;
-      margin-top: auto;
-    }
-    .view-archive-link {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--text-light);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .view-archive-link:hover { color: var(--white); }
-    .view-archive-link svg { transition: transform 0.2s; }
-    .view-archive-link:hover svg { transform: translateX(3px); }
-
-    /* ── ALL POSTS (archive) ── */
-    .archive-section { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
-    .archive-heading {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .archive-list { display: flex; flex-direction: column; gap: 20px; }
-    .archive-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border-subtle);
-      text-decoration: none;
-      group: true;
-      transition: padding-left 0.2s;
-    }
-    .archive-item:hover { padding-left: 8px; }
-    .archive-item-left { display: flex; align-items: center; gap: 16px; }
-    .archive-item-num {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text-dim);
-      font-variant-numeric: tabular-nums;
-      width: 20px;
-    }
-    .archive-item-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      transition: color 0.2s;
-    }
-    .archive-item:hover .archive-item-title { color: var(--white); }
-    .archive-item-date {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--text-dim);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+    .entry:hover .entry-arrow { color: var(--text); transform: translateX(4px); }
+    .entry:hover .entry-title { color: #fff; }
+    .ledger-empty {
+      padding: 40px 6px; font-size: 13px; color: var(--muted);
+      font-family: var(--mono); letter-spacing: .04em; display: none;
     }
 
     /* ── ENTRANCE ANIMATIONS ── */
-    .hero-eyebrow    { animation: fadeUp 0.5s 0.05s ease both; }
-    .hero-h1         { animation: fadeUp 0.5s 0.10s ease both; }
-    .hero-card       { animation: fadeUp 0.5s 0.15s ease both; }
-    .featured-card   { animation: fadeUp 0.6s 0.20s ease both; }
-    .recent-section  { animation: fadeUp 0.6s 0.25s ease both; }
-    .archive-section { animation: fadeUp 0.6s 0.30s ease both; }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero           { animation: fadeUp .6s .05s ease both; }
+      .spotlight-wrap { animation: fadeUp .6s .18s ease both; }
+      .archive-wrap   { animation: fadeUp .6s .30s ease both; }
+    }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .hero { flex-direction: column; }
-      .hero-left, .hero-right { flex: unset; width: 100%; }
-      .hero-h1 { font-size: 52px; letter-spacing: -2.5px; }
-      .content-grid { grid-template-columns: 1fr; }
-      .col-featured, .col-recent { grid-column: 1 / -1; }
-      .featured-card { padding: 40px 28px; min-height: auto; }
-      .featured-h2 { font-size: 34px; }
+    @media (max-width: 960px) {
+      .spotlight { grid-template-columns: 1fr; }
+      .spot-aside {
+        border-left: none; border-top: 1px solid var(--border-subtle);
+        flex-direction: row; align-items: center; gap: 24px; padding: 28px 32px;
+      }
+      .spot-index { font-size: 64px; }
+      .entry { grid-template-columns: 34px 1fr 88px 22px; gap: 18px; }
+      .entry-cat { display: none; }
     }
     @media (max-width: 640px) {
-      main { padding: 80px 20px 48px; }
-      .hero-h1 { font-size: 38px; letter-spacing: -2px; }
+      main { padding: 100px 18px 64px; gap: 40px; }
+      .hero h1 { letter-spacing: -1.6px; }
+      .hero-meta { gap: 0; }
+      .meta-cell { padding: 14px 18px 14px 0; margin-right: 18px; }
+      .hero-status { margin-left: 0; margin-top: 14px; }
+      .spot-body { padding: 30px 26px; }
+      .spot-aside { flex-direction: column; align-items: flex-start; }
+      .entry-excerpt { -webkit-line-clamp: 2; }
+      .entry-meta { display: none; }
+      .entry { grid-template-columns: 30px 1fr 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-inner">
-      <a href="/new/" class="nav-logo">
-        <img src="/assets/images/Group_18.svg" alt="DeeBot's logo" class="nav-logo-img">
-        DeeBot's ;)
-      </a>
-      <ul class="nav-links">
-        <li><a href="/new/">Home</a></li>
-        <li><a href="/new/projects/">Projects</a></li>
-        <li><a href="/new/blogs/" class="active">Blogs</a></li>
-        <li><a href="/new/about/">About/CV</a></li>
-      </ul>
-      <a class="nav-mail" href="mailto:bhattdheirya@gmail.com" aria-label="Email">
-        <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
-          <rect x="1" y="1" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/>
-          <path d="M1 4l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </a>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/new/" class="nav-logo">
+      <img src="/assets/images/Group_18.svg" alt="DeeBot's logo" class="nav-logo-img" />
+      DeeBot's ;)
+    </a>
+    <ul class="nav-links">
+      <li><a href="/new/">Home</a></li>
+      <li><a href="/new/projects/">Projects</a></li>
+      <li><a href="/new/blogs/" class="active">Blogs</a></li>
+      <li><a href="/new/about/">About/CV</a></li>
+    </ul>
+    <a class="nav-mail" href="mailto:bhattdheirya@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 22 18" fill="none"><rect x="1" y="1" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M1 4l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-eyebrow"><span class="bar"></span> Archive 01 — Perspectives</span>
+    <h1>Welcome to<br><span class="dim">my thoughts.</span></h1>
+    <p class="hero-sub">From unexpected endings and the fear of loss to anxiety, travel, and self-discovery — this is where I document all of it. No filters, just honest experiences.</p>
+    <div class="hero-meta">
+      <div class="meta-cell">
+        <span class="meta-k">Entries</span>
+        <span class="meta-v">{{ site.posts | size }}<span class="unit">posts</span></span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-k">Themes</span>
+        <span class="meta-v">Essays &amp; Travel</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-k">Last updated</span>
+        <span class="meta-v">{{ site.posts.first.date | date: "%b %Y" }}</span>
+      </div>
+      <div class="hero-status">
+        <span class="green-dot"></span>
+        <span>Active Exploration</span>
+      </div>
     </div>
-  </nav>
+  </section>
 
-  <!-- MAIN -->
-  <main>
+  <!-- SPOTLIGHT — latest post -->
+  {% assign featured = site.posts.first %}
+  {% assign feat_words = featured.content | number_of_words %}
+  {% assign feat_mins = feat_words | divided_by: 200 | plus: 1 %}
+  {% assign feat_cat = featured.category | default: featured.categories.first | default: "Personal Essay" %}
+  {% if feat_cat == "Travel" %}{% assign feat_cat_key = "travel" %}{% else %}{% assign feat_cat_key = "essay" %}{% endif %}
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-left">
-        <p class="hero-eyebrow">Archive 01 — Perspectives</p>
-        <h1 class="hero-h1">Welcome to<br>my thoughts</h1>
-      </div>
-      <div class="hero-right">
-        <div class="hero-card">
-          <p>From unexpected endings and fear of loss to anxiety, travel, and self-discovery — this is where I document all of it. No filters, just honest experiences.</p>
-          <div class="hero-status">
-            <span class="status-dot"></span>
-            <span class="status-label">Active Exploration</span>
-          </div>
+  <section class="spotlight-wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">01 — Latest Entry</span>
+      <span class="sec-rule"></span>
+      <span class="sec-count">{{ featured.date | date: "%b %d, %Y" }}</span>
+    </div>
+    <a href="{{ featured.url }}" class="spotlight">
+      <div class="spot-body">
+        <div class="spot-tags">
+          <span class="cat-tag"><span class="cat-dot {{ feat_cat_key }}"></span> {{ feat_cat }}</span>
+          <span class="read-time">{{ feat_mins }} min read</span>
+        </div>
+        <h2 class="spot-title">{{ featured.title }}</h2>
+        <p class="spot-excerpt">{{ featured.excerpt | strip_html | truncatewords: 40 }}</p>
+        <div class="spot-foot">
+          <span class="btn-read">Read Post
+            <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h11M12 7L8 3M12 7l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="spot-date">{{ featured.date | date: "%b %d, %Y" }}</span>
         </div>
       </div>
-    </section>
-
-    <!-- CONTENT GRID -->
-    <div class="content-grid">
-
-      <!-- FEATURED POST (latest) -->
-      {% assign featured = site.posts.first %}
-      {% assign feat_words = featured.content | number_of_words %}
-      {% assign feat_mins  = feat_words | divided_by: 200 | plus: 1 %}
-      {% assign feat_cat   = featured.category | default: "Personal Essay" %}
-
-      <a href="{{ featured.url }}" class="featured-card col-featured">
-        <div class="featured-tags">
-          <span class="tag-pill">{{ feat_cat }}</span>
-          <span class="tag-read-time">{{ feat_mins }} min read</span>
+      <div class="spot-aside">
+        <div class="spot-index">01</div>
+        <div class="spot-pull">
+          <p class="pull-label">Subject line</p>
+          {% if featured.pull_quote %}
+          <p class="pull-quote">{{ featured.pull_quote }}</p>
+          {% else %}
+          <p class="pull-quote">"{{ featured.excerpt | strip_html | truncatewords: 20 }}"</p>
+          {% endif %}
         </div>
-        <h2 class="featured-h2">{{ featured.title }}</h2>
-        <p class="featured-excerpt">{{ featured.excerpt | strip_html | truncatewords: 45 }}</p>
-        <span class="btn-primary">Read Post</span>
-      </a>
+        <div class="spot-ring" aria-hidden="true"></div>
+      </div>
+    </a>
+  </section>
 
-      <!-- RECENT POSTS (next 3) -->
-      <div class="col-recent recent-section">
-        <p class="recent-heading">Recent Posts</p>
+  <!-- ARCHIVE -->
+  {% assign archive_count = site.posts | size | minus: 1 %}
+  {% assign essay_count = 0 %}
+  {% assign travel_count = 0 %}
+  {% for post in site.posts offset:1 %}
+    {% assign p_cat = post.category | default: post.categories.first %}
+    {% if p_cat == "Travel" %}
+      {% assign travel_count = travel_count | plus: 1 %}
+    {% else %}
+      {% assign essay_count = essay_count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
 
-        {% for post in site.posts limit:3 offset:1 %}
+  <section class="archive-wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">The Archive</span>
+      <span class="sec-rule"></span>
+      <span class="sec-count" id="ledgerCount">{{ archive_count | prepend: '00' | slice: -2, 2 }} earlier entries</span>
+    </div>
+
+    <div class="filter-bar" role="group" aria-label="Filter by theme">
+      <button class="chip" data-filter="all" aria-pressed="true">All <span class="chip-n">{{ archive_count | prepend: '00' | slice: -2, 2 }}</span></button>
+      <button class="chip" data-filter="essay" aria-pressed="false"><span class="chip-dot" style="background:#cfcfcf"></span> Personal Essay <span class="chip-n">{{ essay_count | prepend: '00' | slice: -2, 2 }}</span></button>
+      <button class="chip" data-filter="travel" aria-pressed="false"><span class="chip-dot" style="background:var(--accent-amber)"></span> Travel <span class="chip-n">{{ travel_count | prepend: '00' | slice: -2, 2 }}</span></button>
+    </div>
+
+    <div class="ledger" id="ledger">
+      {% for post in site.posts offset:1 %}
+        {% assign n = forloop.index | plus: 1 %}
         {% assign post_cat = post.category | default: post.categories.first | default: "Personal Essay" %}
-        <a href="{{ post.url }}" class="article-card">
-          <div class="article-meta">
-            <span class="article-category">{{ post_cat }}</span>
-            <span class="article-date">{{ post.date | date: "%b %Y" | upcase }}</span>
-          </div>
-          <h3 class="article-title">{{ post.title }}</h3>
-          <p class="article-snippet">{{ post.excerpt | strip_html | truncatewords: 18 }}</p>
+        {% if post_cat == "Travel" %}{% assign data_cat = "travel" %}{% assign dot_cls = "travel" %}{% else %}{% assign data_cat = "essay" %}{% assign dot_cls = "essay" %}{% endif %}
+        {% assign rt_words = post.content | number_of_words %}
+        {% assign rt_mins = rt_words | divided_by: 200 | plus: 1 %}
+        <a href="{{ post.url }}" class="entry" data-cat="{{ data_cat }}">
+          <span class="entry-num">{{ n | prepend: '00' | slice: -2, 2 }}</span>
+          <span class="entry-cat"><span class="cat-dot {{ dot_cls }}"></span><span>{{ post_cat }}</span></span>
+          <span class="entry-main">
+            <span class="entry-title">{{ post.title }}</span>
+            <span class="entry-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</span>
+          </span>
+          <span class="entry-meta">
+            <span class="entry-date">{{ post.date | date: "%b %d, %Y" }}</span>
+            <span class="entry-rt">{{ rt_mins }} min</span>
+          </span>
+          <span class="entry-arrow"><svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M1 7h11M12 7L8 3M12 7l-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
-        {% endfor %}
-
-        <div class="view-archive-row">
-          <a href="#all-posts" class="view-archive-link">
-            View All Posts
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="#a3a3a3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
+      {% endfor %}
+      <p class="ledger-empty" id="ledgerEmpty">No entries under this theme yet.</p>
     </div>
+  </section>
 
-    <!-- ALL POSTS ARCHIVE -->
-    <section class="archive-section" id="all-posts">
-      <p class="archive-heading">All Writings — {{ site.posts | size }} Posts</p>
-      <div class="archive-list">
-        {% for post in site.posts %}
-        {% assign n = forloop.index %}
-        <a href="{{ post.url }}" class="archive-item">
-          <div class="archive-item-left">
-            <span class="archive-item-num">{{ n | prepend: '00' | slice: -2, 2 }}</span>
-            <span class="archive-item-title">{{ post.title }}</span>
-          </div>
-          <span class="archive-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
-        </a>
-        {% endfor %}
-      </div>
-    </section>
+</main>
 
-  </main>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <ul class="footer-links">
+      <li><a href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/bhattdheirya" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <p class="footer-copy">© 2026-27 Dheirya. All Rights Reserved.</p>
+  </div>
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <ul class="footer-links">
-        <li><a href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://linkedin.com/in/dheiryabhatt" target="_blank" rel="noopener">LinkedIn</a></li>
-      </ul>
-      <p class="footer-copy">© 2026-27 Dheirya. All Rights Reserved.</p>
-    </div>
-  </footer>
+<script>
+  (function () {
+    var chips   = Array.from(document.querySelectorAll('.chip'));
+    var entries = Array.from(document.querySelectorAll('.entry'));
+    var countEl = document.getElementById('ledgerCount');
+    var emptyEl = document.getElementById('ledgerEmpty');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function apply(filter) {
+      var visible = 0;
+      entries.forEach(function (e) {
+        var match = filter === 'all' || e.dataset.cat === filter;
+        e.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      var label = filter === 'all' ? 'earlier entries'
+                : filter === 'travel' ? 'travel entries' : 'essays';
+      countEl.textContent = pad(visible) + ' ' + label;
+      emptyEl.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+        apply(chip.dataset.filter);
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>

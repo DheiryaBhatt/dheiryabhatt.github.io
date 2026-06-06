@@ -1,0 +1,492 @@
+---
+layout: null
+permalink: /new/request-access/
+---
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>if(sessionStorage.getItem('void_auth')==='true'){window.location.replace('/new/');}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Access — Access Void</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { color-scheme: dark; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #000000;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+      background-size: 24px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #e5e2e1;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass-card {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    /* ── BRANDING ── */
+    .brand { text-align: center; margin-bottom: 34px; }
+    .brand-mark {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: #ffffff; margin-bottom: 20px;
+    }
+    .brand-mark .material-symbols-outlined { color: #1a1c1c; font-size: 24px; }
+    .brand h1 {
+      font-size: 1.75rem; font-weight: 800; letter-spacing: -0.05em;
+      text-transform: uppercase; color: #ffffff; margin-bottom: 6px;
+    }
+    .brand p {
+      font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #c6c6c6; font-weight: 500;
+    }
+
+    /* ── FORM ── */
+    form { display: flex; flex-direction: column; gap: 20px; }
+
+    .field-label {
+      display: block;
+      font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #c6c6c6; font-weight: 700;
+      margin-bottom: 8px; margin-left: 2px;
+    }
+    .field-label .opt { color: #595959; font-weight: 600; margin-left: 6px; letter-spacing: 0.08em; }
+
+    /* ── GLASS INPUTS ── */
+    .input-wrap {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .input-wrap:focus-within {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .input-wrap.error {
+      border-color: rgba(239, 68, 68, 0.6);
+      background: rgba(239, 68, 68, 0.04);
+    }
+    .input-wrap input,
+    .input-wrap select {
+      width: 100%;
+      background: transparent; border: none; outline: none;
+      padding: 15px 48px 15px 16px;
+      font-size: 14px; color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .input-wrap input::placeholder { color: rgba(255,255,255,0.2); }
+    .input-wrap select {
+      appearance: none; -webkit-appearance: none; -moz-appearance: none;
+      cursor: pointer;
+    }
+    .input-wrap select.placeholder { color: rgba(255,255,255,0.2); }
+    .input-wrap select option { color: #fff; background: #0a0a0a; }
+    .input-wrap select option[value=""] { color: rgba(255,255,255,0.35); }
+    .input-icon {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      color: rgba(255,255,255,0.2); font-size: 20px;
+      transition: color 0.2s; pointer-events: none;
+    }
+    .input-wrap:focus-within .input-icon { color: rgba(255,255,255,0.6); }
+
+    /* ── TEXTAREA ── */
+    .input-wrap textarea {
+      width: 100%; background: transparent; border: none; outline: none; resize: none;
+      padding: 14px 16px; font-size: 14px; color: #ffffff; line-height: 1.5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 78px;
+    }
+    .input-wrap textarea::placeholder { color: rgba(255,255,255,0.2); }
+    .char-count {
+      position: absolute; right: 12px; bottom: 9px;
+      font-family: monospace; font-size: 9.5px; letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.22);
+    }
+
+    /* ── BUTTON ── */
+    .btn-transmit {
+      width: 100%; padding: 16px;
+      background: #ffffff; color: #1a1c1c;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      border: none; border-radius: 0.5rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      transition: all 0.3s;
+    }
+    .btn-transmit:hover:not(:disabled) { background: #d4d4d4; }
+    .btn-transmit:active:not(:disabled) { transform: scale(0.98); }
+    .btn-transmit:disabled { opacity: 0.7; cursor: not-allowed; }
+    .btn-transmit .material-symbols-outlined { font-size: 16px; }
+    .btn-transmit.success { background: #22c55e; color: #fff; }
+
+    .actions { padding-top: 6px; display: flex; flex-direction: column; gap: 18px; }
+    .error-msg {
+      display: none;
+      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #ef4444; font-weight: 700; text-align: center; padding: 2px 0 0;
+    }
+    .back-row { display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #919191; text-decoration: none; font-weight: 700; transition: color 0.2s;
+    }
+    .back-link .material-symbols-outlined { font-size: 14px; }
+    .back-link:hover { color: #fff; }
+
+    /* ── SHAKE ── */
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      10%,30%,50%,70%,90% { transform: translateX(-6px); }
+      20%,40%,60%,80%     { transform: translateX( 6px); }
+    }
+    .shake { animation: shake 0.45s cubic-bezier(.36,.07,.19,.97) both; }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* ── METADATA ── */
+    .meta {
+      margin-top: 34px; display: flex; justify-content: space-between;
+      opacity: 0.18; font-size: 10px; font-family: monospace; line-height: 1.6;
+    }
+
+    /* ── SECURITY BADGE ── */
+    .badge {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      margin-top: 28px; opacity: 0.35; width: 100%; max-width: 420px;
+    }
+    .badge-line { height: 1px; flex: 1; background: linear-gradient(to right, transparent, #919191); }
+    .badge-line.right { background: linear-gradient(to left, transparent, #919191); }
+    .badge-text {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      font-weight: 500; white-space: nowrap;
+    }
+
+    /* ── CONFIRMATION ── */
+    .confirm { display: none; text-align: center; animation: fadeIn 0.5s ease both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .confirm-mark {
+      width: 64px; height: 64px; border-radius: 50%; margin: 4px auto 26px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(34,197,94,0.5); color: #22c55e;
+      box-shadow: 0 0 28px rgba(34,197,94,0.25);
+    }
+    .confirm-mark .material-symbols-outlined { font-size: 30px; }
+    .confirm h2 {
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em;
+      text-transform: uppercase; color: #fff; margin-bottom: 12px;
+    }
+    .confirm p { font-size: 13px; font-weight: 300; color: #b4b4b4; line-height: 1.6; max-width: 300px; margin: 0 auto 24px; }
+    .ticket {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0.5rem; padding: 14px 16px; margin-bottom: 26px; text-align: left;
+    }
+    .ticket .k { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #7a7a7a; font-weight: 700; }
+    .ticket .v { font-family: monospace; font-size: 13px; color: #fff; letter-spacing: 0.06em; }
+    .ticket .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+      color: #cdedd6; background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.25); border-radius: 9999px; padding: 5px 11px;
+    }
+    .ticket .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 7px rgba(34,197,94,0.8); }
+
+    @media (max-width: 480px) {
+      .glass-card { padding: 36px 26px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main id="card" class="glass-card">
+
+    <!-- ── REQUEST FORM ── -->
+    <div id="request-view">
+      <div class="brand">
+        <div class="brand-mark">
+          <span class="material-symbols-outlined">shield_person</span>
+        </div>
+        <h1>Request Access</h1>
+        <p>Clearance Provisioning</p>
+      </div>
+
+      <form id="req-form" novalidate>
+
+        <div>
+          <label class="field-label" for="identity">Identity</label>
+          <div class="input-wrap" id="wrap-id">
+            <input id="identity" type="email" placeholder="user@monolithic.void" autocomplete="email" spellcheck="false">
+            <span class="material-symbols-outlined input-icon">alternate_email</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="field-label" for="designation">Designation</label>
+          <div class="input-wrap" id="wrap-name">
+            <input id="designation" type="text" placeholder="Name or handle" autocomplete="name" spellcheck="false">
+            <span class="material-symbols-outlined input-icon">badge</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="field-label" for="intent">Clearance Intent</label>
+          <div class="input-wrap" id="wrap-intent">
+            <select id="intent" class="placeholder">
+              <option value="" disabled selected>Select request type</option>
+              <option value="recruit">Recruiting / Hiring</option>
+              <option value="collab">Collaboration / Build</option>
+              <option value="research">Research Inquiry</option>
+              <option value="press">Press / Speaking</option>
+              <option value="curious">Just Curious</option>
+            </select>
+            <span class="material-symbols-outlined input-icon">expand_more</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="field-label" for="reason">Justification <span class="opt">// Optional</span></label>
+          <div class="input-wrap" id="wrap-reason">
+            <textarea id="reason" maxlength="180" placeholder="State your business with the node..."></textarea>
+            <span class="char-count" id="charCount">0 / 180</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-transmit" id="btn">
+            <span class="material-symbols-outlined">cell_tower</span>
+            <span id="btn-text">Transmit Request</span>
+          </button>
+          <p class="error-msg" id="error-msg">Incomplete packet — Identity &amp; intent required</p>
+          <div class="back-row">
+            <a class="back-link" href="/new/login/" id="backLink">
+              <span class="material-symbols-outlined">arrow_back</span>
+              Return to Terminal
+            </a>
+          </div>
+        </div>
+      </form>
+
+      <div class="meta">
+        <div>PROTO: VOID_0.1<br>ENC: AES-256-GCM</div>
+        <div style="text-align:right;">REQ_QUEUE: OPEN<br>TX_READY</div>
+      </div>
+    </div>
+
+    <!-- ── CONFIRMATION ── -->
+    <div id="confirm-view" class="confirm">
+      <div class="confirm-mark">
+        <span class="material-symbols-outlined">mark_email_read</span>
+      </div>
+      <h2>Request Transmitted</h2>
+      <p>Your clearance packet is queued for operator review. Expect a response at the identity you provided.</p>
+
+      <div class="ticket">
+        <span class="k">Ticket</span>
+        <span class="v" id="ticketId">REQ-0000-0000</span>
+      </div>
+      <div class="ticket">
+        <span class="k">Status</span>
+        <span class="pill"><span class="dot"></span> Pending Review</span>
+      </div>
+
+      <button type="button" class="btn-transmit" id="backBtn" style="background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.12);">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <span>Return to Terminal</span>
+      </button>
+
+      <div class="meta">
+        <div>PROTO: VOID_0.1<br>ENC: AES-256-GCM</div>
+        <div style="text-align:right;">REQ_LOGGED<br>ACK_RECEIVED</div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="badge">
+    <div class="badge-line"></div>
+    <span class="badge-text">Encrypted Node</span>
+    <div class="badge-line right"></div>
+  </div>
+
+  <script>
+    var GITHUB_TOKEN = "{{ site.contact_form_token }}";
+    var GITHUB_REPO  = "DheiryaBhatt/dheiryabhatt.com";
+
+    var intentLabels = {
+      recruit:  'Recruiting / Hiring',
+      collab:   'Collaboration / Build',
+      research: 'Research Inquiry',
+      press:    'Press / Speaking',
+      curious:  'Just Curious'
+    };
+
+    var form       = document.getElementById('req-form');
+    var card       = document.getElementById('card');
+    var btn        = document.getElementById('btn');
+    var btnText    = document.getElementById('btn-text');
+    var errorEl    = document.getElementById('error-msg');
+    var identity   = document.getElementById('identity');
+    var intent     = document.getElementById('intent');
+    var reason     = document.getElementById('reason');
+    var wrapId     = document.getElementById('wrap-id');
+    var wrapIntent = document.getElementById('wrap-intent');
+    var charCount  = document.getElementById('charCount');
+
+    reason.addEventListener('input', function () {
+      charCount.textContent = reason.value.length + ' / 180';
+    });
+
+    intent.addEventListener('change', function () {
+      intent.classList.toggle('placeholder', !intent.value);
+      clearError();
+    });
+
+    [identity, document.getElementById('designation')].forEach(function (el) {
+      el.addEventListener('input', clearError);
+    });
+
+    function clearError() {
+      errorEl.style.display = 'none';
+      wrapId.classList.remove('error');
+      wrapIntent.classList.remove('error');
+    }
+
+    function randId() {
+      var seg = function () { return Math.random().toString(16).slice(2, 6).toUpperCase(); };
+      return 'REQ-' + seg() + '-' + seg();
+    }
+
+    async function submitRequest(email, name, intentVal, justification) {
+      var intentLabel = intentLabels[intentVal] || intentVal;
+
+      // Fallback: no token — open mailto
+      if (!GITHUB_TOKEN || GITHUB_TOKEN.startsWith('{' + '{')) {
+        var mailBody = 'Name: ' + name + '\nEmail: ' + email +
+          '\nIntent: ' + intentLabel +
+          (justification ? '\n\nJustification:\n' + justification : '');
+        window.open(
+          'mailto:bhattdheirya@gmail.com' +
+          '?subject=' + encodeURIComponent('[Access Request] ' + name + ' — ' + email) +
+          '&body=' + encodeURIComponent(mailBody),
+          '_self'
+        );
+        return randId();
+      }
+
+      var issueBody = [
+        '## Access Request',
+        '',
+        '| Field | Value |',
+        '|-------|-------|',
+        '| **Email** | ' + email + ' |',
+        '| **Name** | ' + name + ' |',
+        '| **Intent** | ' + intentLabel + ' |',
+        '',
+        '**Justification:**',
+        '',
+        justification || '_Not provided_',
+        '',
+        '---',
+        '*Submitted via [dheiryabhatt.com/new/request-access](https://dheiryabhatt.com/new/request-access/)*'
+      ].join('\n');
+
+      try {
+        var res = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/issues', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + GITHUB_TOKEN,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            title: '[Access Request] ' + name + ' — ' + email,
+            body: issueBody,
+            labels: ['access-request']
+          })
+        });
+        if (res.ok) {
+          var data = await res.json();
+          return 'REQ-' + String(data.number).padStart(4, '0');
+        }
+      } catch (_) { /* fall through */ }
+      return randId();
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      var idVal    = identity.value.trim();
+      var emailOk  = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(idVal);
+
+      if (!emailOk || !intent.value) {
+        if (!emailOk)   wrapId.classList.add('error');
+        if (!intent.value) wrapIntent.classList.add('error');
+        errorEl.style.display = 'block';
+        card.classList.add('shake');
+        setTimeout(function () { card.classList.remove('shake'); }, 500);
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.textContent = 'Transmitting...';
+      errorEl.style.display = 'none';
+
+      var ticketId = await submitRequest(
+        idVal,
+        document.getElementById('designation').value.trim() || idVal,
+        intent.value,
+        reason.value.trim()
+      );
+
+      btn.classList.add('success');
+      btn.querySelector('.material-symbols-outlined').textContent = 'check';
+      btnText.textContent = 'Transmitted';
+      card.style.borderColor = 'rgba(34,197,94,0.4)';
+
+      setTimeout(function () {
+        document.getElementById('ticketId').textContent = ticketId;
+        document.getElementById('request-view').style.display = 'none';
+        document.getElementById('confirm-view').style.display = 'block';
+        card.style.borderColor = 'rgba(255,255,255,0.1)';
+      }, 600);
+    });
+
+    document.getElementById('backBtn').addEventListener('click', function () {
+      window.location.href = '/new/login/';
+    });
+  </script>
+
+</body>
+</html>
