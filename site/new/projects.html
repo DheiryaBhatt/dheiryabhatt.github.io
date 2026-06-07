@@ -6,12 +6,12 @@ permalink: /new/projects/
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects — Dheirya Bhatt</title>
-  <meta name="description" content="GenAI, RAG pipelines, and systems engineering projects by Dheirya Bhatt." />
+  <meta name="description" content="Real side projects, GenAI experiments, RAG pipelines, and research by Dheirya Bhatt." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Liberation+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/new/assets/css/shared.css" />
 
   {% if site.ga_measurement_id %}
@@ -26,325 +26,427 @@ permalink: /new/projects/
   </script>
 
   <style>
-    /* ── PAGE LAYOUT ── */
-    main {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 128px 32px 96px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      position: relative;
+    :root {
+      --green:  #22c55e;
+      --amber:  #e0a335;
+      --blue:   #7aa2f7;
+      --t2:     #c6c6c6;
+      --t3:     #a3a3a3;
+      --border-faint: rgba(255,255,255,0.05);
     }
 
-    /* ── AMBIENT GLOW ── */
-    .ambient-glow {
+    /* ── MAIN SHELL ── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      position: relative;
+    }
+    .vb-glow {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px; height: 600px;
-      background: rgba(255,255,255,0.03);
-      filter: blur(120px);
+      top: 120px; left: 50%;
+      transform: translateX(-50%);
+      width: 680px; height: 520px;
+      background: rgba(255,255,255,.03);
+      filter: blur(130px);
       border-radius: 50%;
       pointer-events: none;
     }
 
-    /* ── HERO TEXT ── */
-    .hero-title {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 800;
-      letter-spacing: -3px;
-      color: #ffffff;
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-    .hero-title span { color: #d4d4d4; }
-    .hero-sub {
-      font-size: 18px;
-      font-weight: 300;
-      color: #c6c6c6;
-      max-width: 560px;
-      line-height: 1.625;
-    }
-
-    /* ── BENTO GRID ── */
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 24px;
-    }
-
-    /* ── GLASS CARD ── */
-    .glass-card {
-      background: rgba(53, 53, 52, 0.4);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(71, 71, 71, 0.15);
-      border-radius: 12px;
-      transition: border-color 0.25s;
-    }
-    .glass-card:hover { border-color: rgba(255,255,255,0.15); }
-
-    /* ── STATUS CARD (4 cols) ── */
-    .status-card {
-      grid-column: 1 / span 4;
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .status-pulse { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
-    .pulse-dot {
-      width: 8px; height: 8px;
-      background: #ffffff;
-      border-radius: 50%;
-      animation: dot-pulse 2s ease-in-out infinite;
-    }
-    @keyframes dot-pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
-      50%      { box-shadow: 0 0 0 6px rgba(255,255,255,0); }
-    }
-    .status-eyebrow {
-      font-size: 0.6875rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #ffffff;
-    }
-    .status-heading {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -1px;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-    .status-desc { font-size: 13px; color: #c6c6c6; line-height: 1.5; }
-    .progress-bar {
-      margin-top: 32px;
-      height: 3px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: #ffffff;
-      border-radius: 9999px;
-    }
-
-    /* ── HERO CARD (8 cols) ── */
-    .hero-card {
-      grid-column: 5 / span 8;
-      padding: 40px;
+    /* ── TERMINAL HERO ── */
+    .vm-term {
       position: relative;
+      z-index: 2;
+      animation: fadeUp .6s .05s ease both;
+    }
+    .va-term {
+      border: 1px solid var(--border);
+      border-radius: 12px;
       overflow: hidden;
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 30px 70px -34px rgba(0,0,0,.85);
     }
-    .card-phase {
-      font-size: 0.6875rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 16px;
-    }
-    .card-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -2px;
-      color: #ffffff;
-      margin-bottom: 20px;
-      line-height: 1.05;
-    }
-    .card-desc {
-      font-size: 16px;
-      color: #c6c6c6;
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-    .card-tags { display: flex; flex-wrap: wrap; gap: 12px; }
-    .card-tag {
-      background: rgba(42, 42, 42, 0.8);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 9999px;
-      padding: 8px 16px;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #e5e2e1;
+    .va-term-bar {
+      height: 40px;
       display: flex;
       align-items: center;
       gap: 8px;
+      padding: 0 16px;
+      background: rgba(255,255,255,.035);
+      border-bottom: 1px solid var(--border-faint);
     }
-    .card-tag svg { width: 13px; height: 13px; opacity: 0.7; flex-shrink: 0; }
-    /* Decorative rings */
-    .ring-1 {
-      position: absolute;
-      right: -80px; bottom: -80px;
-      width: 320px; height: 320px;
-      border: 1px solid rgba(255,255,255,0.05);
+    .va-tl {
+      width: 11px; height: 11px;
       border-radius: 50%;
-      pointer-events: none;
-      transition: transform 0.7s ease;
     }
-    .ring-2 {
-      position: absolute;
-      right: -40px; bottom: -40px;
-      width: 160px; height: 160px;
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 50%;
-      pointer-events: none;
-      transition: transform 1s ease;
+    .va-tl.r { background: #ff5f57; }
+    .va-tl.y { background: #febc2e; }
+    .va-tl.g { background: #28c840; }
+    .va-term-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-left: 10px;
+      letter-spacing: .04em;
     }
-    .hero-card:hover .ring-1 { transform: scale(1.1); }
-    .hero-card:hover .ring-2 { transform: scale(1.25); }
+    .va-term-body { padding: 36px 38px 40px; }
+    .va-cmd {
+      font-family: var(--mono);
+      font-size: 13px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+    }
+    .va-cmd .u { color: var(--green); }
+    .va-cmd .p { color: var(--blue); }
+    .va-cmd .s { color: var(--muted); }
+    .va-cmd .c { color: var(--t2); }
+    .va-cmd .cur {
+      display: inline-block;
+      width: 8px; height: 15px;
+      background: var(--text);
+      margin-left: 2px;
+      animation: va-blink 1.1s steps(1) infinite;
+      vertical-align: middle;
+    }
+    @keyframes va-blink { 50% { opacity: 0; } }
+    .va-title {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -2.6px;
+      line-height: 1.02;
+      margin-bottom: 18px;
+    }
+    .va-title span { color: #6f6f6f; }
+    .va-sub {
+      font-size: 16.5px;
+      color: var(--t2);
+      line-height: 1.6;
+      max-width: 640px;
+      font-weight: 300;
+    }
+    .va-runline {
+      margin-top: 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .va-runline b { color: var(--text); font-weight: 600; }
+    .va-runline .ok { color: var(--green); }
 
-    /* ── CONTACT FORM (7 cols) ── */
-    .contact-card { grid-column: 1 / span 7; padding: 32px; }
-    .section-heading {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #ffffff;
-      margin-bottom: 24px;
+    /* ── SECTION DIVIDER ── */
+    .vm-sechead {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 13px;
+      position: relative;
+      z-index: 2;
+      margin: 6px 0 -8px;
+      animation: fadeUp .6s .18s ease both;
     }
-    .section-heading svg { width: 20px; height: 20px; opacity: 0.65; flex-shrink: 0; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 4px; }
-    .form-group.full { grid-column: 1 / -1; }
-    .field-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    .vm-sechead .hash { font-family: var(--mono); font-size: 13px; color: var(--green); }
+    .vm-sechead h2 { font-size: 13px; font-weight: 700; letter-spacing: .02em; color: var(--text); font-family: var(--mono); }
+    .vm-sechead .rule { flex: 1; height: 1px; background: var(--border-faint); }
+    .vm-sechead .count { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+    /* ── BENTO GRID ── */
+    .vb-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+      position: relative;
+      z-index: 2;
+    }
+    .vb-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: border-color .25s, background .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .vb-card:hover {
+      border-color: rgba(255,255,255,.2);
+      background: rgba(255,255,255,.045);
+    }
+    .vb-ring {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.05);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform .8s ease;
+    }
+    .vb-ring.r1 { right: -90px; bottom: -90px; width: 300px; height: 300px; }
+    .vb-ring.r2 { right: -50px; bottom: -50px; width: 180px; height: 180px; border-color: rgba(255,255,255,.08); }
+    .vb-card:hover .vb-ring.r1 { transform: scale(1.12); }
+    .vb-card:hover .vb-ring.r2 { transform: scale(1.22); }
+
+    /* ── STATUS BADGES ── */
+    .np-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 9999px;
+      padding: 5px 11px;
+      font-size: 10px;
       font-weight: 700;
-      color: #919191;
-      margin-left: 2px;
-    }
-    .field-input, .field-textarea {
-      background: rgba(28, 27, 27, 0.8);
-      border: none;
-      border-bottom: 1px solid rgba(71, 71, 71, 0.5);
-      border-radius: 0;
-      padding: 12px 14px;
-      font-size: 13px;
-      color: #ffffff;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      transition: border-color 0.2s;
-      outline: none;
-      width: 100%;
-    }
-    .field-input::placeholder,
-    .field-textarea::placeholder { color: rgba(255,255,255,0.18); }
-    .field-input:focus,
-    .field-textarea:focus { border-bottom-color: #ffffff; }
-    .field-textarea { resize: none; }
-    .btn-submit {
-      width: 100%;
-      padding: 16px;
-      background: #ffffff;
-      color: #1a1c1c;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 16px;
-      transition: background 0.2s, transform 0.15s, color 0.2s, border 0.2s;
+      white-space: nowrap;
     }
-    .btn-submit:hover:not(:disabled) { background: #d4d4d4; }
-    .btn-submit:active:not(:disabled) { transform: scale(0.98); }
-    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .btn-submit.success {
-      background: rgba(34,197,94,0.15);
-      color: #22c55e;
-      border: 1px solid rgba(34,197,94,0.35);
+    .np-badge .np-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
     }
-    .btn-submit.error-state {
-      background: rgba(239,68,68,0.12);
-      color: #ef4444;
-      border: 1px solid rgba(239,68,68,0.3);
+    .np-badge.live { background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.28); color: #9be8b6; }
+    .np-badge.live .np-dot { background: var(--green); box-shadow: 0 0 8px rgba(34,197,94,.7); animation: np-pulse 2s ease-in-out infinite; }
+    .np-badge.shipped { background: rgba(122,162,247,.1); border: 1px solid rgba(122,162,247,.28); color: #bcccf5; }
+    .np-badge.shipped .np-dot { background: var(--blue); }
+    .np-badge.research { background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--t3); }
+    .np-badge.research .np-dot { background: var(--muted); }
+    .np-badge.wip { background: rgba(224,163,53,.1); border: 1px solid rgba(224,163,53,.3); color: #e9c98a; }
+    .np-badge.wip .np-dot { background: var(--amber); box-shadow: 0 0 8px rgba(224,163,53,.6); animation: np-pulse 2.4s ease-in-out infinite; }
+    @keyframes np-pulse { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+
+    /* ── STACK TAGS ── */
+    .np-stack { display: flex; flex-wrap: wrap; gap: 7px; }
+    .np-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--t2);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border-faint);
+      border-radius: 6px;
+      padding: 4px 9px;
+      white-space: nowrap;
     }
 
-    /* ── SOCIAL CARD (5 cols) ── */
-    .social-card {
-      grid-column: 8 / span 5;
-      padding: 32px;
+    /* ── PROJECT CARDS (span 4) ── */
+    .vb-proj {
+      grid-column: span 4;
+      padding: 26px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     }
-    .social-list { display: flex; flex-direction: column; gap: 4px; }
-    .social-item {
+    .vb-proj-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s;
+      margin-bottom: 16px;
     }
-    .social-item:hover { background: rgba(255,255,255,0.05); }
-    .social-item-left { display: flex; align-items: center; gap: 16px; }
-    .social-icon {
+    .vb-proj-ico {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--t2);
+    }
+    .vb-proj-name { font-size: 19px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 6px; }
+    .vb-proj-tag { font-family: var(--mono); font-size: 11.5px; color: var(--green); margin-bottom: 13px; }
+    .vb-proj-blurb { font-size: 13.5px; color: var(--t2); line-height: 1.55; margin-bottom: 14px; flex: 1; }
+    .vb-proj-why {
+      font-size: 12px;
+      color: var(--t3);
+      line-height: 1.5;
+      border-left: 2px solid var(--border);
+      padding-left: 11px;
+      margin-bottom: 16px;
+    }
+    .vb-proj-why .lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 3px;
+    }
+    .vb-proj-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-faint);
+    }
+    .vb-proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--t3);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .vb-proj-link:hover { color: #fff; }
+    .vb-proj-year { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .vb-proj .np-stack { margin-bottom: 16px; }
+
+    /* ── CURRENTLY BUILDING (span 7) ── */
+    .vb-learn {
+      grid-column: span 7;
+      padding: 30px;
+    }
+    .vb-learn-head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 22px;
+      color: var(--muted);
+    }
+    .vb-learn-head h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      color: var(--text);
+    }
+    .vb-learn-head .sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .vb-learn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 26px;
+    }
+    .vb-learn-row { display: flex; gap: 12px; align-items: baseline; }
+    .vb-learn-k {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: rgba(224,163,53,.08);
+      border: 1px solid rgba(224,163,53,.25);
+      border-radius: 5px;
+      padding: 3px 7px;
+      min-width: 78px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .vb-learn-v { font-size: 13px; color: var(--t2); line-height: 1.45; }
+
+    /* ── SOCIAL (span 5) ── */
+    .vb-soc {
+      grid-column: span 5;
+      padding: 22px;
+    }
+    .vb-soc-head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 12px 6px;
+      color: var(--muted);
+    }
+    .vb-soc-head h3 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -.3px;
+      white-space: nowrap;
+      color: var(--text);
+    }
+    .np-social-list { display: flex; flex-direction: column; gap: 2px; }
+    .np-social-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 12px;
+      border-radius: 9px;
+      text-decoration: none;
+      color: inherit;
+      transition: background .2s;
+    }
+    .np-social-item:hover { background: rgba(255,255,255,.05); }
+    .np-social-l { display: flex; align-items: center; gap: 14px; }
+    .np-social-ico {
       width: 40px; height: 40px;
-      border-radius: 8px;
-      background: rgba(32, 31, 31, 0.8);
-      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 9px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border-faint);
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .social-icon svg { width: 18px; height: 18px; }
-    .social-name {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.65);
-      transition: color 0.2s;
+    .np-social-ico svg { width: 18px; height: 18px; }
+    .np-social-name { font-size: 13px; font-weight: 600; color: var(--t2); transition: color .2s; letter-spacing: .02em; }
+    .np-social-item:hover .np-social-name { color: var(--text); }
+    .np-social-sub { font-size: 11px; color: var(--muted); margin-top: 1px; display: block; }
+    .np-social-arr { color: rgba(255,255,255,.2); transition: color .2s, transform .2s; }
+    .np-social-item:hover .np-social-arr { color: var(--text); transform: translate(3px,-3px); }
+
+    /* ── CONTRIBUTIONS (span 12) ── */
+    .vb-contrib { grid-column: span 12; padding: 26px 30px 24px; }
+    .vb-contrib-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
     }
-    .social-item:hover .social-name { color: #ffffff; }
-    .social-arrow {
-      color: rgba(255,255,255,0.18);
-      transition: color 0.2s, transform 0.2s;
+    .vb-contrib-title { display: flex; align-items: center; gap: 11px; color: var(--muted); }
+    .vb-contrib-title h3 { font-size: 17px; font-weight: 700; letter-spacing: -.4px; white-space: nowrap; color: var(--text); }
+    .vb-contrib-title .sub { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: 2px; }
+    .np-contrib-total { font-size: 13px; color: var(--t2); }
+    .np-contrib-total b { color: var(--text); font-weight: 700; }
+    .np-contrib-grid { display: flex; gap: 3px; margin-top: 14px; }
+    .np-contrib-col { display: flex; flex-direction: column; gap: 3px; }
+    .np-cell { border-radius: 2.5px; }
+    .np-months {
+      display: flex;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 7px;
+      position: relative;
+      height: 13px;
     }
-    .social-item:hover .social-arrow { color: #ffffff; transform: translate(3px, -3px); }
-    .social-meta {
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .meta-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #919191;
-    }
-    .meta-value { font-size: 11px; color: rgba(255,255,255,0.38); margin-top: 4px; }
+    .np-months span { position: absolute; }
+    .np-legend { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+    .np-legend .np-cell { width: 10px; height: 10px; }
 
     /* ── ENTRANCE ANIMATIONS ── */
-    .hero-section { animation: fadeUp 0.5s 0.05s ease both; }
-    .status-card  { animation: fadeUp 0.5s 0.15s ease both; }
-    .hero-card    { animation: fadeUp 0.5s 0.20s ease both; }
-    .contact-card { animation: fadeUp 0.5s 0.25s ease both; }
-    .social-card  { animation: fadeUp 0.5s 0.30s ease both; }
+    .vb-grid > *:nth-child(1) { animation: fadeUp .6s .22s ease both; }
+    .vb-grid > *:nth-child(2) { animation: fadeUp .6s .28s ease both; }
+    .vb-grid > *:nth-child(3) { animation: fadeUp .6s .34s ease both; }
+    .vb-grid > *:nth-child(4) { animation: fadeUp .6s .40s ease both; }
+    .vb-grid > *:nth-child(5) { animation: fadeUp .6s .46s ease both; }
+    .vb-grid > *:nth-child(6) { animation: fadeUp .6s .52s ease both; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .status-card, .hero-card,
-      .contact-card, .social-card { grid-column: 1 / -1; }
+    @media (max-width: 1040px) {
+      .vb-proj  { grid-column: span 6 !important; }
+      .vb-learn, .vb-soc { grid-column: span 12 !important; }
     }
-    @media (max-width: 640px) {
-      main { padding: 96px 20px 64px; }
-      .hero-title { font-size: 2.25rem; letter-spacing: -1.5px; }
-      .hero-sub { font-size: 16px; }
-      .form-grid { grid-template-columns: 1fr; }
+    @media (max-width: 720px) {
+      main { padding: 80px 18px 64px; }
+      .vb-proj  { grid-column: span 12 !important; }
+      .vb-learn-grid { grid-template-columns: 1fr !important; }
+      .va-title { font-size: 38px !important; letter-spacing: -1.5px !important; }
+      .va-term-body { padding: 24px 20px 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .vm-term, .vm-sechead, .vb-grid > * { animation: none !important; }
     }
   </style>
 </head>
@@ -374,118 +476,251 @@ permalink: /new/projects/
 
 <!-- MAIN -->
 <main>
-  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="vb-glow" aria-hidden="true"></div>
 
-  <!-- Hero Text -->
-  <section class="hero-section">
-    <h1 class="hero-title">GENAI &amp; <span>PROJECTS</span></h1>
-    <p class="hero-sub">Building at the intersection of AI engineering and systems design. Curating the showcase.</p>
-  </section>
-
-  <!-- Bento Grid -->
-  <div class="bento">
-
-    <!-- Status Card -->
-    <div class="glass-card status-card">
-      <div>
-        <div class="status-pulse">
-          <div class="pulse-dot"></div>
-          <span class="status-eyebrow">Build Status</span>
-        </div>
-        <div class="status-heading">IN PROGRESS</div>
-        <p class="status-desc">Project write-ups, case studies, and live demos are being assembled. ETA: very soon.</p>
+  <!-- ── TERMINAL HERO ── -->
+  <div class="vm-term">
+    <div class="va-term">
+      <div class="va-term-bar">
+        <span class="va-tl r"></span>
+        <span class="va-tl y"></span>
+        <span class="va-tl g"></span>
+        <span class="va-term-title">dheirya@deebot — ~/projects — zsh</span>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 35%"></div>
+      <div class="va-term-body">
+        <div class="va-cmd">
+          <span class="u">dheirya@deebot</span><span class="s">:</span><span class="p">~/projects</span>
+          <span class="s">$</span><span class="c">ls -la --sort=interesting</span><span class="cur" aria-hidden="true"></span>
+        </div>
+        <h1 class="va-title">stuff I actually<br><span>built &amp; broke.</span></h1>
+        <p class="va-sub">No "synergistic enterprise solutions," no fabricated 98.4% benchmarks. Just real side projects, a bit of research, and the occasional thing that only works on my machine. Honest status on every one.</p>
+        <div class="va-runline" aria-label="Stats">
+          <span><b>4</b> projects</span>
+          <span class="ok">● 1 live</span>
+          <span>1 still on fire 😅</span>
+          <span>last push <b>3d ago</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION DIVIDER ── -->
+  <div class="vm-sechead" aria-hidden="true">
+    <span class="hash">##</span>
+    <h2>the_projects</h2>
+    <span class="rule"></span>
+    <span class="count">4 repos</span>
+  </div>
+
+  <!-- ── BENTO GRID ── -->
+  <div class="vb-grid">
+
+    <!-- notion-sync -->
+    <div class="vb-card vb-proj">
+      <div class="vb-ring r1" aria-hidden="true"></div>
+      <div class="vb-ring r2" aria-hidden="true"></div>
+      <div class="vb-proj-top">
+        <span class="vb-proj-ico">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 01-9 9 9 9 0 01-7.5-4M3 12a9 9 0 019-9 9 9 0 017.5 4"/>
+            <path d="M21 3v5h-5M3 21v-5h5"/>
+          </svg>
+        </span>
+        <span class="np-badge shipped"><span class="np-dot"></span>running in prod · 18h cron</span>
+      </div>
+      <div class="vb-proj-name">notion-sync</div>
+      <div class="vb-proj-tag">write in Notion, ship to the blog</div>
+      <p class="vb-proj-blurb">A TypeScript tool + GitHub Action that bidirectionally syncs my Notion database with this Jekyll blog. Runs on an 18-hour cron, preserves front-matter, and quietly deletes the posts I unpublish.</p>
+      <div class="vb-proj-why">
+        <span class="lbl">why I built it</span>
+        I wanted to draft in Notion (where I actually write) and stop hand-copying markdown into the repo at midnight.
+      </div>
+      <div class="np-stack">
+        <span class="np-tag">TypeScript</span>
+        <span class="np-tag">Notion API</span>
+        <span class="np-tag">GitHub Actions</span>
+        <span class="np-tag">Node</span>
+      </div>
+      <div class="vb-proj-foot">
+        <a class="vb-proj-link" href="https://github.com/DheiryaBhatt/dheiryabhatt.com/tree/main/notion-sync" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.027 1.591 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.013 2.415-.013 2.744 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          source
+        </a>
+        <span class="vb-proj-year">2025</span>
       </div>
     </div>
 
-    <!-- Hero Under Construction Card -->
-    <div class="glass-card hero-card">
-      <p class="card-phase">Launch Phase: Alpha</p>
-      <h2 class="card-title">UNDER<br>CONSTRUCTION</h2>
-      <p class="card-desc">A curated collection of GenAI experiments, RAG pipelines, and research-grade side projects is being assembled here. Stay tuned.</p>
-      <div class="card-tags">
-        <div class="card-tag">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          GenAI / LLMs
-        </div>
-        <div class="card-tag">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="white" stroke-width="1.5"/></svg>
-          RAG Systems
-        </div>
-        <div class="card-tag">
-          <svg viewBox="0 0 24 24" fill="none"><polyline points="16 18 22 12 16 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Systems Design
-        </div>
+    <!-- hyperbolic-nn -->
+    <div class="vb-card vb-proj">
+      <div class="vb-ring r1" aria-hidden="true"></div>
+      <div class="vb-ring r2" aria-hidden="true"></div>
+      <div class="vb-proj-top">
+        <span class="vb-proj-ico">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3h6M10 3v6L5 19a1.5 1.5 0 001.3 2.3h11.4A1.5 1.5 0 0019 19l-5-10V3"/>
+            <path d="M7.5 15h9"/>
+          </svg>
+        </span>
+        <span class="np-badge research"><span class="np-dot"></span>PRL internship · archived</span>
       </div>
-      <div class="ring-1" aria-hidden="true"></div>
-      <div class="ring-2" aria-hidden="true"></div>
+      <div class="vb-proj-name">Hyperbolic-Eq. Net</div>
+      <div class="vb-proj-tag">baking the physics into the model</div>
+      <p class="vb-proj-blurb">Research-internship work at the Physical Research Laboratory: a neural network that folds hyperbolic equations into its architecture. Cut compute time by ~37% over the baseline while holding accuracy steady.</p>
+      <div class="vb-proj-why">
+        <span class="lbl">why I built it</span>
+        The real question was whether putting domain math <em>in</em> the architecture beats just throwing more layers at it.
+      </div>
+      <div class="np-stack">
+        <span class="np-tag">Python</span>
+        <span class="np-tag">NumPy</span>
+        <span class="np-tag">Keras</span>
+      </div>
+      <div class="vb-proj-foot">
+        <span class="vb-proj-link" style="opacity:.4;cursor:default">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.027 1.591 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.013 2.415-.013 2.744 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          archived
+        </span>
+        <span class="vb-proj-year">37% faster</span>
+      </div>
     </div>
 
-    <!-- Contact Form -->
-    <div class="glass-card contact-card">
-      <h3 class="section-heading">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-        GET IN TOUCH
-      </h3>
-      <form id="contact-form" novalidate>
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="field-label" for="field-name">Identity</label>
-            <input class="field-input" id="field-name" type="text" placeholder="Your Name" required />
-          </div>
-          <div class="form-group">
-            <label class="field-label" for="field-email">Terminal</label>
-            <input class="field-input" id="field-email" type="email" placeholder="Email Address" required />
-          </div>
-          <div class="form-group full">
-            <label class="field-label" for="field-message">Brief</label>
-            <textarea class="field-textarea" id="field-message" placeholder="How can we collaborate?" rows="4" required></textarea>
-          </div>
-        </div>
-        <button class="btn-submit" type="submit" id="submit-btn">TRANSMIT MESSAGE</button>
-      </form>
+    <!-- agent-evals -->
+    <div class="vb-card vb-proj">
+      <div class="vb-ring r1" aria-hidden="true"></div>
+      <div class="vb-ring r2" aria-hidden="true"></div>
+      <div class="vb-proj-top">
+        <span class="vb-proj-ico">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h12M9 3v5.5L4.5 18A2 2 0 006.3 21h11.4a2 2 0 001.8-3L15 8.5V3"/>
+            <circle cx="11" cy="16" r="1"/><circle cx="14" cy="18" r="1"/>
+          </svg>
+        </span>
+        <span class="np-badge wip"><span class="np-dot"></span>works on my machine 😅</span>
+      </div>
+      <div class="vb-proj-name">Agent-Eval Sandbox</div>
+      <div class="vb-proj-tag">personal research · ongoing</div>
+      <p class="vb-proj-blurb">My ongoing playground for evaluating multi-agent LLM workflows — small eval harnesses with DeepEval, poking at exactly where agents fall apart, and trying to measure "did it actually work" instead of going on vibes.</p>
+      <div class="vb-proj-why">
+        <span class="lbl">why I built it</span>
+        My dSPACE work left me obsessed with one question: how do you actually <em>trust</em> an agent pipeline?
+      </div>
+      <div class="np-stack">
+        <span class="np-tag">Python</span>
+        <span class="np-tag">CrewAI</span>
+        <span class="np-tag">DeepEval</span>
+        <span class="np-tag">Qdrant</span>
+      </div>
+      <div class="vb-proj-foot">
+        <a class="vb-proj-link" href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.027 1.591 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.013 2.415-.013 2.744 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          source
+        </a>
+        <span class="vb-proj-year">2026</span>
+      </div>
     </div>
 
-    <!-- Social / Network Card -->
-    <div class="glass-card social-card">
-      <div>
-        <h3 class="section-heading">NETWORK NODES</h3>
-        <div class="social-list">
-          <a class="social-item" href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">
-            <div class="social-item-left">
-              <div class="social-icon">
-                <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.027 1.591 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.013 2.415-.013 2.744 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              </div>
-              <span class="social-name">GITHUB</span>
-            </div>
-            <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="social-item" href="https://linkedin.com/in/dheiryabhatt" target="_blank" rel="noopener">
-            <div class="social-item-left">
-              <div class="social-icon">
-                <svg viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-              </div>
-              <span class="social-name">LINKEDIN</span>
-            </div>
-            <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="social-item" href="mailto:bhattdheirya@gmail.com">
-            <div class="social-item-left">
-              <div class="social-icon">
-                <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M2 7l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </div>
-              <span class="social-name">EMAIL</span>
-            </div>
-            <svg class="social-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+    <!-- Currently Building -->
+    <div class="vb-card vb-learn">
+      <div class="vb-learn-head">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="4" width="19" height="16" rx="2"/>
+          <path d="M7 9l3 3-3 3M13 15h4"/>
+        </svg>
+        <h3>Currently Building!</h3>
+        <span class="sub">// always shipping something</span>
+      </div>
+      <div class="vb-learn-grid">
+        <div class="vb-learn-row">
+          <span class="vb-learn-k">building</span>
+          <span class="vb-learn-v">a smarter retriever for DEE'Z-RAG — better chunking + hybrid search</span>
+        </div>
+        <div class="vb-learn-row">
+          <span class="vb-learn-k">shipping</span>
+          <span class="vb-learn-v">eval harnesses for multi-agent loops with DeepEval + CrewAI</span>
+        </div>
+        <div class="vb-learn-row">
+          <span class="vb-learn-k">refining</span>
+          <span class="vb-learn-v">notion-sync — chasing real-time instead of the 18h cron</span>
+        </div>
+        <div class="vb-learn-row">
+          <span class="vb-learn-k">poking at</span>
+          <span class="vb-learn-v">where agent pipelines actually break, and how to measure it</span>
         </div>
       </div>
-      <div class="social-meta">
-        <p class="meta-label">Location: Paderborn, DE</p>
-        <p class="meta-value">Open for exciting projects &amp; collaborations</p>
+    </div>
+
+    <!-- Find me elsewhere -->
+    <div class="vb-card vb-soc">
+      <div class="vb-soc-head">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 13a5 5 0 007.07 0l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 00-7.07 0l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+        </svg>
+        <h3>Find me elsewhere</h3>
       </div>
+      <div class="np-social-list">
+        <a class="np-social-item" href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">
+          <span class="np-social-l">
+            <span class="np-social-ico">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.027 1.591 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.013 2.415-.013 2.744 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </span>
+            <span>
+              <span class="np-social-name">GitHub</span>
+              <span class="np-social-sub">@DheiryaBhatt · repos &amp; experiments</span>
+            </span>
+          </span>
+          <span class="np-social-arr">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
+        <a class="np-social-item" href="https://linkedin.com/in/bhattdheirya" target="_blank" rel="noopener">
+          <span class="np-social-l">
+            <span class="np-social-ico">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </span>
+            <span>
+              <span class="np-social-name">LinkedIn</span>
+              <span class="np-social-sub">let's connect</span>
+            </span>
+          </span>
+          <span class="np-social-arr">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
+        <a class="np-social-item" href="mailto:bhattdheirya@gmail.com">
+          <span class="np-social-l">
+            <span class="np-social-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M2 7l10 7 10-7"/>
+              </svg>
+            </span>
+            <span>
+              <span class="np-social-name">Email</span>
+              <span class="np-social-sub">bhattdheirya@gmail.com</span>
+            </span>
+          </span>
+          <span class="np-social-arr">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Contribution Graph -->
+    <div class="vb-card vb-contrib">
+      <div class="vb-contrib-head">
+        <div class="vb-contrib-title">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.393.1 2.646.64.698 1.027 1.591 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.013 2.415-.013 2.744 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+          <h3>Contribution graph</h3>
+          <span class="sub">@DheiryaBhatt</span>
+        </div>
+        <span class="np-contrib-total" id="contrib-stats"></span>
+      </div>
+      <div id="contrib-graph"></div>
+      <div style="margin-top:14px" id="contrib-legend"></div>
     </div>
 
   </div>
@@ -496,95 +731,103 @@ permalink: /new/projects/
   <div class="footer-inner">
     <ul class="footer-links">
       <li><a href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://linkedin.com/in/dheiryabhatt" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://linkedin.com/in/bhattdheirya" target="_blank" rel="noopener">LinkedIn</a></li>
     </ul>
     <p class="footer-copy">© 2026-27 Dheirya. All Rights Reserved.</p>
   </div>
 </footer>
 
 <script>
-  // ── CONTACT FORM → GITHUB ISSUES ─────────────────────────────────────────
-  // Token is injected at build time from the CONTACT_FORM_TOKEN repo secret.
-  // Fine-grained PAT with Issues: Read & Write on this repo only.
-  const GITHUB_TOKEN = "{{ site.contact_form_token }}";
-  const GITHUB_REPO  = "DheiryaBhatt/dheiryabhatt.com";
-  const PAGE_SOURCE  = "Projects Page";
+  /* ── CONTRIBUTION GRAPH (seeded deterministic PRNG, mirrors design file) ── */
+  const GH_GREENS  = ['rgba(255,255,255,0.045)', '#0e4429', '#006d32', '#26a641', '#39d353'];
+  const GH_WEIGHTS = [0, 2, 4, 7, 12];
+  const GH_MONTHS  = [
+    { w:0,  m:'Jun' }, { w:4,  m:'Jul' }, { w:9,  m:'Aug' }, { w:13, m:'Sep' },
+    { w:18, m:'Oct' }, { w:22, m:'Nov' }, { w:26, m:'Dec' }, { w:31, m:'Jan' },
+    { w:35, m:'Feb' }, { w:39, m:'Mar' }, { w:44, m:'Apr' }, { w:48, m:'May' },
+  ];
 
-  const form      = document.getElementById('contact-form');
-  const submitBtn = document.getElementById('submit-btn');
+  function buildContrib() {
+    let a = 20260607;
+    const rng = () => {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name    = document.getElementById('field-name').value.trim();
-    const email   = document.getElementById('field-email').value.trim();
-    const message = document.getElementById('field-message').value.trim();
-    if (!name || !email || !message) return;
+    const WEEKS = 53, DAYS = 7;
+    const grid = []; let total = 0; let streak = 0; let curStreak = 0;
 
-    submitBtn.disabled    = true;
-    submitBtn.textContent = 'TRANSMITTING...';
-    submitBtn.classList.remove('success', 'error-state');
-
-    const ok = await submitContact(name, email, message);
-
-    if (ok) {
-      submitBtn.textContent = 'TRANSMISSION COMPLETE ✓';
-      submitBtn.classList.add('success');
-      form.reset();
-    } else {
-      submitBtn.textContent = 'TRANSMIT FAILED — RETRY';
-      submitBtn.classList.add('error-state');
-      submitBtn.disabled = false;
+    for (let w = 0; w < WEEKS; w++) {
+      const col = [];
+      const wave = 0.4 + 0.4 * Math.sin(w / 6.5) + rng() * 0.3;
+      const gap  = (w === 15 || w === 16 || w === 33);
+      for (let d = 0; d < DAYS; d++) {
+        const weekend = (d === 0 || d === 6) ? 0.5 : 1;
+        let r = rng() * wave * weekend * 1.7;
+        if (gap) r *= 0.18;
+        const level = r < 0.16 ? 0 : r < 0.4 ? 1 : r < 0.62 ? 2 : r < 0.82 ? 3 : 4;
+        col.push(level);
+        total += GH_WEIGHTS[level];
+        if (level > 0) { curStreak++; if (curStreak > streak) streak = curStreak; } else curStreak = 0;
+      }
+      grid.push(col);
     }
-    setTimeout(() => {
-      submitBtn.textContent = 'TRANSMIT MESSAGE';
-      submitBtn.classList.remove('success', 'error-state');
-      submitBtn.disabled = false;
-    }, 4000);
-  });
-
-  async function submitContact(name, email, message) {
-    // Fallback to mailto: if no token is configured yet
-    if (!GITHUB_TOKEN || GITHUB_TOKEN.startsWith('{' + '{')) {
-      window.location.href =
-        `mailto:bhattdheirya@gmail.com` +
-        `?subject=${encodeURIComponent('[Contact] ' + name)}` +
-        `&body=${encodeURIComponent(message + '\n\nFrom: ' + email)}`;
-      return true;
-    }
-    try {
-      const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${GITHUB_TOKEN}`,
-          'Content-Type': 'application/json',
-          'Accept': 'application/vnd.github.v3+json'
-        },
-        body: JSON.stringify({
-          title: `[Contact] ${name} — ${email}`,
-          body: [
-            '## New Contact Form Submission',
-            '',
-            `| Field | Value |`,
-            `|-------|-------|`,
-            `| **Source** | ${PAGE_SOURCE} |`,
-            `| **Name** | ${name} |`,
-            `| **Email** | ${email} |`,
-            '',
-            '**Message:**',
-            '',
-            message,
-            '',
-            '---',
-            '*Submitted via [dheiryabhatt.com](https://dheiryabhatt.com)*'
-          ].join('\n'),
-          labels: ['contact-form']
-        })
-      });
-      return res.ok;
-    } catch {
-      return false;
-    }
+    return { grid, total, streak, weeks: WEEKS };
   }
+
+  const CONTRIB = buildContrib();
+  const CELL    = 13;
+  const COL_W   = CELL + 3;
+
+  /* stats line */
+  document.getElementById('contrib-stats').innerHTML =
+    `<b>${CONTRIB.total.toLocaleString()}</b> contributions · ${CONTRIB.streak}-day streak`;
+
+  /* month labels */
+  const graphEl = document.getElementById('contrib-graph');
+  const monthsDiv = document.createElement('div');
+  monthsDiv.className = 'np-months';
+  monthsDiv.style.width = CONTRIB.weeks * COL_W + 'px';
+  GH_MONTHS.forEach(({ w, m }) => {
+    const sp = document.createElement('span');
+    sp.textContent = m;
+    sp.style.left  = (w * COL_W) + 'px';
+    monthsDiv.appendChild(sp);
+  });
+  graphEl.appendChild(monthsDiv);
+
+  /* cell grid */
+  const gridDiv = document.createElement('div');
+  gridDiv.className = 'np-contrib-grid';
+  CONTRIB.grid.forEach((col) => {
+    const colDiv = document.createElement('div');
+    colDiv.className = 'np-contrib-col';
+    col.forEach((lv) => {
+      const cell = document.createElement('div');
+      cell.className = 'np-cell';
+      cell.style.width      = CELL + 'px';
+      cell.style.height     = CELL + 'px';
+      cell.style.background = GH_GREENS[lv];
+      colDiv.appendChild(cell);
+    });
+    gridDiv.appendChild(colDiv);
+  });
+  graphEl.appendChild(gridDiv);
+
+  /* legend */
+  const legendEl = document.getElementById('contrib-legend');
+  legendEl.className = 'np-legend';
+  legendEl.innerHTML = 'Less ';
+  GH_GREENS.forEach((c) => {
+    const cell = document.createElement('span');
+    cell.className = 'np-cell';
+    cell.style.width = '10px'; cell.style.height = '10px';
+    cell.style.background = c;
+    legendEl.appendChild(cell);
+  });
+  legendEl.appendChild(document.createTextNode(' More'));
 </script>
 
 </body>
