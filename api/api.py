@@ -5,6 +5,7 @@ import os
 import re
 import secrets
 import string
+import time
 from datetime import datetime, timezone
 
 import httpx
@@ -22,6 +23,30 @@ NEXTCLOUD_APP_PASSWORD = os.getenv("NEXTCLOUD_APP_PASSWORD", "")
 GITHUB_TOKEN           = os.getenv("GITHUB_TOKEN", "")
 GITHUB_REPO            = os.getenv("GITHUB_REPO", "")
 
+GITHUB_USER    = "DheiryaBhatt"
+GITHUB_GQL_URL = "https://api.github.com/graphql"
+CACHE_TTL      = 6 * 3600  # 6 hours
+
+_contrib_cache: dict = {"data": None, "ts": 0.0}
+
+_CONTRIB_QUERY = """
+query($login: String!) {
+  user(login: $login) {
+    contributionsCollection {
+      contributionCalendar {
+        totalContributions
+        weeks {
+          contributionDays {
+            contributionCount
+            date
+          }
+        }
+      }
+    }
+  }
+}
+"""
+
 VALID_INTENTS = {"recruit", "collab", "research", "press", "curious"}
 CSV_COLUMNS   = ["timestamp", "ticket_id", "identity", "designation", "clearance_intent", "justification"]
 CSV_PATH      = f"{NEXTCLOUD_URL}/remote.php/dav/files/{NEXTCLOUD_USER}/database/access-requests.csv"
@@ -30,7 +55,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://dheiryabhatt.com"],
-    allow_methods=["POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
 
@@ -125,6 +150,45 @@ async def _create_github_issue(client: httpx.AsyncClient, row: dict, timestamp: 
         },
     )
     resp.raise_for_status()
+
+
+@app.get("/api/github-contributions")
+async def github_contributions():
+    now = time.time()
+    if _contrib_cache["data"] and now - _contrib_cache["ts"] < CACHE_TTL:
+        return _contrib_cache["data"]
+
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        resp = await client.post(
+            GITHUB_GQL_URL,
+            json={"query": _CONTRIB_QUERY, "variables": {"login": GITHUB_USER}},
+            headers={
+                "Authorization": f"Bearer {GITHUB_TOKEN}",
+                "Content-Type": "application/json",
+            },
+        )
+        resp.raise_for_status()
+
+    calendar = resp.json()["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+    total    = calendar["totalContributions"]
+
+    def _level(count: int) -> int:
+        if count == 0:  return 0
+        if count <= 2:  return 1
+        if count <= 5:  return 2
+        if count <= 9:  return 3
+        return 4
+
+    weeks = [
+        [{"count": d["contributionCount"], "level": _level(d["contributionCount"]), "date": d["date"]}
+         for d in week["contributionDays"]]
+        for week in calendar["weeks"]
+    ]
+
+    result = {"total": total, "weeks": weeks}
+    _contrib_cache["data"] = result
+    _contrib_cache["ts"]   = now
+    return result
 
 
 @app.post("/api/submit")
