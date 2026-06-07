@@ -384,7 +384,9 @@ permalink: /new/
         grid-column: 1 / -1;
         grid-row: auto;
       }
-      .nav-links { display: none; }
+      .nav-links     { display: none !important; }
+      .nav-mail      { display: none !important; }
+      .nav-hamburger { display: flex; }
     }
   </style>
 </head>
@@ -397,20 +399,34 @@ permalink: /new/
         <img src="/assets/images/Group_18.svg" alt="DeeBot's logo" class="nav-logo-img">
         DeeBot's ;)
       </a>
-      <div class="nav-links">
-        <a href="/new/" class="active">Home</a>
-        <a href="/new/projects/">Projects</a>
-        <a href="/new/blogs/">Blogs</a>
-        <a href="/new/about/">About/CV</a>
-      </div>
-      <div class="nav-mail" title="Email">
-        <svg viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/>
-          <path d="M1 4l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
+      <ul class="nav-links">
+        <li><a href="/new/" class="active">Home</a></li>
+        <li><a href="/new/projects/">Projects</a></li>
+        <li><a href="/new/blogs/">Blogs</a></li>
+        <li><a href="/new/about/">About/CV</a></li>
+      </ul>
+      <div class="nav-end">
+        <a class="nav-mail" href="mailto:bhattdheirya@gmail.com" aria-label="Email me" title="Email">
+          <svg viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/>
+            <path d="M1 4l10 7 10-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="/new/" class="active">Home</a></li>
+      <li><a href="/new/projects/">Projects</a></li>
+      <li><a href="/new/blogs/">Blogs</a></li>
+      <li><a href="/new/about/">About/CV</a></li>
+    </ul>
+  </div>
 
   <!-- MAIN -->
   <main>
@@ -542,11 +558,11 @@ permalink: /new/
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-links">
-        <a href="https://github.com/dheiryabhatt" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/dheiryabhatt" target="_blank">LinkedIn</a>
-      </div>
-      <span class="footer-copy">© 2026-27 Dheirya. All Rights Reserved.</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/DheiryaBhatt" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/dheiryabhatt" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <p class="footer-copy">© 2026-27 Dheirya. All Rights Reserved.</p>
     </div>
   </footer>
 
@@ -556,6 +572,7 @@ permalink: /new/
     }
   </script>
   <script src="/new/assets/js/ama.js" defer></script>
+  <script src="/new/assets/js/nav.js"></script>
 
 </body>
 </html>

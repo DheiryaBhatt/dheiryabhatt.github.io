@@ -153,6 +153,84 @@ footer {
   color: var(--text);
 }
 
+/* ── NAV END (mail + hamburger grouping) ── */
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── HAMBURGER BUTTON ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.nav-hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── MOBILE MENU ── */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  z-index: 99;
+  background: rgba(10,10,10,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 24px 20px 32px;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.mobile-menu.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+.mobile-menu ul li { border-bottom: 1px solid var(--border-subtle); }
+.mobile-menu ul li:last-child { border-bottom: none; }
+.mobile-menu ul li a {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 16px 0;
+  transition: color 0.2s;
+}
+.mobile-menu ul li a:hover,
+.mobile-menu ul li a.active { color: var(--text); }
+
 /* ── ENTRANCE ANIMATION ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -161,6 +239,9 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
-  .nav-inner    { padding: 0 20px; }
-  .footer-inner { padding: 0 20px; flex-direction: column; gap: 16px; text-align: center; }
+  .nav-inner     { padding: 0 20px; }
+  .nav-links     { display: none !important; }
+  .nav-mail      { display: none !important; }
+  .nav-hamburger { display: flex; }
+  .footer-inner  { padding: 0 20px; flex-direction: column; gap: 16px; text-align: center; }
 }
