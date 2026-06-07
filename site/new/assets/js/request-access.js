@@ -77,7 +77,7 @@
     };
 
     try {
-      var res = await fetch('/api/submit', {
+      var res = await fetch('https://cloud.dheiryabhatt.com/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
