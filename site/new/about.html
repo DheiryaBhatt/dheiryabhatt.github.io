@@ -98,45 +98,104 @@ permalink: /new/about/
     .sec-rule { flex: 1; height: 1px; background: var(--border-subtle); }
     .section { display: flex; flex-direction: column; gap: 16px; }
 
-    /* ── PROFILE GRID ── */
-    .profile-grid { display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
-    .profile-card { padding: 26px; display: flex; flex-direction: column; gap: 18px; }
-    .avatar-wrap { display: flex; align-items: center; gap: 15px; }
-    .avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center 22%; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.12); }
-    .who-name { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; color: #fff; line-height: 1.1; }
-    .who-role { font-size: 12px; color: var(--text-light); margin-top: 4px; }
-    .availability {
+    /* ── PROFILE BENTO ── */
+    .profile-bento { display: grid; grid-template-columns: 360px 1fr; gap: 20px; align-items: stretch; }
+
+    .photo-hero {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 460px;
+      isolation: isolate;
+      border: 1px solid rgba(71,71,71,0.15);
+      transition: border-color .25s;
+    }
+    .photo-hero:hover { border-color: rgba(255,255,255,0.18); }
+    .photo-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+      z-index: -2;
+      transition: transform .9s cubic-bezier(.2,.7,.2,1);
+    }
+    .photo-hero:hover img { transform: scale(1.035); }
+    .photo-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(to top, rgba(8,8,8,0.94) 4%, rgba(8,8,8,0.55) 32%, rgba(8,8,8,0) 58%),
+        linear-gradient(to top, rgba(8,8,8,0.35), rgba(8,8,8,0) 22%);
+    }
+    .photo-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 90px rgba(0,0,0,0.55);
+      pointer-events: none;
+    }
+    .photo-top {
+      position: absolute;
+      top: 16px; left: 16px; right: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .photo-body {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 24px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .photo-availability {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(34,197,94,0.08);
-      border: 1px solid rgba(34,197,94,0.25);
+      background: rgba(34,197,94,0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(34,197,94,0.32);
       border-radius: 9999px;
       padding: 6px 12px;
       align-self: flex-start;
     }
+    .photo-availability span { font-size: 9.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #d4f3df; }
     .green-dot {
       width: 6px; height: 6px;
       background: var(--accent-green);
       border-radius: 50%;
       box-shadow: 0 0 8px rgba(34,197,94,0.6);
       animation: pulse-green 2s ease-in-out infinite;
+      flex-shrink: 0;
     }
     @keyframes pulse-green {
       0%,100% { box-shadow: 0 0 7px rgba(34,197,94,0.5); }
       50%      { box-shadow: 0 0 14px rgba(34,197,94,0.9); }
     }
-    .availability span { font-size: 9.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #cdedd6; }
-    .meta-row { display: flex; flex-direction: column; padding-top: 4px; border-top: 1px solid var(--border-subtle); }
-    .meta-item { display: flex; align-items: center; gap: 11px; padding-top: 11px; }
-    .meta-ico { width: 15px; height: 15px; color: var(--muted); flex-shrink: 0; }
-    .meta-ico svg { width: 100%; height: 100%; }
-    .meta-k { font-size: 12px; color: var(--text-light); }
-    .meta-k b { color: #fff; font-weight: 600; }
-    .btn-row { display: flex; gap: 10px; }
+    .photo-name { font-size: 30px; font-weight: 800; letter-spacing: -1px; color: #fff; line-height: 1; margin-top: 2px; }
+    .photo-role { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #cfcfcf; }
+
+    .profile-side { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+
+    .info-bar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px 24px;
+      align-items: center;
+      padding: 18px 22px;
+    }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; min-width: 0; }
+    .fact { display: flex; align-items: center; gap: 9px; }
+    .fact-ico { width: 15px; height: 15px; color: var(--muted); flex-shrink: 0; }
+    .fact-ico svg { width: 100%; height: 100%; }
+    .fact-k { font-size: 12px; color: var(--text-light); white-space: nowrap; }
+    .fact-k b { color: #fff; font-weight: 600; }
+    .btn-row { display: flex; gap: 10px; flex-shrink: 0; }
     .btn {
-      flex: 1;
-      padding: 11px 14px;
+      padding: 11px 16px;
       border-radius: 8px;
       cursor: pointer;
       font-family: var(--font);
@@ -150,6 +209,7 @@ permalink: /new/about/
       align-items: center;
       justify-content: center;
       gap: 7px;
+      white-space: nowrap;
       transition: background .2s, border-color .2s, transform .12s, color .2s;
     }
     .btn svg { width: 13px; height: 13px; }
@@ -164,6 +224,7 @@ permalink: /new/about/
       padding: 30px;
       position: relative;
       overflow: hidden;
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -327,7 +388,12 @@ permalink: /new/about/
 
     /* ── RESPONSIVE ── */
     @media (max-width: 880px) {
-      .profile-grid { grid-template-columns: 1fr; }
+      .profile-bento { grid-template-columns: 1fr; }
+      .photo-hero { min-height: 0; aspect-ratio: 16 / 13; }
+      .photo-hero img { object-position: center 24%; }
+      .info-bar { grid-template-columns: 1fr; }
+      .btn-row { width: 100%; }
+      .btn-row .btn { flex: 1; }
       .xp-bullets { grid-template-columns: 1fr; }
       .xp-wide { grid-template-columns: 1fr; gap: 14px; }
     }
@@ -335,6 +401,8 @@ permalink: /new/about/
       body { font-size: 14px; }
       main { padding: 88px 16px 56px; gap: 32px; }
       .nav-links { display: none; }
+      .photo-hero { aspect-ratio: 4 / 5; }
+      .photo-name { font-size: 26px; }
       .edu-grid, .stats, .lang-card { grid-template-columns: 1fr; }
       .stat { border-right: none; border-bottom: 1px solid var(--border-subtle); }
       .stat:last-child { border-bottom: none; }
@@ -390,57 +458,63 @@ permalink: /new/about/
     <p class="hero-sub">MSc Computer Science student and AI/ML engineer — building multi-agent LLM systems that automate the testing behind complex software.</p>
   </section>
 
-  <!-- PROFILE ROW -->
-  <div class="profile-grid">
-    <div class="glass profile-card" data-rise style="animation-delay:.1s">
-      <div class="avatar-wrap">
-        <img class="avatar" src="/assets/images/profile.jpg" alt="Dheirya Bhatt" />
-        <div>
-          <div class="who-name">Dheirya Bhatt</div>
-          <div class="who-role">AI &amp; ML · MSc Computer Science</div>
+  <!-- PROFILE BENTO -->
+  <div class="profile-bento">
+
+    <!-- Photo hero -->
+    <div class="photo-hero" data-rise style="animation-delay:.1s">
+      <img src="/assets/images/profile.jpg" alt="Dheirya Bhatt" />
+      <div class="photo-scrim" aria-hidden="true"></div>
+      <div class="photo-top">
+        <div class="photo-availability">
+          <span class="green-dot"></span>
+          <span>Open · Graduating 2027</span>
         </div>
       </div>
-
-      <div class="availability">
-        <span class="green-dot"></span>
-        <span>Open · Graduating 2027</span>
-      </div>
-
-      <div class="meta-row">
-        <div class="meta-item">
-          <span class="meta-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.686-7-11a7 7 0 0114 0c0 5.314-7 11-7 11z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg></span>
-          <span class="meta-k">Based in <b>Paderborn, DE</b></span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M22 10v6M2 10l10-8 10 8-10 8-10-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
-          <span class="meta-k">MSc · <b>Universität Paderborn</b></span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          <span class="meta-k">Student Assistant · <b>dSPACE GmbH</b></span>
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <a class="btn btn-primary" href="/assets/resume.pdf" download aria-label="Download CV">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          CV
-        </a>
-        <a class="btn btn-ghost" href="mailto:bhattdheirya@gmail.com">Get in touch</a>
+      <div class="photo-body">
+        <div class="photo-role">AI &amp; ML Engineer</div>
+        <div class="photo-name">Dheirya Bhatt</div>
       </div>
     </div>
 
-    <div class="glass statement-card" data-rise style="animation-delay:.16s">
-      <p class="statement-lead">I work where generative AI meets real engineering — <em>building multi-agent LLM systems that automate the testing behind complex software.</em></p>
-      <p class="statement-body">MSc Computer Science candidate at Universität Paderborn and a Student Assistant at dSPACE GmbH, where I develop a multi-agent, LLM-based pipeline for automated AutomationDesk test-case generation on the ADSS product. Earlier I cut a neural-network model's compute by 37% in research. I like systems that are both intelligent and reliable.</p>
-      <div class="focus-tags">
-        <span class="pill">Generative AI</span>
-        <span class="pill">Agentic AI</span>
-        <span class="pill">Test Automation</span>
-        <span class="pill">Prompt Engineering</span>
+    <!-- Right column -->
+    <div class="profile-side">
+      <div class="glass statement-card" data-rise style="animation-delay:.16s">
+        <p class="statement-lead">I work where generative AI meets real engineering — <em>building multi-agent LLM systems that automate the testing behind complex software.</em></p>
+        <p class="statement-body">MSc Computer Science candidate at Universität Paderborn and a Student Assistant at dSPACE GmbH, where I develop a multi-agent, LLM-based pipeline for automated AutomationDesk test-case generation on the ADSS product. Earlier I cut a neural-network model's compute by 37% in research. I like systems that are both intelligent and reliable.</p>
+        <div class="focus-tags">
+          <span class="pill">Generative AI</span>
+          <span class="pill">Agentic AI</span>
+          <span class="pill">Test Automation</span>
+          <span class="pill">Prompt Engineering</span>
+        </div>
+        <div class="ring-1" aria-hidden="true"></div>
+        <div class="ring-2" aria-hidden="true"></div>
       </div>
-      <div class="ring-1" aria-hidden="true"></div>
-      <div class="ring-2" aria-hidden="true"></div>
+
+      <div class="glass info-bar" data-rise style="animation-delay:.22s">
+        <div class="facts">
+          <div class="fact">
+            <span class="fact-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.686-7-11a7 7 0 0114 0c0 5.314-7 11-7 11z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg></span>
+            <span class="fact-k">Based in <b>Paderborn, DE</b></span>
+          </div>
+          <div class="fact">
+            <span class="fact-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M22 10v6M2 10l10-8 10 8-10 8-10-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <span class="fact-k">MSc · <b>Universität Paderborn</b></span>
+          </div>
+          <div class="fact">
+            <span class="fact-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="fact-k">Student Assistant · <b>dSPACE GmbH</b></span>
+          </div>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="/assets/resume.pdf" download aria-label="Download CV">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            CV
+          </a>
+          <a class="btn btn-ghost" href="mailto:bhattdheirya@gmail.com">Get in touch</a>
+        </div>
+      </div>
     </div>
   </div>
 
